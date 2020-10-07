@@ -1,0 +1,54 @@
+# redis 配置模板
+
+# 优先从环境变量里取值
+shoulder:
+  redis:
+    ip: ${REDIS_IP:127.0.0.1}
+    port: ${REDIS_PORT:5672}
+    username: ${REDIS_USERNAME:shoulder} # redis6 支持用户名
+    password: ${REDIS_PASSWORD:shoulder}
+    database: 0
+
+spring:
+  cache:
+    type: GENERIC
+  redis:
+    host: ${shoulder.redis.ip}
+    password: ${shoulder.redis.password}
+    port: ${shoulder.redis.port}
+    database: ${shoulder.redis.database}
+
+j2cache:
+  #  config-location: /j2cache.properties
+  open-spring-cache: true
+  cache-clean-mode: passive
+  allow-null-values: true
+  redis-client: lettuce
+  l2-cache-open: true
+  # l2-cache-open: false     # 关闭二级缓存
+  broadcast: net.oschina.j2cache.cache.support.redis.SpringRedisPubSubPolicy
+  #  broadcast: jgroups       # 关闭二级缓存
+  L1:
+    provider_class: caffeine
+  L2:
+    provider_class: net.oschina.j2cache.cache.support.redis.SpringRedisProvider
+    config_section: lettuce
+  sync_ttl_to_redis: true
+  default_cache_null_object: false
+  serialization: fst
+caffeine:
+  properties: /j2cache/caffeine.properties   # 这个配置文件需要放在项目中
+lettuce:
+  mode: single
+  namespace: ''
+  storage: generic
+  channel: j2cache
+  scheme: redis
+  hosts: ${shoulder.redis.ip}:${shoulder.redis.port}
+  password: ${shoulder.redis.password}
+  database: ${shoulder.redis.database}
+  sentinelMasterId: ''
+  maxTotal: 100
+  maxIdle: 10
+  minIdle: 10
+  timeout: 10000

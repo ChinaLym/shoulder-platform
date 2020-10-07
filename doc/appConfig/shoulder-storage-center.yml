@@ -1,0 +1,48 @@
+shoulder:
+  nginx:
+    ip: ${spring.cloud.client.ip-address}   # 正式环境需要将该ip设置成nginx对应的 公网ip
+    port: 10000                             # 正式环境需要将该ip设置成nginx对应的 公网端口
+  swagger:
+    enabled: true
+    docket:
+      file:
+        title: 存储服务
+        base-package: cn.itlym.shoulder.platform.storage.controller
+      general:
+        title: 通用模块
+        base-package: cn.itlym.shoulder.common.controller
+  file:
+    type: LOCAL # FAST_DFS LOCAL
+    storage-path: /data/projects/uploadfile/file/     # 文件存储路径  （ 某些版本的 window 需要改成  D:\\data\\projects\\uploadfile\\file\\  ）
+    uriPrefix: http://${shoulder.nginx.ip}:${shoulder.nginx.port}/file/   # 文件访问 需要通过这个uri前缀进行访问
+    inner-uri-prefix: null  #  内网的url前缀
+    down-by-id: http://${shoulder.nginx.ip}:${shoulder.nginx.port}/api/file/attachment/download?ids[]=%s
+    down-by-biz-id: http://${shoulder.nginx.ip}:${shoulder.nginx.port}/api/file/attachment/download/biz?bizIds[]=%s
+    down-by-url: http://${shoulder.nginx.ip}:${shoulder.nginx.port}/api/file/attachment/download/url?url=%s&filename=%s
+    ali:
+      # 请填写自己的阿里云存储配置
+      uriPrefix: http://test.oss-cn-shenzhen.aliyuncs.com/
+      bucket-name: test
+      endpoint: http://oss-cn-shenzhen.aliyuncs.com
+      access-key-id: test
+      access-key-secret: test
+
+#FAST_DFS配置
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+    - 127.0.0.1:12345
+  pool:
+    #从池中借出的对象的最大数目
+    max-total: 128
+    max-wait-millis: 100
+    jmx-name-base: 1
+    jmx-name-prefix: 1
+
+
+server:
+  port: 10000

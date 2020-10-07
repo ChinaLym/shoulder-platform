@@ -1,0 +1,21 @@
+# 第三方开发者账号信息，如对接阿里云、腾讯云、微信登陆等信息
+
+ali-cloud:
+  access-key-id: changeme
+  access-secret: changeme
+
+spring:
+  mail:
+    username: changeme
+    host: smtp.qq.com
+    password: changeme
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+          starttls:
+            enable: true
+            required: true

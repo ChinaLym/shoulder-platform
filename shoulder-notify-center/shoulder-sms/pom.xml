@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
+    </parent>
+
+    <groupId>cn.itlym.platform.notify</groupId>
+    <artifactId>shoulder-sms</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>sms-center</module>
+        <module>shoulder-sms-client</module>
+        <module>sms-api</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.itlym.platform.notify</groupId>
+                <artifactId>sms-api</artifactId>
+                <version>${shoulder-platform.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform.notify</groupId>
+                <artifactId>sms-center</artifactId>
+                <version>${shoulder-platform.version}</version>
+            </dependency>
+
+            <!-- sdk -->
+            <dependency>
+                <groupId>cn.itlym.platform.notify</groupId>
+                <artifactId>shoulder-sms-client</artifactId>
+                <version>${shoulder-platform.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

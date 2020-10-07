@@ -1,0 +1,103 @@
+# 数据库 配置模板
+
+# 优先从环境变量里取值
+shoulder:
+  database:      # 数据库配置请看DatabaseProperties类上的注释
+    driverClassName: com.mysql.cj.jdbc.Driver
+    conn-schema: jdbc:mysql
+    ip: ${MYSQL_IP:127.0.0.1}
+    port: ${MYSQL_PORT:3306}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PWD:root}
+    addr: ${MYSQL_ADDR:'${shoulder.database.ip}:${shoulder.database.port}'}
+    database: shoulder_database
+    # utf8字符集、+8 时区、使用 unicode、关闭 ssl、自动重连、忽略错误的时间（使用null代替）、单次发送多条语句（分号分隔）
+    conn-param: characterEncoding=utf8&serverTimezone=CTT&useUnicode=true&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    url: ${shoulder.database.conn-schema}://${shoulder.database.ip}:${shoulder.database.port}/${shoulder.database.database}?${shoulder.database.conn-param}
+    bizDatabase: shoulder_base
+    multiTenantType: SCHEMA
+    isNotWrite: false
+    isBlockAttack: false  # 是否启用 攻击 SQL 阻断解析器
+    worker-id: 0
+    data-center-id: 0
+
+spring:
+  jpa:
+    database: MYSQL
+    hibernate:
+    #ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+  # ============================ 数据库无关的配置 ============================
+  datasource:
+    # 多数据源配置
+    #nameList: beecp
+    # beecp
+    type: cn.beecp.BeeDataSource
+    driverClassName: cn.beecp.BeeDataSource
+    url: ${shoulder.database.url}
+    username: ${shoulder.database.username}
+    password: ${shoulder.database.password}
+
+    druid:
+      username: ${shoulder.database.username}
+      password: ${shoulder.database.password}
+      driver-class-name: ${shoulder.database.driverClassName}
+      url: ${shoulder.database.url}
+      db-type: mysql
+      initialSize: 10
+      minIdle: 10
+      maxActive: 500
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT '1'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000  #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis: 300000    #配置一个连接在池中最小生存的时间，单位是毫秒
+      filters: stat,wall
+      filter:
+        wall:
+          enabled: true
+          config:
+            commentAllow: true
+            multiStatementAllow: true
+            noneBaseStatementAllow: true
+      web-stat-filter:  # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js , *.gif ,*.jpg ,*.png ,*.css ,*.ico , /druid/*"
+        session-stat-max-count: 1000
+        profile-enable: true
+        session-stat-enable: false
+      stat-view-servlet:  #展示Druid的统计信息,StatViewServlet的用途包括：1.提供监控信息展示的html页面2.提供监控信息的JSON API
+        enabled: true
+        url-pattern: /druid/*   #根据配置中的url-pattern来访问内置监控页面，如果是上面的配置，内置监控页面的首页是/druid/index.html例如：http://127.0.0.1:9000/druid/index.html
+        reset-enable: true    #允许清空统计数据
+        login-username: shoulder
+        login-password: shoulder
+
+
+mybatis-plus:
+  mapper-locations:
+    - classpath*:mapper_**/**/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔 todo 修改这里
+  typeAliasesPackage: com.github.shoulder.*.entity;com.github.shoulder.database.mybatis.typehandler
+  typeEnumsPackage: com.github.shoulder.*.enumeration
+  global-config:
+    db-config:
+      id-type: INPUT
+      insert-strategy: NOT_NULL
+      update-strategy: NOT_NULL
+      select-strategy: NOT_EMPTY
+  configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    #配置JdbcTypeForNull, oracle数据库必须配置
+    jdbc-type-for-null: 'null'

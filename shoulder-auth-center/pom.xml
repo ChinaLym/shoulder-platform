@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
+    </parent>
+
+    <groupId>cn.itlym.platform</groupId>
+    <artifactId>shoulder-auth-center</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>shoulder-auth-api</module>
+    </modules>
+
+
+</project>

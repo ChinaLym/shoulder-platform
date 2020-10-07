@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../shoulder-platform-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>shoulder-platform-starter-db</artifactId>
+
+    <dependencies>
+        <!-- spring boot + shoulder 数据库能力 -->
+        <dependency>
+            <groupId>cn.itlym</groupId>
+            <artifactId>shoulder-data-db</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.itlym</groupId>
+            <artifactId>shoulder-starter</artifactId>
+        </dependency>
+
+        <!-- 默认使用 mybatis -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- 默认使用 mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!-- 数据库 连接池 默认使用高性能的 beecp （性能是 spring-boot 默认 hikairCP 两倍，功能较少）-->
+        <dependency>
+            <groupId>com.github.chris2018998</groupId>
+            <artifactId>BeeCP</artifactId>
+        </dependency>
+        <!-- beecp 的 starter 官方提供的有 bug 因为其 provide 属性会导致编译失败 -->
+        <!--<dependency>
+            <groupId>com.github.chris2018998</groupId>
+            <artifactId>spring-boot-starter-beecp</artifactId>
+            <version>1.3.5.RELEASE</version>
+        </dependency>-->
+
+        <!-- 弥补 beecp 的功能缺失（打印SQL日志、监控） -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+        </dependency>
+        <!-- 其他推荐连接池-->
+        <!--
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+        -->
+
+        <!-- 解决mybatis 和 LocalDateTime 的问题 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!-- 分布式事务 -->
+
+
+        <!--数据库文档-->
+        <!--https://gitee.com/enilu/database-doc-generator-->
+
+    </dependencies>
+
+
+</project>

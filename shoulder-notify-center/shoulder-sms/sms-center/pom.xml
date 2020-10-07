@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform.notify</groupId>
+        <artifactId>shoulder-sms</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.itlym.platform.notify</groupId>
+    <artifactId>sms-center</artifactId>
+    <name>${artifactId}</name>
+    <description>Shoulder平台-短信推送服务</description>
+
+    <properties>
+        <javax.mail.version>1.6.2</javax.mail.version>
+    </properties>
+
+    <dependencies>
+        <!-- sms-api -->
+        <dependency>
+            <groupId>cn.itlym.platform.notify</groupId>
+            <artifactId>sms-api</artifactId>
+        </dependency>
+        <!-- aliyun-sms -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-sms-aliyun-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- WEB/db/mq/discovery/config/monitor/trace -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-micro</artifactId>
+        </dependency>
+
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+
+        <!-- mail -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${javax.mail.version}</version>
+        </dependency>
+
+        <!-- freemarker 模版 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <!-- maven 默认使用 artifactId+version拼接 -->
+        <finalName>${project.artifactId}</finalName>
+
+        <!-- 动态打包环境配置源文件 -->
+        <filters>
+            <filter>../../../dynamicConfig/config-${profile.active}.properties</filter>
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+    </build>
+
+
+</project>

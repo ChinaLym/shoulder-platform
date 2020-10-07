@@ -1,0 +1,11 @@
+${AnsiColor.CYAN} ____  _                 _     _           ${AnsiColor.BRIGHT_YELLOW}      _    ____ ___        ____       _                           ${AnsiColor.CYAN} __   __    __
+${AnsiColor.CYAN}/ ___|| |__   ___  _   _| | __| | ___ _ __ ${AnsiColor.BRIGHT_YELLOW}     / \  |  _ \_ _|      / ___| __ _| |_ _____      ____ _ _   _ ${AnsiColor.CYAN} \ \  \ \   \ \
+${AnsiColor.CYAN}\___ \| '_ \ / _ \| | | | |/ _` |/ _ \ '__|${AnsiColor.BRIGHT_YELLOW}    / _ \ | |_) | |_____ | |  _ / _` | __/ _ \ \ /\ / / _` | | | |${AnsiColor.CYAN}  \ \  \ \   \ \
+${AnsiColor.CYAN} ___) | | | | (_) | |_| | | (_| |  __/ |   ${AnsiColor.BRIGHT_YELLOW}   / ___ \|  __/| |_____|| |_| | (_| | ||  __/\ V  V / (_| | |_| |${AnsiColor.CYAN}  / /  / /   / /
+${AnsiColor.CYAN}|____/|_| |_|\___/ \__,_|_|\__,_|\___|_|   ${AnsiColor.BRIGHT_YELLOW}  /_/   \_\_|  |___|      \____|\__,_|\__\___| \_/\_/ \__,_|\__, |${AnsiColor.CYAN} / /  / /   / /
+${AnsiColor.CYAN}=======================================================================================================${AnsiColor.BRIGHT_YELLOW}|___/${AnsiColor.CYAN}=/_/==/_/===/_/
+
+${AnsiColor.BLUE} :: Spring Boot            ::     ${AnsiColor.CYAN}${spring-boot.formatted-version}
+${AnsiColor.BLUE} :: Shoulder-Framework     ::      ${AnsiColor.CYAN}(v@shoulder.version@)
+${AnsiColor.BRIGHT_GREEN} :: @project.artifactId@   ::      ${AnsiColor.GREEN}(v@project.version@)${AnsiColor.CYAN} @project.description@
+${AnsiColor.DEFAULT}

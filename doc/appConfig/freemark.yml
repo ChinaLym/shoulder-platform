@@ -1,0 +1,13 @@
+spring:
+  freemarker:
+    allow-request-override: false
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .flt
+    template-loader-path: classpath:/static/template/

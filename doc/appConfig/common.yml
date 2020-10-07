@@ -1,0 +1,100 @@
+# 所有服务和环境下都不变的配置
+# 个性化配置：复制本配置到 {服务}-${profiles.active}.yml 文件中进行修改
+
+shoulder:
+  application:
+    id: ${spring.application.name}
+    # errorCodePrefix:  # 每个应用唯一
+    # version: # 从 pom.xml 获取
+    # dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS Z" # 默认 yyyy-MM-dd'T'HH:mm:ss.SSS Z
+    defaultLocale: zh_CN
+    charset: UTF-8
+    cluster: false
+
+# 服务器配置
+server:
+  undertow:
+    io-threads: 8         # 线程数, 主要执行非阻塞的任务。推荐与 CPU 核数相同
+    worker-threads: 120   # 阻塞任务线程池, 执行类似servlet请求阻塞操作。推荐为 CPU 核数 * 8
+    buffer-size: 1024     # 用于服务器连接的IO操作,类似netty的池化内存管理。推荐略大于绝大多数请求的大小（根据自己的实际场景决定）
+    direct-buffers: true  # 是否分配的直接内存（堆外内存，避免 GC、复制）。推荐开启
+
+spring:
+  # servlet 配置
+  servlet:
+    multipart:
+      max-file-size: 128MB      # 上传文件最大大小，默认1M
+      max-request-size: 128MB   # 请求最大大小，默认10M
+
+  # http 配置
+  http:
+    encoding:
+      charset: ${shoulder.application.charset}  # 使用统一编码
+      force: true
+      enabled: true
+
+  zipkin:
+    sender:
+      type: RABBIT
+    enabled: ${shoulder.zipkin.enabled}
+    discoveryClientEnabled: true
+    baseUrl: http://localhost:9411/  #http://shoulder-zipkin:8772/
+    compression: # 压缩
+      enabled: true
+    locator: # 通过 nacos 动态获取地址
+      discovery:
+        enabled: true
+    rabbitmq: # 使用指定的队列
+      queue: shoulder_zipkin
+
+  # 采集率，默认 0.1 （记录 10% 的请求，过高会影响性能）
+  sleuth:
+    enabled: ${shoulder.zipkin.enabled}
+    sampler:
+      probability: 1.0
+
+# 健康检查
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+      enabled: true
+
+# Feign 配置
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true   # 开启熔断机制
+  compression:  # 压缩请求
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:  # 响应压缩
+      enabled: true
+
+# ribbon 配置
+ribbon:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  ReadTimeout: 30000            # 响应流读取超时时间，
+  ConnectTimeout: 30000         # 注意：要小于熔断超时时间，否则将被熔断
+  MaxAutoRetries: 0             # 最大自动重试次数（不切换服务地址）
+  MaxAutoRetriesNextServer: 2   # 最大自动服务地址切换重试次数
+  OkToRetryOnAllOperations: false  #无论是请求超时或者socket read timeout都进行重试，
+
+# 统一日志记录位置
+logging:
+  file:
+    path: /logs
+    name: ${logging.file.path}/${spring.application.name}/${spring.application.name}.log

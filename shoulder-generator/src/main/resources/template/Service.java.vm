@@ -1,0 +1,43 @@
+package ${package}.${pkgName}.service;
+
+import ${package}.${pkgName}.entity.${className};
+
+import org.shoulder.core.dto.response.PageResult;
+
+import java.util.Map;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+    /**
+     * 添加
+     * @param ${lowClassName}
+     */
+    int save(${className} ${lowClassName});
+
+    /**
+     * 修改
+     * @param ${lowClassName}
+     */
+    int update(${className} ${lowClassName});
+
+    /**
+     * 删除
+     * @param id
+     */
+    int delete(Long id);
+
+
+    /**
+     * 列表
+     * @param params
+     * @return
+     */
+    PageResult<${className}> findAll(Map<String, Object> params);
+
+}
+

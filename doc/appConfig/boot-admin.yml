@@ -1,0 +1,9 @@
+boot:
+  admin:
+    client:
+      url: localhost:12365
+      #username:
+      #password:
+      instance:
+        prefer-ip: true
+        service-url: localhost:8080

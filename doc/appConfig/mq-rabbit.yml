@@ -1,0 +1,19 @@
+# rabbitmq 配置模板
+
+# 优先从环境变量里取值
+shoulder:
+  rabbitmq:
+    ip: ${RABBITMQ_IP:127.0.0.1}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:shoulder}
+    password: ${RABBITMQ_PASSWORD:shoulder}
+
+spring:
+  rabbitmq:
+    enable: true
+    host: ${shoulder.rabbitmq.ip}
+    port: ${shoulder.rabbitmq.port}
+    username: ${shoulder.rabbitmq.username}
+    password: ${shoulder.rabbitmq.password}
+    listener:
+      type: direct # simple direct

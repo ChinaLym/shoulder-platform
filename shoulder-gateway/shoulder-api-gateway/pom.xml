@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>shoulder-api-gateway</artifactId>
+    <description>Shoulder 网关，支持跨域认证，追踪，限流，接口发布与撤销</description>
+    <name>${project.artifactId}</name>
+
+    <properties>
+        <shoulder.version>0.4-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+        <spring-boot.version>2.2.8.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.itlym</groupId>
+            <artifactId>shoulder-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- 服务注册与发现 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-discovery-client</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+
+        <!-- 配置动态刷新 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-config-client</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- maven 默认使用 artifactId+version拼接 -->
+        <finalName>${project.artifactId}</finalName>
+
+        <!-- 动态打包环境配置源文件 -->
+        <filters>
+            <filter>../../dynamicConfig/config-${profile.active}.properties</filter>
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+    </build>
+
+</project>

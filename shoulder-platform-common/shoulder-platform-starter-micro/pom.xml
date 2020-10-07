@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../shoulder-platform-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>shoulder-platform-starter-micro</artifactId>
+
+    <!--提供了微服务常用的技术-->
+    <!-- 使用方式：
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-micro</artifactId>
+        </dependency>
+        -->
+    <dependencies>
+        <!-- 数据库 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-db</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+
+        <!-- 服务注册与发现 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-discovery-client</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+
+        <!-- 配置动态刷新 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-config-client</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+
+        <!-- 消息队列 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-mq</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+
+        <!-- 接口提供能力 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-rpc-server</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+        <!-- 接口消费能力 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-rpc-client</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>
+
+        <!-- 分布式定时任务 -->
+        <!--<dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-job</artifactId>
+            <version>${shoulder-platform.version}</version>
+        </dependency>-->
+
+
+    </dependencies>
+
+
+</project>

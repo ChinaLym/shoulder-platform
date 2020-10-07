@@ -1,0 +1,169 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">${comments}</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!console">首页</a>
+          <a><cite>${comments}</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            搜索：
+            <select id="${lowClassName}-search-key">
+                <option value="">-请选择-</option>
+                <option value="name">名称</option>
+            </select>&emsp;
+            <input id="${lowClassName}-edit-value" class="layui-input search-input" type="text" placeholder="输入关键字"/>&emsp;
+            <button id="${lowClassName}-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+            </button>
+            <button id="${lowClassName}-btn-add" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+        </div>
+
+        <!-- 数据表格 -->
+        <table class="layui-table" id="${lowClassName}-table" lay-filter="${lowClassName}-table"></table>
+    </div>
+</div>
+
+<!-- 表单弹窗 -->
+<script type="text/html" id="${lowClassName}-model">
+    <form id="${lowClassName}-form" lay-filter="${lowClassName}-form" class="layui-form model-form">
+        #foreach($column in $columns)
+            <div class="layui-form-item">
+                <label class="layui-form-label">${column.comments}</label>
+                <div class="layui-input-block">
+                    <input name="${column.columnName}" placeholder="请输入${column.comments}" type="text"
+                           class="layui-input" maxlength="20"
+                           lay-verify="required" required/>
+                </div>
+            </div>
+        #end
+        <div class="layui-form-item model-form-footer">
+            <button class="layui-btn layui-btn-primary" ew-event="closeDialog" type="button">取消</button>
+            <button class="layui-btn" lay-filter="${lowClassName}-form-submit" lay-submit>保存</button>
+        </div>
+    </form>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="${lowClassName}-table-bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.use(['form', 'table', 'util', 'config', 'admin', 'formSelects'], function () {
+        var form = layui.form;
+        var table = layui.table;
+        var config = layui.config;
+        var layer = layui.layer;
+        var util = layui.util;
+        var admin = layui.admin;
+        var formSelects = layui.formSelects;
+        //渲染表格
+        table.render({
+            elem: '#${lowClassName}-table',
+            url: config.base_server + 'api-${moduleName}/${pathName}/list',
+            where: {
+                access_token: config.getToken().access_token
+            },
+            page: true,
+            cols: [[
+                {type: 'numbers'},
+                {field: 'id', sort: true, title: 'ID', width: 80},
+                #foreach($column in $columns)
+                    {field: '${column.columnName}', sort: true, title: '${column.comments}'},
+                #end
+                {
+                    field: 'createTime', sort: true, templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    }, title: '创建时间'
+                },
+                {align: 'center', toolbar: '#${lowClassName}-table-bar', title: '操作', width: 250}
+            ]]
+        });
+
+        // 添加按钮点击事件
+        $('#${lowClassName}-btn-add').click(function () {
+            showEditModel();
+        });
+
+        // 表单提交事件
+        form.on('submit(${lowClassName}-form-submit)', function (data) {
+            layer.load(2);
+            var url = "";
+            if (data.field.id == '') {
+                url = 'api-${moduleName}/${pathName}/' + 'save';
+            } else {
+                url = 'api-${moduleName}/${pathName}/' + 'update';
+            }
+            admin.req(url, JSON.stringify(data.field), function (data) {
+                layer.closeAll('loading');
+                if (data.resp_code == 0) {
+                    layer.msg(data.resp_msg, {icon: 1, time: 500});
+                    table.reload('${lowClassName}-table');
+                    layer.closeAll('page');
+                } else {
+                    layer.msg(data.resp_msg, {icon: 2, time: 500});
+                }
+            }, $('#${lowClassName}-form').attr('method'));
+            return false;
+        });
+
+        // 工具条点击事件
+        table.on('tool(${lowClassName}-table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'edit') { //修改
+                showEditModel(data);
+            } else if (obj.event === 'del') { //删除
+                doDelete(obj);
+            }
+        });
+
+        // 搜索按钮点击事件
+        $('#${lowClassName}-btn-search').click(function () {
+            var key = $('#${lowClassName}-search-key').val();
+            var value = $('#${lowClassName}-edit-value').val();
+            table.reload('${lowClassName}-table', {where: {searchKey: key, searchValue: value}});
+        });
+
+        // 显示编辑弹窗
+        var showEditModel = function (data) {
+            layer.open({
+                type: 1,
+                title: data ? '修改${comments}' : '添加${comments}',
+                area: '450px',
+                offset: '120px',
+                content: $('#${lowClassName}-model').html(),
+                success: function () {
+                    $('#${lowClassName}-form')[0].reset();
+                    $('#${lowClassName}-form').attr('method', 'POST');
+                    if (data) {
+                        $("input[name='code']").attr('disabled', true);
+                        $("input[name='code']").attr('class', "layui-input layui-disabled");
+                        form.val('${lowClassName}-form', data);
+                        $('#${lowClassName}-form').attr('method', 'POST');
+                    }
+                }
+            });
+        };
+
+        // 删除
+        var doDelete = function (obj) {
+            layer.confirm('确定要删除吗？', function (i) {
+                layer.close(i);
+                layer.load(2);
+                admin.req('api-${moduleName}/${pathName}/delete/' + obj.data.id, {}, function (data) {
+                    layer.closeAll('loading');
+                    if (data.resp_code == 0) {
+                        layer.msg(data.resp_msg, {icon: 1, time: 500});
+                        obj.del();
+                    } else {
+                        layer.msg(data.resp_msg, {icon: 2, time: 500});
+                    }
+                }, 'DELETE');
+            });
+        };
+
+    });
+
+</script>
