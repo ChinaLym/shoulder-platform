@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>${artifactId}</artifactId>
+
+    <groupId>${groupId}</groupId>
+    <packaging>pom</packaging>
+    <version>${version}</version><!-- ${rootArtifactId}.version -->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-api</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-common</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-core</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-xxx</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

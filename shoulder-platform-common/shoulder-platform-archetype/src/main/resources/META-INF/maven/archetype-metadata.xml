@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor
+        xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+        name="${rootArtifactId}"
+        xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- ================= 模板属性 ================= -->
+    <requiredProperties>
+
+        <!-- 应用标识，一般与 ${artifactId} 相同 -->
+        <requiredProperty key="appId">
+            <defaultValue>${rootArtifactId}</defaultValue>
+        </requiredProperty>
+
+        <!-- 包路径 -->
+        <requiredProperty key="package">
+            <defaultValue>${groupId}.${appId}</defaultValue>
+        </requiredProperty>
+
+        <!-- 上下文路径，一般与 appId 相同 -->
+        <requiredProperty key="contextPath">
+            <defaultValue>${appId}</defaultValue>
+        </requiredProperty>
+
+        <!-- 启动类名 -->
+        <requiredProperty key="StartClassName">
+            <defaultValue>ShoulderApplication</defaultValue>
+        </requiredProperty>
+
+        <!-- 类的作者 -->
+        <requiredProperty key="author">
+            <defaultValue>${user.name}</defaultValue>
+        </requiredProperty>
+
+    </requiredProperties>
+
+    <!-- ================= 外层模块文件 ================= -->
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>*.md</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+    <!-- ================= 模块结构 ================= -->
+    <modules>
+        <module id="${rootArtifactId}-api" dir="__rootArtifactId__-api" name="${rootArtifactId}-api">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
+                </fileSet>
+
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                </fileSet>
+
+                <fileSet filtered="true" encoding="UTF-8">
+                    <directory>src/test/java</directory>
+                </fileSet>
+            </fileSets>
+        </module>
+
+        <module id="${rootArtifactId}-common" dir="__rootArtifactId__-common" name="${rootArtifactId}-common">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
+                </fileSet>
+
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                </fileSet>
+
+                <fileSet filtered="true" encoding="UTF-8">
+                    <directory>src/test/java</directory>
+                </fileSet>
+            </fileSets>
+        </module>
+
+        <module id="${rootArtifactId}-core" dir="__rootArtifactId__-core" name="${rootArtifactId}-core">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
+                </fileSet>
+
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                </fileSet>
+
+                <fileSet filtered="true" encoding="UTF-8">
+                    <directory>src/test/java</directory>
+                </fileSet>
+            </fileSets>
+        </module>
+
+        <module id="${rootArtifactId}-modules" dir="__rootArtifactId__-modules" name="${rootArtifactId}-modules">
+
+            <modules>
+                <module id="${rootArtifactId}-xxx" dir="__rootArtifactId__-xxx" name="${rootArtifactId}-xxx">
+                    <fileSets>
+                        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                            <directory>src/main/java</directory>
+                        </fileSet>
+
+                        <fileSet encoding="UTF-8">
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </fileSet>
+
+                        <fileSet filtered="true" encoding="UTF-8">
+                            <directory>src/test/java</directory>
+                        </fileSet>
+                    </fileSets>
+                </module>
+
+            </modules>
+        </module>
+
+        <module id="${rootArtifactId}-start" dir="__rootArtifactId__-start" name="${rootArtifactId}-start">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
+                </fileSet>
+
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                </fileSet>
+
+                <fileSet filtered="true" encoding="UTF-8">
+                    <directory>src/test/java</directory>
+                </fileSet>
+            </fileSets>
+
+        </module>
+    </modules>
+
+</archetype-descriptor>

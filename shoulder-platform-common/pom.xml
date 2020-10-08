@@ -26,6 +26,7 @@
         <module>shoulder-platform-starter-trace</module>
 
         <module>shoulder-sms-aliyun-spring-boot-starter</module>
+        <module>shoulder-platform-archetype</module>
     </modules>
 
     <properties>
