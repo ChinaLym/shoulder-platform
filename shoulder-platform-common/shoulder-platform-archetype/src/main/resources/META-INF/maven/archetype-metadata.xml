@@ -30,7 +30,7 @@
 
         <!-- 类的作者 -->
         <requiredProperty key="author">
-            <defaultValue>${user.name}</defaultValue>
+            <defaultValue>shoulder</defaultValue>
         </requiredProperty>
 
     </requiredProperties>

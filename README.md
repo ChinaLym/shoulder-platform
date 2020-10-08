@@ -9,7 +9,7 @@
 
 ## 简介：
 
-`shoulder-platform` 是一个 `SaaS` 平台（仅实现基础能力，不包含具体业务），代码简洁，架构清晰，非常适合学习使用。
+`shoulder-platform` 是一个 `SaaS` 平台（仅实现基础能力，不包含具体业务），代码简洁，架构清晰，非常适合学习使用。要说 `shoulder-platform` 和 `shoulder` 的关系，可以简单理解为 `spring cloud` 和 `spring boot` 的关系。
 
 ## 架构图
 

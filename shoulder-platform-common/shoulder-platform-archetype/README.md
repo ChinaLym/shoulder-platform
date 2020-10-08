@@ -63,4 +63,4 @@ version     1.0-SNAPSHOT
 | package | 包路径 | `${groupId}.${appId}` |
 | contextPath | 上下文路径 | `${appId}` |
 | StartClassName | 启动类名 | ShoulderApplication |
-| author | 作者名 | `${user.name}` |
+| author | 作者名 | shoulder |

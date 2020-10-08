@@ -1,4 +1,4 @@
-shoulder-platform-common
+# shoulder-platform-common
 
 统一平台的技术栈选型，项目中一般不应引入除了本模块中以外的能力，以保证平台的安全与易维护
 （由于仓库较多，未创新新仓库维护）
