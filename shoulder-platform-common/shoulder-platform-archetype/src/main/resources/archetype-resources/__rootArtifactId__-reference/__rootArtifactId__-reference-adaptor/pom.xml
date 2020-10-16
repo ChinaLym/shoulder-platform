@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>${rootArtifactId}-reference-adaptor</artifactId>
+    <artifactId>${artifactId}</artifactId>
 
     <description>调用外部服务接口适配模块、主要做DTO转换、错误码转换，异常处理等。</description>
 

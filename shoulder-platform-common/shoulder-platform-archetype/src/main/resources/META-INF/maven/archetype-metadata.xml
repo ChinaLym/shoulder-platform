@@ -10,7 +10,7 @@
 
         <!-- 应用标识，一般与 ${artifactId} 相同 -->
         <requiredProperty key="appId">
-            <defaultValue>${rootArtifactId}</defaultValue>
+            <defaultValue>${artifactId}</defaultValue>
         </requiredProperty>
 
         <!-- 包路径 -->
@@ -33,6 +33,14 @@
             <defaultValue>shoulder</defaultValue>
         </requiredProperty>
 
+        <requiredProperty key="gitignore">
+            <defaultValue>.gitignore</defaultValue>
+        </requiredProperty>
+
+        <requiredProperty key="gitattributes">
+            <defaultValue>.gitattributes</defaultValue>
+        </requiredProperty>
+
     </requiredProperties>
 
     <!-- ================= 外层模块文件 ================= -->
@@ -40,7 +48,19 @@
         <fileSet filtered="true" encoding="UTF-8">
             <directory></directory>
             <includes>
-                <include>*.md</include>
+                <include>README.md</include>
+            </includes>
+        </fileSet>
+
+        <fileSet encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>.editorconfig</include>
+                <include>__gitattributes__</include>
+                <include>__gitignore__</include>
+                <include>CHANGELOG.MD</include>
+                <include>LICENSE</include>
+                <include>img/**</include>
             </includes>
         </fileSet>
     </fileSets>

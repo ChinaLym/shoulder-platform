@@ -9,7 +9,8 @@
 
     <artifactId>${artifactId}</artifactId>
     <name>${artifactId}</name>
-    <description>${artifactId} 调试/运行/测试/打包 模块</description>
+    <description>${artifactId}</description>
+    <!--调试/运行/测试/打包 模块-->
 
 
     <dependencies>

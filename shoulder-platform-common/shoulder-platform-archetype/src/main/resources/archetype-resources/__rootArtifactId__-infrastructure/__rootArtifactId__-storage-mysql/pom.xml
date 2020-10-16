@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>${rootArtifactId}-storage</artifactId>
+    <artifactId>${artifactId}</artifactId>
 
     <description>持久化存储 mysql 实现（这里选用 jdbc、hibernate、mybatis都不会对业务模块产生影响，自由切换）</description>
 

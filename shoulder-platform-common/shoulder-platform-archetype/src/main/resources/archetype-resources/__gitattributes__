@@ -1,0 +1,5 @@
+# github 会自动检测当前工程中文件，为本工程打上对应的语言标签，该文件是为了避免 js css html 标签的
+
+*.js linguist-language=java
+*.css linguist-language=java
+*.html linguist-language=java

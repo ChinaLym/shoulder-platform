@@ -1,6 +1,8 @@
-# shoulder-platform-archetype
+# [shoulder-platform-archetype](https://github.com/ChinaLym/Shoulder-Platform/tree/main/shoulder-platform-common/shoulder-platform-archetype)
 
 基于 `shoulder-platform` 的多模块的 `maven` 骨架工程，适合基于 spring cloud 的微服务模式的微服务工程。
+
+单模块教程：[shoulder-archetype-simple](https://github.com/ChinaLym/Shoulder-Framework/tree/master/shoulder-archetype-simple)
 
 ## 诞生背景
 
@@ -33,20 +35,24 @@ version     1.0-SNAPSHOT
 #### 选择shoulder
 ![选择shoulder](../doc/img/archetype/idea/1.png)
 
+
 #### 输入 gourpId、artifactId
 ![输入 gourpId、artifactId](../doc/img/archetype/idea/2.png)
 
-#### 输入覆盖模板的值
+#### 【可选】 调整模板的值
+
+所有属性以及默认值见文末的 `模板属性表`
+
 ![输入覆盖模板的值](../doc/img/archetype/idea/3.png)
-确保 `rootArtifactId` 和 `appId` 相同
+
 
 #### 完成创建
 ![完成创建](../doc/img/archetype/idea/4.png)
 
 #### 等待创建完毕
 ![等待创建完毕](../doc/img/archetype/idea/5.png)
-- 如果不设置缓存，这一步因访问maven官网，可能会比较慢，解决方式参考 [IDEA 创建maven工程 create from archetype 很慢](https://blog.csdn.net/qq_35425070/article/details/108958087)
-- 创建完毕后，我们需要 reimport maven 依赖，这里我们直接点击自动更新
+- 这一步可能会特别慢，原因：未设置maven本地缓存，访问官网下载大量文件。解决方式参考 [IDEA 创建maven工程 create from archetype 很慢](https://blog.csdn.net/qq_35425070/article/details/108958087)
+- 创建完毕后，我们需要 `reimport maven` 依赖，这里我们直接点击自动更新（`auto reimport`）
 
 #### 启动运行
 ![启动运行](../doc/img/archetype/idea/6.png)
@@ -57,6 +63,7 @@ version     1.0-SNAPSHOT
 ---
 
 ## 模板属性表
+
 |属性 key | 说明 | 默认值 |
 |----|----|----|
 | appId | 应用/服务标识 | 使用 `${rootArtifactId}` 值 |

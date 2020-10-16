@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>${rootArtifactId}-cache-redis</artifactId>
+    <artifactId>${artifactId}</artifactId>
 
     <description>redis 缓存</description>
 
