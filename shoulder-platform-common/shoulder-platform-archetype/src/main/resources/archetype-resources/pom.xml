@@ -14,19 +14,76 @@
     <packaging>pom</packaging>
     <version>${version}</version><!-- ${rootArtifactId}.version -->
 
+
+    <modules>
+        <module>${rootArtifactId}-api</module>
+        <module>${rootArtifactId}-infrastructure</module>
+        <module>${rootArtifactId}-core</module>
+        <module>${rootArtifactId}-reference</module>
+        <module>${rootArtifactId}-modules</module>
+        <module>${rootArtifactId}-provider</module>
+        <module>${rootArtifactId}-web</module>
+        <module>${rootArtifactId}-start</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
+
+            <!-- ======================= 基础设施层 ======================= -->
             <dependency>
                 <groupId>${groupId}</groupId>
-                <artifactId>${rootArtifactId}-api</artifactId>
+                <artifactId>${rootArtifactId}-infrastructure</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-storage</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-storage-mysql</artifactId>
                 <version>${version}</version>
             </dependency>
 
+
             <dependency>
                 <groupId>${groupId}</groupId>
-                <artifactId>${rootArtifactId}-common</artifactId>
+                <artifactId>${rootArtifactId}-cache</artifactId>
                 <version>${version}</version>
             </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-cache-memory</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-cache-redis</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+
+            <!-- ======================= 外部接口、消息通知依赖 ======================= -->
+
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-reference</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-reference-adaptor</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-reference-xxx</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+
+            <!-- ======================= 通用业务 ======================= -->
 
             <dependency>
                 <groupId>${groupId}</groupId>
@@ -35,9 +92,37 @@
             </dependency>
 
 
+            <!-- ======================= 具体业务 ======================= -->
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-modules</artifactId>
+                <version>${version}</version>
+            </dependency>
             <dependency>
                 <groupId>${groupId}</groupId>
                 <artifactId>${rootArtifactId}-xxx</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <!-- ======================= 为外部提供 api ======================= -->
+
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-api</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-provider</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+
+            <!-- ======================= web 层，如自带的管理界面 ======================= -->
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-web</artifactId>
                 <version>${version}</version>
             </dependency>
 

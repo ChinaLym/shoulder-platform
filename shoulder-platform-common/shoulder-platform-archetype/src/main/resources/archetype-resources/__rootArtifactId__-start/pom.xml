@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <name>${artifactId}</name>
-    <description>${artifactId}</description>
+    <description>${artifactId} 调试/运行/测试/打包 模块</description>
 
 
     <dependencies>
@@ -17,6 +17,15 @@
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-xxx</artifactId>
         </dependency>
+
+        <!-- ============================= 中间件技术选型 ============================= -->
+
+        <!-- 数据库选用 mysql -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-storage-mysql</artifactId>
+        </dependency>
+
 
     </dependencies>
 

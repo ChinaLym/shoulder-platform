@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${rootArtifactId}</artifactId>
+        <version>${version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>${artifactId}</artifactId>
+    <packaging>pom</packaging>
+
+    <description>存放调用其他服务的代码</description>
+
+    <modules>
+        <!-- 外部 api 定义/依赖 -->
+        <module>${rootArtifactId}-reference-xxx</module>
+
+        <!-- 防腐层 -->
+        <module>${rootArtifactId}-reference-adaptor</module>
+    </modules>
+
+
+    <dependencies>
+
+
+    </dependencies>
+
+</project>

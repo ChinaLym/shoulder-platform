@@ -9,15 +9,31 @@
 
     <artifactId>${artifactId}</artifactId>
 
+    <description>共性业务放这里</description>
+
     <dependencies>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-common</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>cn.itlym.platform</groupId>
             <artifactId>shoulder-platform-starter-micro</artifactId>
+        </dependency>
+
+        <!-- 持久层接口 -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-storage</artifactId>
+        </dependency>
+
+        <!-- 缓存层接口 -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-cache</artifactId>
+        </dependency>
+
+        <!-- 外部调用适配层 -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-reference-adaptor</artifactId>
         </dependency>
 
     </dependencies>

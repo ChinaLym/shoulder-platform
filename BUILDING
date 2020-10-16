@@ -1,0 +1,78 @@
+Build Instructions for shoulder-platform
+
+====================================================
+
+(1) Prerequisites
+
+    JDK 1.8+ is required in order to compile and run shoulder-platform.
+
+    shoulder-platform utilizes Maven as a distribution management and packaging tool. Version 3.0.3 or later is required.
+    Maven installation and configuration instructions can be found here:
+
+    http://maven.apache.org/run-maven/index.html
+
+
+(2) Run test cases
+
+    This project contains several sub projects, external pom.xml It is only used for unified packaging,
+    so the run / test needs to be tested in a specific project.
+
+
+(3) Import projects to Eclipse IDE
+
+    First, generate eclipse project files:
+
+    $ mvn -U eclipse:eclipse
+
+    Then, import to eclipse by specifying the root directory of the project via:
+
+    [File] > [Import] > [Existing Projects into Workspace].
+
+
+(4) Build distribution packages
+
+    Execute the following command in order to build the tar.gz packages and install JAR into local repository:
+
+	#build shoulder-platform
+    $ mvn -Prelease -Dmaven.test.skip=true clean install -U
+
+
+#############################################################################
+
+shoulder-platform 构建说明
+
+====================================================
+
+（1） 前提
+
+    为了编译和运行 shoulder-platform，需要 JDK 1.8+。
+
+    shoulder-platform 使用 Maven 作为分发管理和打包工具。需要3.0.3或更高版本。
+
+        Maven安装和配置说明如下：
+
+        http://maven.apache.org/run-maven/index.html
+
+
+（2） 运行测试用例
+
+    本项目包含多个子项目，外部 pom.xml 仅用于统一打包，因此运行/测试需要进入特定的工程中测试。
+
+
+（3） 将项目导入Eclipse IDE
+
+    首先，生成eclipse项目文件：
+
+    $ mvn -U eclipse:eclipse
+
+    然后，通过指定项目的根目录导入到eclipse，方式如下：
+
+    [File] > [Import] > [Existing Projects into Workspace]
+
+
+（4） 生成成果物包
+
+    执行以下命令打包并将JAR安装到本地maven仓库库中：
+
+    # 跳过测试、清理、安装；强制更新 SNAPSHOT、如果是 release 则不更新
+    $ mvn -Dmaven.test.skip=true clean install -U

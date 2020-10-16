@@ -64,3 +64,11 @@ version     1.0-SNAPSHOT
 | contextPath | 上下文路径 | `${appId}` |
 | StartClassName | 启动类名 | ShoulderApplication |
 | author | 作者名 | shoulder |
+
+
+---
+
+## DDD 介绍
+
+* https://zhuanlan.zhihu.com/p/77311830
+* https://www.cnblogs.com/daoqidelv/p/7499244.html

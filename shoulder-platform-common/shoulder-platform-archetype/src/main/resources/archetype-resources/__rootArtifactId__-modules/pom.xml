@@ -10,8 +10,11 @@
     <artifactId>${artifactId}</artifactId>
     <packaging>pom</packaging>
 
+    <description>具体业务/子业务 按模块划分</description>
+
 
     <dependencies>
+        <!-- 统一依赖 core -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-core</artifactId>
