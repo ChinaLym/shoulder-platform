@@ -1,0 +1,38 @@
+package ${package}.${pkgName}.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+	#if(${hasBigDecimal})
+	import java.math.BigDecimal;
+	#end
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+
+@Data
+@Entity
+@NoArgsConstructor
+@Table// 唯一索引 (uniqueConstraints = {@UniqueConstraint(name = "uk_$pk.columnName", columnNames = {"$pk.columnName"})})
+public class ${className}Entity implements Serializable {
+private static final long serialVersionUID = 1L;
+
+#foreach ($column in $columns)
+
+	#if($column.columnName == $pk.columnName)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	#end
+private $column.attrType $column.attributeName;
+#end
+
+}

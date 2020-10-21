@@ -43,7 +43,7 @@ public class GeneratorController {
     /**
      * 生成代码
      * web 中不需要主动关闭流
-     * http://localhost:8080/generator/code?tables=tb_shop
+     * http://localhost:8080/generator/code?tables=*
      */
     @RequestMapping("/code")
     public void code(String tables, HttpServletResponse response) throws IOException {
@@ -51,9 +51,8 @@ public class GeneratorController {
         if (StringUtils.isEmpty(tables)) {
             throw new IllegalArgumentException("tableName can't be empty");
         }
-
         response.reset();
-        byte[] data = sysGeneratorService.generatorCode(tables.split(","), response.getOutputStream());
+        byte[] data = "*".equals(tables) ? sysGeneratorService.generatorCode(response.getOutputStream()) :sysGeneratorService.generatorCode(tables.split(","), response.getOutputStream());
         if (data != null && data.length > 0) {
             /*
             // file out put stream 必须及时关闭

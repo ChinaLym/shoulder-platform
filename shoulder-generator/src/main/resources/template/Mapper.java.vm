@@ -12,16 +12,14 @@ import java.util.Map;
  * @date ${datetime}
  */
 @Mapper
-public interface ${className}Dao  {
+public interface ${className}Mapper {
 
-    int save(${className} ${lowClassName});
+    int insert(${className} ${lowClassName});
 
     int update(${className} ${lowClassName});
 
     int delete(Long id);
 
     List<${className}> findAll(Map<String, Object> params);
-
-
 
 }

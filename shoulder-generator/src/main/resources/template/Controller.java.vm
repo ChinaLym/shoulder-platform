@@ -31,46 +31,54 @@ public class ${className}Controller {
     private ${className}Service ${lowClassName}Service;
 
     /**
-     * 列表
+     * 条件查询，分页
+     * @param condition 查询条件
+     * @return 分页结果
      */
     @RequestMapping("/list")
     @PreAuthorize("hasAnyAuthority('${tableName}:${pathName}:list')")
-    public PageResult list(@RequestParam Map<String, Object> params){
-        PageResult pageResult = ${lowClassName}Service.findAll(params);
+    public PageResult list(@RequestParam Map<String, Object> condition){
+        PageResult pageResult = ${lowClassName}Service.findAll(condition);
         return pageResult;
     }
 
 
     /**
-     * 保存
+     * 保存单个
+     * @param ${lowClassName} 新增数据
+     * @return 保存成功
      */
     @RequestMapping("/save")
-    @PreAuthorize("hasAnyAuthority('generator:sysroleuser:save')")
-    public Result save(@RequestBody ${className} ${lowClassName}){
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:save')")
+    public RestResult save(@RequestBody ${className} ${lowClassName}){
 			${lowClassName}Service.save(${lowClassName});
 
-        return Result.succeed("保存成功");
+        return RestResult.succeed();
     }
 
     /**
-     * 修改
+     * 单个修改
+     * @param ${lowClassName} 修改属性
+     * @return 修改成功
      */
     @RequestMapping("/update")
-    @PreAuthorize("hasAnyAuthority('generator:sysroleuser:update')")
-    public Result update(@RequestBody ${className} ${lowClassName}){
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:update')")
+    public RestResult update(@RequestBody ${className} ${lowClassName}){
 			${lowClassName}Service.update(${lowClassName});
 
-        return Result.succeed("修改成功");
+        return RestResult.succeed();
     }
 
     /**
-     * 删除
+     * 根据 id 删除单个
+     * @param ${pk.attributeName} id
+     * @return 删除成功
      */
     @RequestMapping("/delete/{id}")
-    @PreAuthorize("hasAnyAuthority('generator:sysroleuser:delete')")
-    public Result delete(@PathVariable Long  ${pk.attrname}){
-			${lowClassName}Service.delete(${pk.attrname});
-        return Result.succeed("删除成功");
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
+    public RestResult delete(@PathVariable Long ${pk.attributeName}){
+			${lowClassName}Service.delete(${pk.attributeName});
+        return RestResult.succeed();
     }
 
 }

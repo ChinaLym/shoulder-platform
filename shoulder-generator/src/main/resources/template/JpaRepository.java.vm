@@ -1,0 +1,35 @@
+package ${package}.${pkgName}.repository;
+
+import ${package}.${pkgName}.entity.${className};
+import com.github.kfcfans.powerjob.server.persistence.core.model.OmsLockDO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import javax.transaction.Transactional;
+
+import java.util.List;
+import java.util.Map;
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${className}Repository  extends JpaRepository<${className}, Long> {
+
+    /**
+    * 根据名称查询
+    * @param name 名称
+    * @return 查询结果
+    */
+    Optional<${className}> findByName(String name);
+
+    /**
+    * 根据名称模糊查询
+    * @param name 名称
+    * @return 查询结果
+    */
+    Page<${className}> findByNameLike(String name, Pageable pageable);
+
+}

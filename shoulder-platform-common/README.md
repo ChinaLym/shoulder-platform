@@ -1,10 +1,10 @@
 # shoulder-platform-common
 
-Shoulder 平台各个工程的`基础设施层`统一实现
+Shoulder 平台各个工程的`基础设施层`统一实现（为了简化使用者调试、该工程的模块需要发布至`maven`仓库）
 
 一般的工程模块图如下
 
-![projectAndModule.png](../img/projectAndModule.png)
+![工程结构.png](../img/archetype/projectAndModule.png)
 
 * 本模块提供了基础中间件的选型与集成，目的：统一技术栈选型。
 * 本项目中一般不应引入本模块以外的能力，以保证平台的安全与易维护。

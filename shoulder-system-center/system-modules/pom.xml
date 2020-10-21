@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>system-config</module>
+        <!--<module>system-config</module>--> <!--系统配置使用 nacos 管理-->
         <module>system-dictionary</module>
         <module>system-error-code</module>
     </modules>

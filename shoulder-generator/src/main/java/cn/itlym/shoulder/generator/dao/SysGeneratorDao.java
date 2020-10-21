@@ -1,6 +1,7 @@
 package cn.itlym.shoulder.generator.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +22,9 @@ public interface SysGeneratorDao {
 
     List<Map<String, String>> queryColumns(String tableName);
 
+    @Select("select * from information_schema.TABLES where TABLE_SCHEMA=(select database())")
+    List<Map<String, String>> listTable();
+
+    @Select("select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=(select database())")
+    List<String> listTableNames();
 }

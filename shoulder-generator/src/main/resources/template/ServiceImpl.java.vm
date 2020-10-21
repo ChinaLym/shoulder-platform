@@ -11,7 +11,7 @@ import java.util.Map;
 import org.apache.commons.collections4.MapUtils;
 
 import ${package}.${pkgName}.entity.${className};
-import ${package}.${pkgName}.dao.${className}Dao;
+import ${package}.${pkgName}.dao.${className}Mapper;
 import ${package}.${pkgName}.service.${className}Service;
 
 
@@ -19,14 +19,14 @@ import ${package}.${pkgName}.service.${className}Service;
 public class ${className}ServiceImpl  implements ${className}Service {
 
     @Autowired
-    private ${className}Dao ${lowClassName}Dao;
+    private ${className}Mapper ${lowClassName}Mapper;
 
     /**
      * 添加
      * @param ${lowClassName}
      */
     public int save(${className} ${lowClassName}){
-        return ${lowClassName}Dao.save(${lowClassName});
+        return ${lowClassName}Mapper.insert(${lowClassName});
     }
 
     /**
@@ -34,16 +34,16 @@ public class ${className}ServiceImpl  implements ${className}Service {
      * @param ${lowClassName}
      */
     public int update(${className} ${lowClassName}){
-        return ${lowClassName}Dao.update(${lowClassName});
+        return ${lowClassName}Mapper.update(${lowClassName});
     }
 
 
     /**
      * 删除
-     * @param id
+     * @param id 主键
      */
     public int delete(Long id){
-        return ${lowClassName}Dao.delete(id);
+        return ${lowClassName}Mapper.delete(id);
     }
 
 
@@ -53,11 +53,11 @@ public class ${className}ServiceImpl  implements ${className}Service {
      * @return
      */
     public PageResult<${className}> findAll(Map<String, Object> params){
-        //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
-        if (MapUtils.getInteger(params, "page")!=null && MapUtils.getInteger(params, "limit")!=null)
-            PageHelper.startPage(MapUtils.getInteger(params, "page"),MapUtils.getInteger(params, "limit"),true);
-
-        List<${className}> list  =  ${lowClassName}Dao.findAll(params);
+        //设置分页信息，分别是当前页数和每页显示的总记录数
+        if (MapUtils.getInteger(params, "page")!=null && MapUtils.getInteger(params, "limit")!=null) {
+            PageHelper.startPage(MapUtils.getInteger(params, "page"), MapUtils.getInteger(params, "limit"), true);
+        }
+        List<${className}> list  =  ${lowClassName}Mapper.findAll(params);
         PageInfo<${className}> pageInfo = new PageInfo(list);
 
         return PageResult.<${className}>builder().data(pageInfo.getList()).code(0).count(pageInfo.getTotal()).build();

@@ -71,8 +71,29 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
             }
             //生成代码
             GenUtils.generatorCode(table, columns, zip);
-            IOUtils.closeQuietly(zip);
         }
+        IOUtils.closeQuietly(zip);
+        return outputStream.toByteArray();
+    }
+
+    @Override
+    public byte[] generatorCode(OutputStream out) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ZipOutputStream zip = new ZipOutputStream(outputStream);
+        // 查询所有表信息
+        List<Map<String, String>> tables = sysGeneratorDao.listTable();
+        for (Map<String, String> table : tables) {
+            String tableName = table.get("TABLE_NAME");
+            //查询列信息
+            List<Map<String, String>> columns = queryColumns(tableName);
+            if (MapUtils.isEmpty(table) || CollectionUtils.isEmpty(columns)) {
+                log.warn("table {} not exist or without any columns", table);
+                continue;
+            }
+            //生成代码
+            GenUtils.generatorCode(table, columns, zip);
+        }
+        IOUtils.closeQuietly(zip);
         return outputStream.toByteArray();
     }
 

@@ -2,6 +2,7 @@ package cn.itlym.shoulder.generator.utils;
 
 import cn.itlym.shoulder.generator.model.ColumnEntity;
 import cn.itlym.shoulder.generator.model.TableEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -24,13 +25,17 @@ import java.util.zip.ZipOutputStream;
  *
  * @author lym
  */
+@Slf4j
 public class GenUtils {
 
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
+        templates.add("template/JpaEntity.java.vm");
+        templates.add("template/JpaRepository.java.vm");
+
         templates.add("template/Entity.java.vm");
-        templates.add("template/Dao.java.vm");
-        templates.add("template/Dao.xml.vm");
+        templates.add("template/Mapper.java.vm");
+        templates.add("template/Mapper.xml.vm");
         templates.add("template/Service.java.vm");
         templates.add("template/ServiceImpl.java.vm");
         templates.add("template/Controller.java.vm");
@@ -50,8 +55,8 @@ public class GenUtils {
         boolean hasBigDecimal = false;
         //表信息
         TableEntity tableEntity = new TableEntity();
-        tableEntity.setTableName(table.get("tableName"));
-        tableEntity.setComments(table.get("tableComment"));
+        tableEntity.setTableName(table.computeIfAbsent("tableName", k -> table.get("TABLE_NAME")));
+        tableEntity.setComments(table.computeIfAbsent("tableComment", k -> table.get("TABLE_COMMENT")));
         //表名转换成Java类名
         String className = tableToJava(tableEntity.getTableName(), config.getString("tablePrefix"));
         tableEntity.setClassName(className);
@@ -78,7 +83,7 @@ public class GenUtils {
         map.put("comments", tableEntity.getComments());
         map.put("pk", tableEntity.getPk());
         map.put("className", tableEntity.getClassName());
-        map.put("classname", tableEntity.getLowClassName());
+        map.put("lowClassName", tableEntity.getLowClassName());
         map.put("pathName", tableEntity.getLowClassName().toLowerCase());
         map.put("columns", tableEntity.getColumns());
         map.put("hasBigDecimal", hasBigDecimal);
@@ -99,13 +104,15 @@ public class GenUtils {
             tpl.merge(context, sw);
 
             try {
-                //添加到zip
+                //添加到zip todo 包名通过 sw 第一行获取
                 String fileName = getFileName(template, tableEntity.getClassName(), config.getString("package"), tableEntity.getTableName());
+                assert fileName != null;
                 zip.putNextEntry(new ZipEntry(fileName));
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
             } catch (IOException e) {
+                log.error("渲染模板失败，" + tableEntity.getTableName(), e);
                 throw new RuntimeException("渲染模板失败，表名：" + tableEntity.getTableName(), e);
             }
         }
@@ -127,9 +134,9 @@ public class GenUtils {
             columnEntity.setAttributeName(StringUtils.uncapitalize(attrName));
 
             //列的数据类型，转换成Java类型
-            String attrType = config.getString(columnEntity.getDataType(), "unknowType");
+            String attrType = config.getString(columnEntity.getDataType(), "unknown");
             columnEntity.setAttrType(attrType);
-            if (attrType.equals("BigDecimal")) {
+            if ("BigDecimal".equals(attrType)) {
                 hasBigDecimal = true;
             }
             //是否主键
@@ -182,12 +189,20 @@ public class GenUtils {
             packagePath += packageName.replace(".", File.separator) + File.separator + tableName + File.separator;
         }
 
+        if (template.contains("JpaEntity.java.vm")) {
+            return packagePath + "entity" + File.separator + className + "Entity.java";
+        }
+
         if (template.contains("Entity.java.vm")) {
             return packagePath + "entity" + File.separator + className + ".java";
         }
 
-        if (template.contains("Dao.java.vm")) {
-            return packagePath + "dao" + File.separator + className + "Dao.java";
+        if (template.contains("Mapper.java.vm")) {
+            return packagePath + "dao" + File.separator + className + "Mapper.java";
+        }
+
+        if (template.contains("JpaRepository.java.vm")) {
+            return packagePath + "repository" + File.separator + className + "Repository.java";
         }
 
         if (template.contains("Service.java.vm")) {
@@ -202,8 +217,8 @@ public class GenUtils {
             return packagePath + "controller" + File.separator + className + "Controller.java";
         }
 
-        if (template.contains("Dao.xml.vm")) {
-            return packagePath + "dao" + File.separator + className + "Dao.xml";
+        if (template.contains("Mapper.xml.vm")) {
+            return packagePath + "dao" + File.separator + className + "Mapper.xml";
         }
 
         if (template.contains("menu.sql.vm")) {

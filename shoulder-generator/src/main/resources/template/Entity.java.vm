@@ -1,4 +1,4 @@
-package ${package}.${pkgName}.entity;
+package ${package}.${pkgName}.po;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ public class ${className} implements Serializable {
 
 	#if($column.columnName == $pk.columnName)
 	#end
-	private $column.attrType $column.attrname;
+	private $column.attrType $column.attributeName;
 #end
 
 }

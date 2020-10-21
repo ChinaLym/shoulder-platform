@@ -23,4 +23,5 @@ public interface SysGeneratorService {
 
     byte[] generatorCode(String[] tableNames, OutputStream out);
 
+    byte[] generatorCode(OutputStream out);
 }
