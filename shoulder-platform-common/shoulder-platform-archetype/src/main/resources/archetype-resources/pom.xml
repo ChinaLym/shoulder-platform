@@ -10,7 +10,7 @@
 
     <name>${artifactId}</name>
     <artifactId>${artifactId}</artifactId>
-    <description>todo 介绍以下这个工程</description>
+    <description>todo 介绍这个工程</description>
 
     <groupId>${groupId}</groupId>
     <packaging>pom</packaging>

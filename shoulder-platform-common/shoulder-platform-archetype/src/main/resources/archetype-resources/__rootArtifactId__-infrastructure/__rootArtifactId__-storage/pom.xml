@@ -18,6 +18,19 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Mybatis-Plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JPA -->
+        <!--<dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>-->
+
     </dependencies>
 
 </project>

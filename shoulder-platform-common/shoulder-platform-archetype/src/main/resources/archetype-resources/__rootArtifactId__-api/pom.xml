@@ -8,6 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>${artifactId}</artifactId>
+    <description>${artifactId} 接口标准</description>
 
     <dependencies>
         <dependency>

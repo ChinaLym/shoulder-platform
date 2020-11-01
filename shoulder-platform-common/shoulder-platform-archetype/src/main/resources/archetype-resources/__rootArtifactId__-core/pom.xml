@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
 
-    <description>共性业务放这里</description>
+    <description>核心业务放这里，本服务的核心业务。</description>
 
     <dependencies>
 

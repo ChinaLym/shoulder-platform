@@ -34,7 +34,9 @@ public class DemoController {
     @GetMapping("test")
     public String test() {
         return "Congratulations on your new project based on <a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>!</br></br>" +
-            "恭喜你成功创建了一个基于<a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>的工程！";
+            "恭喜你成功创建了一个基于<a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>的工程！" +
+            "shoulder-platform 是借助 <a href='https://github.com/ChinaLym/shoulder-framework'>shoulder-framework</a> 快速开发能力构建的示例平台," +
+            "可以 <a href='https://github.com/ChinaLym/shoulder-framework-demo'>点击这里查看使用案例</a>，以快速了解 Shoulder。";
     }
 
 

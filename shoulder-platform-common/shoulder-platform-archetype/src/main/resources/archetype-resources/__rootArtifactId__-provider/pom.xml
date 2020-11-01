@@ -9,10 +9,17 @@
 
     <artifactId>${artifactId}</artifactId>
 
-    <description>为外部提供服务，若子业务过多，可拆分为多个 provider，该模块也可合并至具体 module 中</description>
+    <description>为外部提供服务（可选）。若子业务过多，可拆分为多个 provider。若业务简单该模块也可合并至具体 module 中。</description>
 
 
     <dependencies>
+
+        <!-- 接口标准 -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-api</artifactId>
+        </dependency>
+
         <!-- 将业务模块引入 -->
         <dependency>
             <groupId>${groupId}</groupId>

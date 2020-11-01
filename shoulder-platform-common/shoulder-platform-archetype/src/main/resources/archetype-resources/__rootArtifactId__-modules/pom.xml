@@ -10,7 +10,7 @@
     <artifactId>${artifactId}</artifactId>
     <packaging>pom</packaging>
 
-    <description>具体业务/子业务 按模块划分</description>
+    <description>具体业务/子业务，按模块划分，这里仅实现业务逻辑，不提供接口，接口由 provider 中提供。</description>
 
 
     <dependencies>

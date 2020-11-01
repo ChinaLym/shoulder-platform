@@ -6,6 +6,8 @@ package ${package}.start;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 /**
  * ${appId} 启动类
  *
@@ -18,6 +20,8 @@ public class ${StartClassName} {
         // printColorfulShoulderBanner();
         SpringApplication.run(${StartClassName}.class, args);
     }
+
+    // ******************* 以下方法仅用于生成 banner，使用后删除即可 **********************
 
     /**
      * shoulder 前缀的彩色启动 banner

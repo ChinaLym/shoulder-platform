@@ -10,7 +10,7 @@
     <artifactId>${artifactId}</artifactId>
     <packaging>pom</packaging>
 
-    <description>存放调用其他服务的代码</description>
+    <description>存放调用其他服务的代码（可选），若不调用其他模块，删除即可。</description>
 
     <modules>
         <!-- 外部 api 定义/依赖 -->

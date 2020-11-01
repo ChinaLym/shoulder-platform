@@ -27,6 +27,12 @@
             <artifactId>${rootArtifactId}-storage-mysql</artifactId>
         </dependency>
 
+        <!-- 默认只提供接口，不含 web 端 -->
+        <!--<dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-web</artifactId>
+        </dependency>-->
+
 
     </dependencies>
 
