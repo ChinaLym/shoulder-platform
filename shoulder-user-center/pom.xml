@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>uaa</name>
+    <artifactId>shoulder-user-center</artifactId>
+    <description>用户认证授权中心</description>
+
+    <groupId>cn.itlym.platform</groupId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version><!-- shoulder-user-center.version -->
+
+    <modules>
+        <module>shoulder-user-center-api</module>
+        <module>shoulder-user-center-infrastructure</module>
+        <module>shoulder-user-center-core</module>
+        <module>shoulder-user-center-reference</module>
+        <module>shoulder-user-center-modules</module>
+        <module>shoulder-user-center-provider</module>
+        <module>shoulder-user-center-web</module>
+        <module>shoulder-user-center-start</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- ======================= 基础设施层 ======================= -->
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-infrastructure</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-storage</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-storage-mysql</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-cache</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-cache-memory</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-cache-redis</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+            <!-- ======================= 外部接口、消息通知依赖 ======================= -->
+
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-reference</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-reference-adaptor</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-reference-xxx</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+            <!-- ======================= 通用业务 ======================= -->
+
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-core</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+            <!-- ======================= 具体业务 ======================= -->
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-modules</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-xxx</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <!-- ======================= 为外部提供 api ======================= -->
+
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-provider</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+            <!-- ======================= web 层，如自带的管理界面 ======================= -->
+            <dependency>
+                <groupId>cn.itlym.platform</groupId>
+                <artifactId>shoulder-user-center-web</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-user-center</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>shoulder-user-center-provider</artifactId>
+
+    <description>为外部提供服务，若子业务过多，可拆分为多个 provider，该模块也可合并至具体 module 中</description>
+
+
+    <dependencies>
+        <!-- 将业务模块引入 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-user-center-xxx</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

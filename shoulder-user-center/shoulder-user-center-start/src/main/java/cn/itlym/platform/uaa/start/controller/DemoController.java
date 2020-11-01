@@ -1,7 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.core.controller;
+package cn.itlym.platform.uaa.start.controller;
 
 import lombok.extern.shoulder.SLog;
 import org.shoulder.core.log.Logger;
@@ -12,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 一个示例
  *
- *
- * @author ${author}
+ * @author shoulder
  */
 //@SLog // 与 @Slf4j 类似，在希望打日志的类上添加 @SLog 注解，编译时将生成类似下面定义 logger 的代码
 @SkipResponseWrap // 该类所有方法的返回值将不被包装
@@ -33,7 +30,8 @@ public class DemoController {
      */
     @GetMapping("test")
     public String test() {
-        return "this is a demo controller";
+        return "Congratulations on your new project based on <a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>!</br></br>" +
+            "恭喜你成功创建了一个基于<a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>的工程！";
     }
 
 
