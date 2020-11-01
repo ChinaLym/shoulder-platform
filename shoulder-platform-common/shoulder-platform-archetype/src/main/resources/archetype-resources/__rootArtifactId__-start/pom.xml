@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>${artifactId}</artifactId>
-    <name>${artifactId}</name>
+    <name>${appId}</name>
     <description>${artifactId}</description>
     <!--调试/运行/测试/打包 模块-->
 
@@ -63,10 +63,10 @@
         <!-- maven 默认使用 artifactId+version拼接 -->
         <finalName>${project.artifactId}</finalName>
 
-        <!-- 动态打包环境配置源文件 -->
-        <filters>
+        <!-- 动态打包环境配置源文件 fix shoulder-platform 中的统一配置，可删除 -->
+        <!--<filters>
             <filter>../../dynamicConfig/config-${profile.active}.properties</filter>
-        </filters>
+        </filters>-->
 
         <resources>
             <resource>

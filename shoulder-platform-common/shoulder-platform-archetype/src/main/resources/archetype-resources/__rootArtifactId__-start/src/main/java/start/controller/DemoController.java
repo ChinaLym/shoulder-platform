@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.common.controller;
+package ${package}.start.controller;
 
 import lombok.extern.shoulder.SLog;
 import org.shoulder.core.log.Logger;
@@ -33,7 +33,8 @@ public class DemoController {
      */
     @GetMapping("test")
     public String test() {
-        return "this is a demo controller";
+        return "Congratulations on your new project based on <a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>!</br></br>" +
+            "恭喜你成功创建了一个基于<a href='https://github.com/ChinaLym/shoulder-platform'>shoulder-platform</a>的工程！";
     }
 
 

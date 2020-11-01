@@ -1,0 +1,18 @@
+
+# 不对接注册中心时的配置文件参考
+
+spring:
+  application:
+    name: @project.name@
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_ADDR:'127.0.0.1:3306'}/yourDataBaseName?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: ${MYSQL_PWD}
+
+shoulder:
+  application:
+    id: ${spring.application.name}
+    errorCodePrefix: '0x000b' # unique code to mark a application

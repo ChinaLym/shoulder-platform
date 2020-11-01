@@ -8,7 +8,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <name>${artifactId}</name>
     <artifactId>${artifactId}</artifactId>
+    <description>todo 介绍以下这个工程</description>
 
     <groupId>${groupId}</groupId>
     <packaging>pom</packaging>

@@ -44,7 +44,7 @@
         <!-- 数据库 连接池 默认使用高性能的 beecp （性能是 spring-boot 默认 hikairCP 两倍，功能较少）-->
         <dependency>
             <groupId>com.github.chris2018998</groupId>
-            <artifactId>BeeCP</artifactId>
+            <artifactId>beecp</artifactId>
         </dependency>
         <!-- beecp 的 starter 官方提供的有 bug 因为其 provide 属性会导致编译失败 -->
         <!--<dependency>
