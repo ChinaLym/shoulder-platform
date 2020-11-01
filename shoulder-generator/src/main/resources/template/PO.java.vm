@@ -1,5 +1,8 @@
 package ${package}.${pkgName}.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,13 +21,18 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class ${className} implements Serializable {
+public class ${className}PO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 #foreach ($column in $columns)
 
+	/**
+	 * $column.columnName $column.comments
+	 */
 	#if($column.columnName == $pk.columnName)
+	@TableId(type = IdType.AUTO)
 	#end
+	@TableField("$column.columnName")
 	private $column.attrType $column.attributeName;
 #end
 

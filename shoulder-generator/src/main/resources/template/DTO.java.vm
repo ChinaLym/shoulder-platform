@@ -1,0 +1,48 @@
+package ${package}.${pkgName}.dto;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.experimental.Accessors;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
+@Builder
+@ApiModel(value = "${className}DTO", description = "${tableName}")
+public class ${className}DTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+#foreach ($column in $columns)
+
+	/**
+	 * $column.comments
+	 */
+	#if($column.notEmpty)
+	@NotNull(message = "$column.comments 不能为空")
+	#end
+	#if($column.length > 0)
+	@Length(max = $column.length, message = "$column.comments 长度不能超过 $column.length")
+	#end
+	@ApiModelProperty(value = "$column.comments", notes = "$column.comments")
+	private $column.attrType $column.attributeName;
+#end
+
+}

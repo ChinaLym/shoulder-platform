@@ -4,7 +4,7 @@
 <mapper namespace="${package}.${pkgName}.dao.${className}Mapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="${package}.${pkgName}.entity.${className}" id="${lowClassName}Map">
+    <resultMap type="${package}.${pkgName}.po.${className}PO" id="${lowClassName}Map">
 #foreach($column in $columns)
         <result property="${column.attributeName}" column="${column.columnName}"/>
 #end
@@ -46,10 +46,12 @@
         delete from ${tableName} where id = #{id}
     </delete>
 
-    <select id="findAll" resultType="${package}.${pkgName}.entity.${className}">
+    <select id="findAll" resultType="${package}.${pkgName}.po.${className}PO">
         select * from ${tableName} t
         <include refid="where"/>
     </select>
+
+
     <sql id="where">
         <where>
             #foreach($column in $columns)
@@ -59,4 +61,6 @@
             #end
         </where>
     </sql>
+
+
 </mapper>

@@ -29,7 +29,6 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
     @Autowired
     private SysGeneratorMapper sysGeneratorMapper;
 
-
     @Override
     public PageResult queryList(Map<String, Object> map) {
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】

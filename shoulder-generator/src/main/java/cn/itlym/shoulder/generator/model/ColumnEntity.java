@@ -31,4 +31,10 @@ public class ColumnEntity {
     //auto_increment
     private String extra;
 
+    // 字段长度
+    private Integer length;
+
+    // 非空
+    private Boolean notEmpty;
+
 }

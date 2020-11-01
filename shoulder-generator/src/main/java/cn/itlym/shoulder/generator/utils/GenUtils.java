@@ -28,12 +28,15 @@ import java.util.zip.ZipOutputStream;
 @Slf4j
 public class GenUtils {
 
+    /**
+     * 要加载的模板（生成哪些类）
+     */
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
         templates.add("template/JpaEntity.java.vm");
         templates.add("template/JpaRepository.java.vm");
 
-        templates.add("template/Entity.java.vm");
+        templates.add("template/PO.java.vm");
         templates.add("template/Mapper.java.vm");
         templates.add("template/Mapper.xml.vm");
         templates.add("template/Service.java.vm");
@@ -79,7 +82,8 @@ public class GenUtils {
         //封装模板数据
         Map<String, Object> map = new HashMap<>();
         map.put("tableName", tableEntity.getTableName());
-        map.put("pkgName", className.toLowerCase());
+        /*map.put("pkgName", className.toLowerCase());*/
+        map.put("pkgName", "xxx");
         map.put("comments", tableEntity.getComments());
         map.put("pk", tableEntity.getPk());
         map.put("className", tableEntity.getClassName());
@@ -186,15 +190,15 @@ public class GenUtils {
         String packagePath = "main" + File.separator + "java" + File.separator;
         tableName = tableName.replace("-", "").replace("_", "").toLowerCase();
         if (StringUtils.isNotBlank(packageName)) {
-            packagePath += packageName.replace(".", File.separator) + File.separator + tableName + File.separator;
+            packagePath += packageName.replace(".", File.separator) + File.separator + "xxx" + File.separator;// + tableName + File.separator;
         }
 
         if (template.contains("JpaEntity.java.vm")) {
             return packagePath + "entity" + File.separator + className + "Entity.java";
         }
 
-        if (template.contains("Entity.java.vm")) {
-            return packagePath + "entity" + File.separator + className + ".java";
+        if (template.contains("PO.java.vm")) {
+            return packagePath + "po" + File.separator + className + "PO.java";
         }
 
         if (template.contains("Mapper.java.vm")) {

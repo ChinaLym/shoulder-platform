@@ -16,20 +16,20 @@ import java.util.Map;
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${className}Repository  extends JpaRepository<${className}, Long> {
+public interface ${className}Repository  extends JpaRepository<${className}Entity, Long> {
 
     /**
     * 根据名称查询
     * @param name 名称
     * @return 查询结果
     */
-    Optional<${className}> findByName(String name);
+    Optional<${className}Entity> findByName(String name);
 
     /**
     * 根据名称模糊查询
     * @param name 名称
     * @return 查询结果
     */
-    Page<${className}> findByNameLike(String name, Pageable pageable);
+    Page<${className}Entity> findByNameLike(String name, Pageable pageable);
 
 }

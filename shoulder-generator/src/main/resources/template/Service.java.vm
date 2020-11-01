@@ -1,6 +1,6 @@
 package ${package}.${pkgName}.service;
 
-import ${package}.${pkgName}.entity.${className};
+import ${package}.${pkgName}.po.${className};
 
 import org.shoulder.core.dto.response.PageResult;
 
@@ -23,7 +23,7 @@ public interface ${className}Service {
      * 修改
      * @param ${lowClassName}
      */
-    int update(${className} ${lowClassName});
+    int update(${className}PO ${lowClassName});
 
     /**
      * 删除
@@ -37,7 +37,7 @@ public interface ${className}Service {
      * @param params
      * @return
      */
-    PageResult<${className}> findAll(Map<String, Object> params);
+    PageResult<${className}PO> findAll(Map<String, Object> params);
 
 }
 

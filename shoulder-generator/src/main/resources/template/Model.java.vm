@@ -1,0 +1,39 @@
+package ${package}.${pkgName}.model;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+
+@Data
+@NoArgsConstructor
+public class ${className} implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+#foreach ($column in $columns)
+
+	/**
+	 * $column.columnName $column.comments
+	 */
+	#if($column.columnName == $pk.columnName)
+	@TableId(type = IdType.AUTO)
+	#end
+	@TableField("$column.columnName")
+	private $column.attrType $column.attributeName;
+#end
+
+}

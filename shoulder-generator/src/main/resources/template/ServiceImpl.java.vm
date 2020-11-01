@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.collections4.MapUtils;
 
-import ${package}.${pkgName}.entity.${className};
+import ${package}.${pkgName}.po.${className};
 import ${package}.${pkgName}.dao.${className}Mapper;
 import ${package}.${pkgName}.service.${className}Service;
 

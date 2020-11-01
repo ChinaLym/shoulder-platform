@@ -1,6 +1,6 @@
 package ${package}.${pkgName}.dao;
 
-import ${package}.${pkgName}.entity.${className};
+import ${package}.${pkgName}.po.${className};
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.Map;
 @Mapper
 public interface ${className}Mapper {
 
-    int insert(${className} ${lowClassName});
+    int insert(${className}PO ${lowClassName});
 
-    int update(${className} ${lowClassName});
+    int update(${className}PO ${lowClassName});
 
     int delete(Long id);
 
-    List<${className}> findAll(Map<String, Object> params);
+    List<${className}PO> findAll(Map<String, Object> params);
 
 }
