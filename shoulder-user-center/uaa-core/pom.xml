@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-user-center</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>uaa-core</artifactId>
+
+    <description>共性业务放这里</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>shoulder-platform-starter-micro</artifactId>
+        </dependency>
+
+        <!-- 持久层接口 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>uaa-storage</artifactId>
+        </dependency>
+
+        <!-- 缓存层接口 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>uaa-cache</artifactId>
+        </dependency>
+
+        <!-- 外部调用适配层 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>uaa-reference-adaptor</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

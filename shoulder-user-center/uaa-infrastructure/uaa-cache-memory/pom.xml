@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>uaa-infrastructure</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>uaa-cache-memory</artifactId>
+
+    <description>jvm 内存缓存。
+        该缓存实现 在开发/测试模式，会将缓存DTO序列化/反序列化，以便于后续改为使用redis等缓存做铺垫。
+    </description>
+
+    <dependencies>
+
+        <!-- 缓存层定义 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>uaa-cache</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- caffine 相关依赖 -->
+
+    </dependencies>
+
+</project>

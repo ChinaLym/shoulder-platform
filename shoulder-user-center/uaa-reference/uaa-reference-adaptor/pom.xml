@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>uaa-reference</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>uaa-reference-adaptor</artifactId>
+
+    <description>调用外部服务接口适配模块、主要做DTO转换、错误码转换，异常处理等。</description>
+
+    <!--若未调用其他服务接口、则删掉该模块即可-->
+
+    <dependencies>
+
+        <!-- xxx 应用 -->
+        <dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>uaa-reference-xxx</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <!-- 可能不是所有子业务都会依赖某个第三方提供的接口，故设置为可选，在具体业务模块中声明依赖 -->
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

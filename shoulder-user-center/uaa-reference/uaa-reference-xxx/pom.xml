@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>uaa-reference</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>uaa-reference-xxx</artifactId>
+
+    <description>调用 xxx 应用提供的接口</description>
+
+    <!-- 该模块通常仅仅是继承 提供方提供的 dto/api 以屏蔽外部包路径，为可选模块，
+    若服务提供方未提供 DTO、Api 定义则在该模块放置 API、DTO、枚举等 -->
+
+    <dependencies>
+
+
+        <!-- xxx 相关依赖 -->
+        <!--<dependency>
+            <groupId>cn.itlym.platform</groupId>
+            <artifactId>xxx-api</artifactId>
+            或
+            <artifactId>xxx-client</artifactId>
+        </dependency>-->
+
+
+    </dependencies>
+
+</project>

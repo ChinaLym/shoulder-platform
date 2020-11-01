@@ -4,28 +4,28 @@
         <groupId>cn.itlym.platform</groupId>
         <artifactId>shoulder-platform-parent</artifactId>
         <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
-        <relativePath>../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>uaa</name>
+    <name>shoulder-user-center</name>
     <artifactId>shoulder-user-center</artifactId>
     <description>用户认证授权中心</description>
 
     <groupId>cn.itlym.platform</groupId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version><!-- shoulder-user-center.version -->
+    <version>1.0-SNAPSHOT</version><!-- uaa.version -->
+
 
     <modules>
-        <module>shoulder-user-center-api</module>
-        <module>shoulder-user-center-infrastructure</module>
-        <module>shoulder-user-center-core</module>
-        <module>shoulder-user-center-reference</module>
-        <module>shoulder-user-center-modules</module>
-        <module>shoulder-user-center-provider</module>
-        <module>shoulder-user-center-web</module>
-        <module>shoulder-user-center-start</module>
+        <module>uaa-api</module>
+        <module>uaa-infrastructure</module>
+        <module>uaa-core</module>
+        <module>uaa-reference</module>
+        <module>uaa-modules</module>
+        <module>uaa-provider</module>
+        <module>uaa-web</module>
+        <module>uaa-start</module>
     </modules>
 
     <dependencyManagement>
@@ -34,34 +34,34 @@
             <!-- ======================= 基础设施层 ======================= -->
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-infrastructure</artifactId>
+                <artifactId>uaa-infrastructure</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-storage</artifactId>
+                <artifactId>uaa-storage</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-storage-mysql</artifactId>
+                <artifactId>uaa-storage-mysql</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
 
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-cache</artifactId>
+                <artifactId>uaa-cache</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-cache-memory</artifactId>
+                <artifactId>uaa-cache-memory</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-cache-redis</artifactId>
+                <artifactId>uaa-cache-redis</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
@@ -70,17 +70,17 @@
 
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-reference</artifactId>
+                <artifactId>uaa-reference</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-reference-adaptor</artifactId>
+                <artifactId>uaa-reference-adaptor</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-reference-xxx</artifactId>
+                <artifactId>uaa-reference-xxx</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
@@ -89,7 +89,7 @@
 
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-core</artifactId>
+                <artifactId>uaa-core</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
@@ -97,12 +97,12 @@
             <!-- ======================= 具体业务 ======================= -->
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-modules</artifactId>
+                <artifactId>uaa-modules</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-xxx</artifactId>
+                <artifactId>uaa-xxx</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
@@ -110,13 +110,13 @@
 
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-api</artifactId>
+                <artifactId>uaa-api</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-provider</artifactId>
+                <artifactId>uaa-provider</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
@@ -124,7 +124,7 @@
             <!-- ======================= web 层，如自带的管理界面 ======================= -->
             <dependency>
                 <groupId>cn.itlym.platform</groupId>
-                <artifactId>shoulder-user-center-web</artifactId>
+                <artifactId>uaa-web</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 

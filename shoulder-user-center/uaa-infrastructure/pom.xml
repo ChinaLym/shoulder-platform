@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-user-center</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>uaa-infrastructure</artifactId>
+    <packaging>pom</packaging>
+
+    <description>基础设施层：存放可能随着 技术发展、部署环境、产品定位 而产生变化的代码，如：数据库在不同环境选型容易更换</description>
+
+    <modules>
+        <module>uaa-storage</module>
+        <module>uaa-storage-mysql</module>
+
+        <module>uaa-cache</module>
+        <module>uaa-cache-memory</module>
+        <module>uaa-cache-redis</module>
+
+
+    </modules>
+
+    <dependencies>
+
+
+    </dependencies>
+
+</project>

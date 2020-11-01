@@ -1,0 +1,60 @@
+
+# 使用 spring-cloud 注册中心时，使用如下配置即可，若不使用注册中心，删掉该文件即可
+
+shoulder:
+  nacos:
+    ip: ${NACOS_IP:localhost} # 这里替换成自己的 nacos ip
+    port: ${NACOS_PORT:8848}  # 这里替换成自己的 nacos port
+    namespace: ${NACOS_ID:} # 这里替换成自己的 namespace，默认空
+
+# spring-boot-actuate 展示信息
+info:
+  name: "@project.name@"
+  description: "@project.description@"
+  version: "@project.version@"
+  spring-boot-version: ${spring-boot.version}
+  spring-cloud-version: ${spring-cloud.version}
+  shoulder-version: "@shoulder.version@"
+  profile: "@profile.active@"
+
+# ==================================  配置正文  ================================
+spring:
+  #allow-bean-definition-overriding: true
+  application:
+    name: ${info.name}
+  profiles:
+    active: ${info.profile}
+  cloud:
+    nacos:
+      config:
+        server-addr: ${shoulder.nacos.ip}:${shoulder.nacos.port}    # 改为自己的 nacos 地址命名空间
+        file-extension: yml
+        # namespace: ${shoulder.nacos.namespace}                      # 改为自己的 nacos 地址命名空间
+        shared-configs:
+          - dataId: common.yml
+            refresh: true
+          - dataId: ${spring.application.name}.yml
+            refresh: true
+          - dataId: redis.yml
+            refresh: false
+          - dataId: db.yml
+            refresh: true
+          - dataId: mq-rabbitmq.yml
+            refresh: false
+        enabled: true
+
+      discovery:
+        server-addr: ${shoulder.nacos.ip}:${shoulder.nacos.port}
+        namespace: ${shoulder.nacos.namespace}
+        metadata:
+          management.context-path: ${server.servlet.context-path:}${spring.mvc.servlet.path:}${management.endpoints.web.base-path:}
+
+boot:
+  admin:
+    client:
+      url: localhost:12365
+      #username:
+      #password:
+      instance:
+        prefer-ip: true
+        service-url: localhost:8080
