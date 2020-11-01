@@ -1,4 +1,4 @@
-package cn.itlym.shoulder.generator.dao;
+package cn.itlym.shoulder.generator.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +12,7 @@ import java.util.Map;
  */
 @Mapper
 @Repository
-public interface SysGeneratorDao {
+public interface SysGeneratorMapper {
 
     List<Map<String, Object>> queryList(Map<String, Object> map);
 

@@ -3,10 +3,9 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>cn.itlym.platform</groupId>
-        <artifactId>shoulder-platform-parent</artifactId>
-        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
-        <relativePath>../../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
+        <groupId>cn.itlym</groupId>
+        <artifactId>shoulder-parent</artifactId>
+        <version>0.4</version><!-- shoulder-version -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,16 +21,6 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.itlym.platform</groupId>
-            <artifactId>shoulder-platform-starter-db</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.itlym.platform</groupId>
-            <artifactId>shoulder-platform-starter-config-client</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
@@ -42,68 +31,44 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.itlym.platform</groupId>
-            <artifactId>shoulder-platform-starter-rpc-server</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- 默认使用 mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!-- 彩色日志等，比 spring-boot-starter-web 更简便 -->
+        <dependency>
+            <groupId>cn.itlym</groupId>
+            <artifactId>shoulder-starter-web</artifactId>
         </dependency>
 
     </dependencies>
-
     <build>
-
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- 生成带第三方jar包的可执行jar包  -->
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <configuration>
-                    <!-- 项目名 -->
-                    <!-- ${docker.image.prefix} ： dockerHub 上注册的名字 -->
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <!-- docker远程服务器地址 -->
-                    <dockerHost>${docker.host}</dockerHost>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-        </plugins>
-
-        <finalName>${project.artifactId}</finalName>
-
         <resources>
             <resource>
                 <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.yml</include>
-                </includes>
-                <!-- 是否替换资源中的属性-->
-                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
             </resource>
-        </resources>
-
-    </build>
-
+        </resources></build>
 </project>

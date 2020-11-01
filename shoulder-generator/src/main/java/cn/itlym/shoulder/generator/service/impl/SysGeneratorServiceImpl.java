@@ -1,6 +1,6 @@
 package cn.itlym.shoulder.generator.service.impl;
 
-import cn.itlym.shoulder.generator.dao.SysGeneratorDao;
+import cn.itlym.shoulder.generator.mapper.SysGeneratorMapper;
 import cn.itlym.shoulder.generator.service.SysGeneratorService;
 import cn.itlym.shoulder.generator.utils.GenUtils;
 import com.github.pagehelper.PageHelper;
@@ -27,14 +27,14 @@ import java.util.zip.ZipOutputStream;
 public class SysGeneratorServiceImpl implements SysGeneratorService {
 
     @Autowired
-    private SysGeneratorDao sysGeneratorDao;
+    private SysGeneratorMapper sysGeneratorMapper;
 
 
     @Override
     public PageResult queryList(Map<String, Object> map) {
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
         PageHelper.startPage(MapUtils.getInteger(map, "page"), MapUtils.getInteger(map, "limit"), true);
-        List<Map<String, Object>> list = sysGeneratorDao.queryList(map);
+        List<Map<String, Object>> list = sysGeneratorMapper.queryList(map);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(list);
 
         return PageResult.PageInfoConverter.toResult(pageInfo);
@@ -47,12 +47,12 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
 
     @Override
     public Map<String, String> queryTable(String tableName) {
-        return sysGeneratorDao.queryTable(tableName);
+        return sysGeneratorMapper.queryTable(tableName);
     }
 
     @Override
     public List<Map<String, String>> queryColumns(String tableName) {
-        return sysGeneratorDao.queryColumns(tableName);
+        return sysGeneratorMapper.queryColumns(tableName);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zip = new ZipOutputStream(outputStream);
         // 查询所有表信息
-        List<Map<String, String>> tables = sysGeneratorDao.listTable();
+        List<Map<String, String>> tables = sysGeneratorMapper.listTable();
         for (Map<String, String> table : tables) {
             String tableName = table.get("TABLE_NAME");
             //查询列信息

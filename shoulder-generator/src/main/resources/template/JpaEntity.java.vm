@@ -17,7 +17,6 @@ import java.util.Date;
  * @author ${author}
  * @date ${datetime}
  */
-
 @Data
 @Entity
 @NoArgsConstructor

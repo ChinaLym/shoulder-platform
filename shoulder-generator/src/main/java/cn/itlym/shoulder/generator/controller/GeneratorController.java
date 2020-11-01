@@ -43,7 +43,7 @@ public class GeneratorController {
     /**
      * 生成代码
      * web 中不需要主动关闭流
-     * http://localhost:8080/generator/code?tables=*
+     * <a href="http://localhost:8080/generator/code?tables=_all">所有表</a>
      */
     @RequestMapping("/code")
     public void code(String tables, HttpServletResponse response) throws IOException {
@@ -52,22 +52,18 @@ public class GeneratorController {
             throw new IllegalArgumentException("tableName can't be empty");
         }
         response.reset();
-        byte[] data = "*".equals(tables) ? sysGeneratorService.generatorCode(response.getOutputStream()) :sysGeneratorService.generatorCode(tables.split(","), response.getOutputStream());
-        if (data != null && data.length > 0) {
-            /*
-            // file out put stream 必须及时关闭
-            OutputStream out = new FileOutputStream("F:/te.zip");
-            IOUtils.write(data, out);
-            IOUtils.closeQuietly(out);
-            */
-
-            response.setHeader("Content-Disposition", "attachment; filename=\"generator.zip\"");
-            response.setContentType("application/octet-stream; charset=UTF-8");
-            response.addHeader("Content-Length", String.valueOf(data.length));
-
-            // response out put stream 会自动关闭
-            IOUtils.write(data, response.getOutputStream());
+        byte[] data = "_all".equals(tables) ? sysGeneratorService.generatorCode(response.getOutputStream())
+                :sysGeneratorService.generatorCode(tables.split(","), response.getOutputStream());
+        if (data == null || data.length == 0) {
+            return;
         }
+        response.setHeader("Content-Disposition", "attachment; filename=\"generator.zip\"");
+        response.setContentType("application/octet-stream; charset=UTF-8");
+        // ClientAbortException: java.io.IOException: 你的主机中的软件中止了一个已建立的连接。加上这行有下载进度，不加可能报错
+        response.addHeader("Content-Length", String.valueOf(data.length));
+
+        // response out put stream 会自动关闭
+        IOUtils.write(data, response.getOutputStream());
 
     }
 

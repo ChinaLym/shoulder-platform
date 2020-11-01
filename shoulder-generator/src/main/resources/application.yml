@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: shoulder-generator
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # 改成你要生成的数据库地址
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/shoulder_platform?serverTimezone=CTT&characterEncoding=utf8&useUnicode=true&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&allowPublicKeyRetrieval=true
