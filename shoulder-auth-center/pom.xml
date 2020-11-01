@@ -16,9 +16,5 @@
     <artifactId>shoulder-auth-center</artifactId>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>shoulder-auth-api</module>
-    </modules>
-
 
 </project>

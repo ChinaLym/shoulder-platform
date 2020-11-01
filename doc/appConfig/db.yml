@@ -6,7 +6,7 @@ shoulder:
     ip: 127.0.0.1
     port: 3306
     driverClassName: com.mysql.cj.jdbc.Driver
-    database: db_shoulder_platform
+    database: shoulder_platform
     username: root
     password: root
   database:      # 数据库配置请看 DatabaseProperties 类上的注释
