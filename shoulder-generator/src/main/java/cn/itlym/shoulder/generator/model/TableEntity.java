@@ -25,4 +25,15 @@ public class TableEntity {
     //类名(第一个字母小写)，如：sys_user => sysUser
     private String lowClassName;
 
+    /**
+     * Controller 中生成校验权限注解（Spring Security）
+     */
+    private boolean checkAuth;
+
+    /**
+     * 表类型：
+     * TREE(parent_id), CREATOR, MODIFIER, CREATOR_TIME, UPDATE_TIME, BATCH
+     */
+    private List<String> types;
+
 }

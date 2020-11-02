@@ -10,40 +10,62 @@
 #end
     </resultMap>
 
+#if(${baseColumnList})
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ${pk}
+#foreach($column in $columns)
+        , ${column.columnName}
+#end
+    </sql>
+#end
+
     <insert id="save">
         insert into ${tableName}(
-            #foreach($column in $columns)
-                    #if( $!{velocityCount} == $!{columns.size()})
+#foreach($column in $columns)
+#if( $!{velocityCount} == $!{columns.size()})
                         ${column.columnName}
-                    #else
+#else
                         ${column.columnName},
-                    #end
-            #end
+#end
+#end
       ) values (
-         #foreach($column in $columns)
-            #if( $!{velocityCount} == $!{columns.size()})
+#foreach($column in $columns)
+#if( $!{velocityCount} == $!{columns.size()})
                #{${column.columnName}}
-               #else
+#else
                #{ ${column.columnName}},
-            #end
-         #end
+#end
+#end
       )
     </insert>
 
     <update id="update">
         update ${tableName}
         <set>
-            #foreach($column in $columns)
+#foreach($column in $columns)
                 <if test="${column.columnName} != null">
                     ${column.columnName} = #{${column.columnName}},
                 </if>
-            #end
+#end
         </set>
         where id = #{id}
     </update>
 
+    <!-- 根据传入 id 删除单个 -->
     <delete id="delete" parameterType="long" flushCache="true">
         delete from ${tableName} where id = #{id}
+    </delete>
+
+    <!-- 根据传入 id 批量删除 -->
+    <delete id="deleteByIds" parameterType="java.util.List" flushCache="true">
+        delete from ${tableName}
+        <foreach collection="list" item="ids" index="index" separator="or"  open="(" close=")" >
+            id in
+            <foreach collection="ids" item="id" index="index" open="(" close=")"  separator="," >
+                #{id}
+            </foreach>
+        </foreach>
     </delete>
 
     <select id="findAll" resultType="${package}.${pkgName}.po.${className}PO">
@@ -54,11 +76,11 @@
 
     <sql id="where">
         <where>
-            #foreach($column in $columns)
-                <if test="searchKey != null and searchKey != '' and searchKey=='${column.columnName}'">
-                    and t.${column.columnName} like concat('%', #{searchValue}, '%')
-                </if>
-            #end
+#foreach($column in $columns)
+            <if test="searchKey != null and searchKey != '' and searchKey=='${column.columnName}'">
+                and t.${column.columnName} like concat('%', #{searchValue}, '%')
+            </if>
+#end
         </where>
     </sql>
 

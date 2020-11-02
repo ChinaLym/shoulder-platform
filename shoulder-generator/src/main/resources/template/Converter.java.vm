@@ -1,0 +1,48 @@
+package ${package}.${pkgName}.convert;
+
+import ${package}.${pkgName}.model.${className};
+import ${package}.${pkgName}.po.${className}PO;
+import ${package}.${pkgName}.dto.${className}DTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+/**
+ * ${comments} 模型转换
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Mapper(componentModel = "spring") // 置为 spring 默认作为 bean 注入 Spring 容器中
+public interface ${className}Converter {
+        
+    ${className}Converter CONVERTER = Mappers.getMapper(${className}Converter.class);
+
+    /**
+     * DTO 转为标准模型，用于接口传入时
+     * @param dto 传输层对象
+     * @return 标准模型
+     */
+    ${className} fromDTO(${className}DTO dto);
+
+    /**
+     * PO 转为标准模型，用于存储中返回查询结果后
+     * @param po 持久层对象
+     * @return 标准模型
+     */
+    ${className} fromPO(${className}PO po);
+
+    /**
+     * 标准模型转为 DTO，用于接口返回查询结果时，转化为视图层对象
+     * @param model 标准模型
+     * @return 传输层对象
+     */
+    ${className}DTO toDTO(${className} model);
+
+    /**
+     * 标准模型转为 PO，用于存储入库前
+     * @param model 标准模型
+     * @return 持久层对象
+     */
+    ${className}PO toPO(${className} model);
+
+}

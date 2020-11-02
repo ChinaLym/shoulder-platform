@@ -29,7 +29,9 @@
     </select>
 
     <select id="queryColumns" resultType="map">
-        select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra from information_schema.columns
+        select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra ,
+        CHARACTER_MAXIMUM_LENGTH charLength, COLUMN_TYPE columnType, IS_NULLABLE isNullable
+        from information_schema.columns
         where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
     </select>
 </mapper>

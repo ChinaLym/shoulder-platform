@@ -33,15 +33,21 @@ public class GenUtils {
      */
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
+        templates.add("template/Controller.java.vm");
+
         templates.add("template/JpaEntity.java.vm");
         templates.add("template/JpaRepository.java.vm");
 
+        templates.add("template/Model.java.vm");
+        templates.add("template/DTO.java.vm");
         templates.add("template/PO.java.vm");
-        templates.add("template/Mapper.java.vm");
-        templates.add("template/Mapper.xml.vm");
+        templates.add("template/Converter.java.vm");
+
         templates.add("template/Service.java.vm");
         templates.add("template/ServiceImpl.java.vm");
-        templates.add("template/Controller.java.vm");
+
+        templates.add("template/Mapper.java.vm");
+        templates.add("template/Mapper.xml.vm");
 
         templates.add("template/index.html.vm");
 
@@ -131,6 +137,9 @@ public class GenUtils {
             columnEntity.setDataType(column.get("dataType"));
             columnEntity.setComments(column.get("columnComment"));
             columnEntity.setExtra(column.get("extra"));
+            String len = String.valueOf(column.get("charLength"));
+            columnEntity.setLength("null".equalsIgnoreCase(len) ? 0 : Integer.parseInt(len));
+            columnEntity.setNotEmpty("NO".equalsIgnoreCase(column.get("isNullable")));
 
             //列名转换成Java属性名
             String attrName = columnToJava(columnEntity.getColumnName());
@@ -197,8 +206,20 @@ public class GenUtils {
             return packagePath + "entity" + File.separator + className + "Entity.java";
         }
 
+        if (template.contains("Model.java.vm")) {
+            return packagePath + "model" + File.separator + className + ".java";
+        }
+
         if (template.contains("PO.java.vm")) {
             return packagePath + "po" + File.separator + className + "PO.java";
+        }
+
+        if (template.contains("DTO.java.vm")) {
+            return packagePath + "dto" + File.separator + className + "DTO.java";
+        }
+
+        if (template.contains("Converter.java.vm")) {
+            return packagePath + "convert" + File.separator + className + "Converter.java";
         }
 
         if (template.contains("Mapper.java.vm")) {

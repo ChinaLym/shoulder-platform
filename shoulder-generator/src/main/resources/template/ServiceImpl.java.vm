@@ -1,5 +1,7 @@
 package ${package}.${pkgName}.service.impl;
 
+import ${package}.${pkgName}.convert.${className}Converter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.shoulder.core.dto.response.PageResult;
@@ -8,59 +10,73 @@ import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.apache.commons.collections4.MapUtils;
 
-import ${package}.${pkgName}.po.${className};
+import org.shoulder.core.dto.response.PageResult;
+import ${package}.${pkgName}.dto.${className}DTO;
 import ${package}.${pkgName}.dao.${className}Mapper;
+import ${package}.${pkgName}.model.${className};
+import ${package}.${pkgName}.po.${className}PO;
 import ${package}.${pkgName}.service.${className}Service;
 
-
+/**
+ * ${className} 业务层
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
 @Service
 public class ${className}ServiceImpl  implements ${className}Service {
 
     @Autowired
     private ${className}Mapper ${lowClassName}Mapper;
 
-    /**
-     * 添加
-     * @param ${lowClassName}
-     */
+    @Override
     public int save(${className} ${lowClassName}){
-        return ${lowClassName}Mapper.insert(${lowClassName});
+        ${className}PO ${lowClassName}PO = ${className}Converter.CONVERTER.toPO(${lowClassName});
+        return ${lowClassName}Mapper.insert(${lowClassName}PO);
     }
 
-    /**
-     * 修改
-     * @param ${lowClassName}
-     */
+    @Override
     public int update(${className} ${lowClassName}){
-        return ${lowClassName}Mapper.update(${lowClassName});
+        ${className}PO ${lowClassName}PO = ${className}Converter.CONVERTER.toPO(${lowClassName});
+        return ${lowClassName}Mapper.update(${lowClassName}PO);
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return ${lowClassName}Mapper.deleteById(id);
+    }
+
+    @Override
+    public int deleteByIds(List<Long> idList) {
+        return ${lowClassName}Mapper.deleteByIds(idList);
     }
 
 
-    /**
-     * 删除
-     * @param id 主键
-     */
-    public int delete(Long id){
-        return ${lowClassName}Mapper.delete(id);
-    }
-
-
-    /**
-     * 列表
-     * @param params
-     * @return
-     */
+    @Override
     public PageResult<${className}> findAll(Map<String, Object> params){
-        //设置分页信息，分别是当前页数和每页显示的总记录数
+        // 设置当前页数和每页显示的最大记录数
         if (MapUtils.getInteger(params, "page")!=null && MapUtils.getInteger(params, "limit")!=null) {
             PageHelper.startPage(MapUtils.getInteger(params, "page"), MapUtils.getInteger(params, "limit"), true);
         }
-        List<${className}> list  =  ${lowClassName}Mapper.findAll(params);
-        PageInfo<${className}> pageInfo = new PageInfo(list);
+        List<${className}PO> poList = ${lowClassName}Mapper.findAll(params);
+        // todo 如果为空则返回空
+        if(CollectionUtils.isEmpty(poList)) {
+            throw new RuntimeException("return empty...");
+            //return PageResult.empty(0);
+        }
+        List<${className}> list = poList.stream()
+                .map(${className}Converter.CONVERTER::fromPO)
+                .collect(Collectors.toList());
+        PageInfo<${className}> pageInfo = new PageInfo<>(list);
 
-        return PageResult.<${className}>builder().data(pageInfo.getList()).code(0).count(pageInfo.getTotal()).build();
+        return PageResult.PageResultBuilder.aPageResult()
+                .list(pageInfo.getList())
+                .totalPageNum((int) pageInfo.getTotal())
+                .build();
     }
 
 }

@@ -1,9 +1,11 @@
 package ${package}.${pkgName}.service;
 
-import ${package}.${pkgName}.po.${className};
-
+import ${package}.${pkgName}.dto.${className}DTO;
+import ${package}.${pkgName}.model.${className};
+import ${package}.${pkgName}.po.${className}PO;
 import org.shoulder.core.dto.response.PageResult;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,29 +15,44 @@ import java.util.Map;
  * @date ${datetime}
  */
 public interface ${className}Service {
+
     /**
-     * 添加
-     * @param ${lowClassName}
+     * 添加单个
+     *
+     * @param ${lowClassName} 要添加的
+     * @return 数据库影响行数
      */
     int save(${className} ${lowClassName});
 
     /**
-     * 修改
-     * @param ${lowClassName}
+     * 修改单个
+     *
+     * @param ${lowClassName} 修改
+     * @return 数据库影响行数
      */
-    int update(${className}PO ${lowClassName});
+    int update(${className} ${lowClassName});
 
     /**
-     * 删除
-     * @param id
+     * 根据 id 删除单个
+     *
+     * @param id 要删除的数据 id
+     * @return 数据库影响行数
      */
-    int delete(Long id);
-
+    int deleteById(Long id);
 
     /**
-     * 列表
-     * @param params
-     * @return
+     * 根据 ids 批量删除
+     *
+     * @param idList 要删除的数据 id
+     * @return 数据库影响行数
+     */
+    int deleteByIds(List<Long> idList);
+
+    /**
+     * 分页查询
+     *
+     * @param params 条件
+     * @return 查询结果
      */
     PageResult<${className}PO> findAll(Map<String, Object> params);
 

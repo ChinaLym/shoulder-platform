@@ -1,10 +1,11 @@
 package ${package}.${pkgName}.dao;
 
-import ${package}.${pkgName}.po.${className};
+import ${package}.${pkgName}.po.${className}PO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
+
 /**
  * ${comments}
  * 
@@ -14,12 +15,44 @@ import java.util.Map;
 @Mapper
 public interface ${className}Mapper {
 
-    int insert(${className}PO ${lowClassName});
+    /**
+     * 插入单条记录
+     *
+     * @param ${lowClassName}PO 要添加的
+     * @return 数据库影响行数
+     */
+    int insert(${className}PO ${lowClassName}PO);
 
-    int update(${className}PO ${lowClassName});
+    /**
+     * 更新单个
+     *
+     * @param ${lowClassName}PO 要更新的
+     * @return 数据库影响行数
+     */
+    int update(${className}PO ${lowClassName}PO);
 
-    int delete(Long id);
+    /**
+     * 根据 id 删除单个
+     *
+     * @param id 要删除的数据 id
+     * @return 数据库影响行数
+     */
+    int deleteById(Long id);
 
+    /**
+     * 根据 ids 批量删除
+     *
+     * @param ids 要删除的数据 id
+     * @return 数据库影响行数
+     */
+    int deleteByIds(List<Long> ids);
+
+    /**
+     * 分页查询
+     *
+     * @param params 查询条件
+     * @return 查询结果
+     */
     List<${className}PO> findAll(Map<String, Object> params);
 
 }

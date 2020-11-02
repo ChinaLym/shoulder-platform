@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 #if(${hasBigDecimal})
 import java.math.BigDecimal;
 #end
@@ -15,12 +18,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * ${comments}
+ * ${comments} 传输层定义 分为 param（add / update）、vo
  * 
  * @author ${author}
  * @date ${datetime}
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,18 +31,17 @@ import java.util.Date;
 @ApiModel(value = "${className}DTO", description = "${tableName}")
 public class ${className}DTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 #foreach ($column in $columns)
 
 	/**
 	 * $column.comments
 	 */
-	#if($column.notEmpty)
+#if($column.notEmpty)
 	@NotNull(message = "$column.comments 不能为空")
-	#end
-	#if($column.length > 0)
+#end
+#if($column.length > 0)
 	@Length(max = $column.length, message = "$column.comments 长度不能超过 $column.length")
-	#end
+#end
 	@ApiModelProperty(value = "$column.comments", notes = "$column.comments")
 	private $column.attrType $column.attributeName;
 #end
