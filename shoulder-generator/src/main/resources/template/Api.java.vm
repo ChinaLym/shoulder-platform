@@ -1,0 +1,181 @@
+package ${package}.${pkgName}.controller;
+
+import java.util.Map;
+
+import io.swagger.annotations.Api;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+#if(${checkAuth})
+import org.springframework.security.access.prepost.PreAuthorize;
+#end
+import org.shoulder.core.dto.response.PageResult;
+import org.shoulder.core.dto.response.RestResult;
+
+import ${package}.${pkgName}.convert.${className}Converter;
+import ${package}.${pkgName}.dto.${className}DTO;
+import ${package}.${pkgName}.model.${className};
+import ${package}.${pkgName}.service.${className}Service;
+
+/**
+ * ${comments} 控制器
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("${pathName}")
+@Api(tags = "${comments}")
+public interface ${className}Controller {
+
+    /**
+     * 条件查询，分页
+     * @param condition 查询条件
+     * @return 分页结果
+     */
+    @RequestMapping("list")
+#if(${checkAuth})
+    @PreAuthorize("hasAnyAuthority('${tableName}:${pathName}:list')")
+#end
+    public PageResult list(@RequestParam Map<String, Object> condition);
+
+
+    /**
+     * 保存单个，推荐使用幂等的 PUT 方法，体现接口幂等性。为了方便习惯，也开放了 POST
+     *
+     * @param ${lowClassName}DTO 新增数据
+     * @return 保存成功
+     */
+    @RequestMapping(value = "save", method = {RequestMethod.PUT, RequestMethod.POST})
+#if(${checkAuth})
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:save')")
+#end
+    public RestResult save(@RequestBody ${className}DTO ${lowClassName}DTO);
+
+    /**
+     * 单个修改
+     *
+     * @param ${lowClassName}DTO 修改属性
+     * @return 修改成功
+     */
+    @PostMapping("update")
+#if(${checkAuth})
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:update')")
+#end
+    public RestResult update(@RequestBody ${className}DTO ${lowClassName}DTO);
+
+    /**
+     * 根据 id 删除单个
+     *
+     * @param ${pk.attributeName} id
+     * @return 删除成功
+     */
+    @RequestMapping(value = "delete/{id}", method = {RequestMethod.DELETE, RequestMethod.POST})
+#if(${checkAuth})
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
+#end
+    public RestResult delete(@PathVariable Long ${pk.attributeName});
+
+    /**
+     * 根据 id 批量删除
+     *
+     * @param idList ids
+     * @return 删除成功
+     */
+    @RequestMapping(value = "delete", method = {RequestMethod.DELETE, RequestMethod.POST})
+#if(${checkAuth})
+    @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
+#end
+    public RestResult delete(List<Long> idList);
+
+
+#if(${asyncBatch})
+    // ======================== 异步批量操作 ============================
+
+    /**
+     * 批量新增 ${comments} - 校验
+     *
+     * @param addDtoList 要批量添加的数据
+     * @return 校验任务标识
+     **/
+    @ApiOperation(value = "批量新增 ${comments} - 校验", notes = "批量新增 ${comments} - 校验")
+    @PostMapping("validateAdd")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", required = true, name = "addDtoList", dataType = "list",
+                    value = "${comments}列表", example = "[{\"id\":\"12345\",\"name\":\"foo\"}]"),
+    })
+    RestResult<String> validateAdd(@RequestBody List<${className}DTO> addDtoList);
+
+    /**
+     * 批量修改 ${comments} - 校验
+     *
+     * @param updatedDtoList 要批量修改的数据
+     * @return 校验任务标识
+     **/
+    @ApiOperation(value = "批量修改 ${comments} - 校验", notes = "批量修改 ${comments} - 校验")
+    @PostMapping("validateUpdate")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", required = true, name = "updatedDtoList", dataType = "list",
+                    value = "${comments}列表", example = "[{\"id\":\"12345\",\"name\":\"foo\"}]"),
+
+    })
+    RestResult<String> validateUpdate(@RequestBody List<${className}DTO> updatedDtoList);
+
+
+    /**
+     * 查询批量校验进度 todo 框架提供
+     *
+     * @param progressParam 异步任务标识
+     * @return 校验进度
+     **/
+    @ApiOperation(value = "查询批量校验进度", notes = "根据批量校验接口返回的异步任务标识查询校验进度")
+    @PostMapping("validateProgress")
+    @ApiImplicitParam(paramType = "query", required = true, name = "clientId", dataType = "String",
+            value = "批量校验标识", example = "50c77859-a670-47a8-a666-fff12816d832")
+    RestResult<ImportProcessDTO> batchValidateProgress(@RequestBody ProgressParam progressParam);
+
+    /**
+     * 批量添加
+     *
+     * 根据 taskId 从缓存中取出对应的校验通过数据执行添加
+     *
+     * @param batchAddOperationParam 批量添加操作参数
+     * @return 异步任务标识
+     **/
+    @ApiOperation(value = "批量添加 ${comments}", notes = "根据 异步任务标识 从缓存中取出对应的校验通过数据执行批量添加")
+    @PostMapping("addBatch")
+    RestResult<Object> addBatch(@RequestBody BatchAddOperationParam batchAddOperationParam) throws Exception;
+
+    /**
+     * 批量更新
+     *
+     * 根据 taskId 从缓存中取出对应的校验通过数据执行更新
+     *
+     * @param batchAddOperationParam 批量更新操作参数
+     * @return 异步任务标识
+     **/
+    @ApiOperation(value = "批量更新 ${comments}", notes = "根据 异步任务标识 从缓存中取出对应的校验通过数据执行批量更新")
+    @PostMapping("updateBatch")
+    @ApiImplicitParam(paramType = "body", required = true, name = "deviceBatchManageDto", dataType =
+            "DeviceBatchManageDto", value = "批量修改DTO",
+            example = "{\"taskId\":\"716acbae-f407-43ed-bbac-c36dd7df7094\"}")
+    RestResult<Object> updateBatch(@RequestBody BatchAddOperationParam batchAddOperationParam) throws Exception;
+
+
+    /**
+     * 查询批量操作进度 todo 框架提供
+     *
+     * @param progressParam 异步任务标识
+     * @return 执行结果
+     **/
+    @ApiOperation(value = "查询批量操作进度", notes = "根据批量操作接口返回的异步任务标识查询操作进度")
+    @PostMapping("operationProgress")
+    @ApiImplicitParam(paramType = "query", required = true, name = "clientId", dataType = "String",
+            value = "批量操作标识", example = "649b545c-0edd-425b-b6b6-e1bc9ba6583f")
+    RestResult<ImportProcessResult> batchOperationProgress(@RequestBody ProgressParam progressParam)
+            throws Exception;
+#end
+
+
+
+}

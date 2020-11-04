@@ -15,7 +15,7 @@
 
     <dependencies>
 
-        <!-- xxx 应用 -->
+        <!-- xxx 应用 SDK -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-reference-xxx</artifactId>

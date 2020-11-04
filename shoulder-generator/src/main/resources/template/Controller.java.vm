@@ -18,7 +18,7 @@ import ${package}.${pkgName}.model.${className};
 import ${package}.${pkgName}.service.${className}Service;
 
 /**
- * ${comments}
+ * ${comments} 控制器
  *
  * @author ${author}
  * @date ${datetime}
@@ -111,5 +111,62 @@ public class ${className}Controller {
         ${lowClassName}Service.deleteByIds(idList);
         return RestResult.success();
     }
+
+
+
+
+    /**
+     * 批量新增 ${comments} - 校验
+     *
+     * @param deviceList
+     * @return ControllerResultDTO<java.lang.String>
+     **/
+    @ApiOperation(value = "校验批量新增设备", notes = "校验批量新增设备")
+    @PostMapping("service/rs/v1/deviceService/validateImpDeviceData")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", required = true, name = "deviceList", dataType = "list", value =
+                    "设备集合", example = "[{\"driver\":\"23123123\",\"name\":\"报警设备\"}]"),
+    })
+    ControllerResultDTO<String> validateImpDeviceData(@RequestBody List<Map<String, String>> deviceList);
+
+    /**
+     * 校验批量修改设备
+     *
+     * @param deviceList
+     * @return ControllerResultDTO<java.lang.String>
+     **/
+    @ApiOperation(value = "校验批量修改设备", notes = "校验批量修改设备")
+    @PostMapping("service/rs/v1/deviceService/validateUpdateDeviceData")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", required = true, name = "deviceList", dataType = "list", value =
+                    "设备集合", example = "[{\"driver\":\"23123123\",\"name\":\"报警设备\"}]"),
+
+    })
+    ControllerResultDTO<String> validateUpdateDeviceData(@RequestBody List<Map<String, String>> deviceList);
+
+    /**
+     * 设备批量添加
+     *
+     * @param deviceBatchManageDto
+     * @return ControllerResultDTO<java.lang.Object>
+     **/
+    @ApiOperation(value = "设备批量添加", notes = "批量添加同一资源类型的设备，异步获取该批设备的设备和通道信息。")
+    @PostMapping("service/rs/v1/deviceService/addBatch")
+    ControllerResultDTO<Object> addBatch(@RequestBody DeviceBatchManageDto deviceBatchManageDto);
+
+    /**
+     * 设备批量更新
+     *
+     * @param deviceBatchManageDto
+     * @return ControllerResultDTO<java.lang.Object>
+     **/
+    @ApiOperation(value = "设备批量更新", notes = "批量更新设备信息")
+    @PostMapping("service/rs/v1/deviceService/updateBatch")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", required = true, name = "deviceBatchManageDto", dataType =
+                    "DeviceBatchManageDto", value = "批量修改设备DTO", example = ""),
+    })
+    ControllerResultDTO<Object> updateBatch(@RequestBody DeviceBatchManageDto deviceBatchManageDto) throws Exception;
+
 
 }

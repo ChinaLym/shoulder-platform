@@ -11,8 +11,9 @@
 
     <description>调用 xxx 应用提供的接口</description>
 
-    <!-- 该模块通常仅仅是继承 提供方提供的 dto/api 以屏蔽外部包路径，为可选模块，
-    若服务提供方未提供 DTO、Api 定义则在该模块放置 API、DTO、枚举等 -->
+    <!-- （可选）若服务提供方未提供sdk 甚至Api、DTO、枚举等定义，则在该模块放置
+    若服务提供方提供了sdk，如 feign-client 则通常不需要该模块。
+     -->
 
     <dependencies>
 

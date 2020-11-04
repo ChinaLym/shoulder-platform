@@ -1,4 +1,4 @@
 /**
- * 具体某个应用的接口
+ * 与外部接口交互
  */
 package ${package}.reference;

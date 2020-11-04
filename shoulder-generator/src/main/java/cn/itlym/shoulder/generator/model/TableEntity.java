@@ -31,6 +31,11 @@ public class TableEntity {
     private boolean checkAuth;
 
     /**
+     * Controller 中生成异步批量操作接口。
+     */
+    private boolean asyncBatch;
+
+    /**
      * 表类型：
      * TREE(parent_id), CREATOR, MODIFIER, CREATOR_TIME, UPDATE_TIME, BATCH
      */
