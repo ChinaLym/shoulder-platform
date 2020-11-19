@@ -54,7 +54,7 @@ public interface ${className}Service {
      * @param params 条件
      * @return 查询结果
      */
-    PageResult<${className}PO> findAll(Map<String, Object> params);
+    List<${className}> findAll(Map<String, Object> params);
 
 }
 

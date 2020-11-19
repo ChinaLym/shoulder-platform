@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.MapUtils;
 
-import org.shoulder.core.dto.response.PageResult;
-import ${package}.${pkgName}.dto.${className}DTO;
 import ${package}.${pkgName}.dao.${className}Mapper;
 import ${package}.${pkgName}.model.${className};
 import ${package}.${pkgName}.po.${className}PO;
@@ -68,15 +66,9 @@ public class ${className}ServiceImpl  implements ${className}Service {
             throw new RuntimeException("return empty...");
             //return PageResult.empty(0);
         }
-        List<${className}> list = poList.stream()
+        return poList.stream()
                 .map(${className}Converter.CONVERTER::fromPO)
                 .collect(Collectors.toList());
-        PageInfo<${className}> pageInfo = new PageInfo<>(list);
-
-        return PageResult.PageResultBuilder.aPageResult()
-                .list(pageInfo.getList())
-                .totalPageNum((int) pageInfo.getTotal())
-                .build();
     }
 
 }

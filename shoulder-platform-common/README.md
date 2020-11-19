@@ -17,8 +17,8 @@ Shoulder 平台各个工程的`基础设施层`统一实现（为了简化使用
 
 ## 统一更换 shoulder-framework 版本
 ```xml
-<shoulder.version>0.4</shoulder.version><!-- shoulder-version -->
-<version>0.4</version><!-- shoulder-version -->
+<shoulder.version>0.5-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+<version>0.5-SNAPSHOT</version><!-- shoulder-version -->
 ```
 
 ## 统一更换 shoulder-platform-common 版本

@@ -57,6 +57,7 @@ public class GeneratorApp {
      * ===========【 生成代码 】===========
      * web 中不需要主动关闭流
      * <a href="http://localhost:8080/generator/code?tables=_all">所有表生成代码</a>
+     * <a href="http://localhost:8080/generator/code?tables=system_lock">所有表生成代码</a>
      * @param tables 表名，逗号分隔，_all 全部
      */
     @RequestMapping("code")

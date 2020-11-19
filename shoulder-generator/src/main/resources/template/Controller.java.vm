@@ -40,8 +40,13 @@ public class ${className}Controller {
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('${tableName}:${pathName}:list')")
 #end
-    public PageResult list(@RequestParam Map<String, Object> condition){
-        return ${lowClassName}Service.findAll(condition);
+    public PageResult<${className}> list(@RequestParam Map<String, Object> condition){
+        PageInfo<${className}> pageInfo = new PageInfo<>(${lowClassName}Service.findAll(condition));
+
+        return PageResult.PageResultBuilder.aPageResult()
+                .list(pageInfo.getList())
+                .totalPageNum((int) pageInfo.getTotal())
+                .build();
     }
 
 
