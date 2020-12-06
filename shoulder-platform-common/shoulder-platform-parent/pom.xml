@@ -5,7 +5,7 @@
     <parent>
         <groupId>cn.itlym</groupId>
         <artifactId>shoulder-parent</artifactId>
-        <version>0.5-SNAPSHOT</version><!-- shoulder-version -->
+        <version>0.5</version><!-- shoulder-version -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +18,7 @@
     <properties>
         <!-- =============== Shoulder 版本 =============== -->
 
-        <shoulder.version>0.5-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>0.5</shoulder.version><!-- shoulder-version -->
         <shoulder-platform.version>1.0-SNAPSHOT</shoulder-platform.version><!-- shoulder-platform-version -->
 
         <shoulder-sms-aliyun.version>1.0-SNAPSHOT</shoulder-sms-aliyun.version><!-- shoulder-sms-aliyun.version -->

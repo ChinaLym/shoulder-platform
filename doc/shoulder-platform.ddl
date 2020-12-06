@@ -26,11 +26,12 @@ CREATE TABLE `crypt_info` (
 
 /*Data for the table `crypt_info` */
 
-/*Table structure for table `import_record` */
+/*Table structure for table `batch_record` */
 
-CREATE TABLE `import_record` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `data_type` varchar(64) NOT NULL COMMENT '导入数据类型，建议可翻译。对应 导入数据库表名',
+CREATE TABLE `batch_record` (
+  `id` varchar(48) NOT NULL COMMENT '主键',
+  `data_type` varchar(64) NOT NULL COMMENT '导入数据类型，建议可翻译。对应 导入数据库表名 / 领域对象名称，如用户、人员、订单',
+  `operation` varchar(64) COMMENT '业务操作类型，如校验、同步、导入、更新，可空',
   `total_num` INT NOT NULL COMMENT '导入总条数',
   `success_num` INT NOT NULL COMMENT '成功条数',
   `fail_num` INT NOT NULL COMMENT '失败条数',
@@ -39,21 +40,22 @@ CREATE TABLE `import_record` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='导入记录';
 
-/*Data for the table `import_record` */
+/*Data for the table `batch_record` */
 
-/*Table structure for table `import_record_detail` */
+/*Table structure for table `batch_record_detail` */
 
-CREATE TABLE `import_record_detail` (
+CREATE TABLE `batch_record_detail` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `record_id` INT NOT NULL COMMENT '导入记录表id',
-  `result` INT NOT NULL COMMENT '结果 0 导入成功 1 校验失败、2 重复跳过、3 重复更新、4 导入失败',
-  `line` INT NOT NULL COMMENT '导入行号',
+  `record_id` varchar(48) NOT NULL COMMENT '导入记录表id',
+  `row_num` INT NOT NULL COMMENT '导入行号',
+  `operation` varchar(64) NOT NULL COMMENT '业务操作类型，如校验、同步、导入、更新',
+  `status` INT NOT NULL COMMENT '结果 0 导入成功 1 校验失败、2 重复跳过、3 重复更新、4 导入失败',
   `fail_reason` varchar(1024) DEFAULT NULL COMMENT '失败原因，推荐支持多语言',
   `source` text COMMENT '导入的原数据',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='导入记录详情';
 
-/*Data for the table `import_record_detail` */
+/*Data for the table `batch_record_detail` */
 
 /*Table structure for table `log_operation` */
 
