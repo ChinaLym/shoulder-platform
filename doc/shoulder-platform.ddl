@@ -69,14 +69,14 @@ CREATE TABLE `log_operation` (
   `user_real_name` varchar(128) DEFAULT NULL COMMENT '用户真实姓名',
   `user_org_id` BIGINT DEFAULT NULL COMMENT '用户组标识',
   `user_org_name` varchar(64) DEFAULT NULL COMMENT '用户组名',
-  `ip` varchar(64) DEFAULT NULL COMMENT '操作者所在终端 ip，支持ipv4(15)/v6(46)',
-  `terminal_id` varchar(64) DEFAULT NULL COMMENT '操作者所在终端标识，如PC的 MAC；手机的 IMSI、IMEI、ESN、MEID；甚至持久化的 UUID',
   `terminal_type` INT NOT NULL COMMENT '终端类型。0:服务内部定时任务等触发；1:浏览器；2:客户端；3:移动App；4:小程序。推荐前端支持多语言',
+  `terminal_address` varchar(64) DEFAULT NULL COMMENT '操作者所在终端地址，如 IPv4(15) IPv6(46)',
+  `terminal_id` varchar(64) DEFAULT NULL COMMENT '操作者所在终端标识，如PC的 MAC；手机的 IMSI、IMEI、ESN、MEID；甚至持久化的 UUID',
   `terminal_info` varchar(255) DEFAULT NULL COMMENT '操作者所在终端信息，如操作系统类型、浏览器、版本号等',
   `object_type` varchar(128) DEFAULT NULL COMMENT '操作对象类型，通常展示，推荐支持多语言',
   `object_id` varchar(128) DEFAULT NULL COMMENT '操作对象id',
   `object_name` varchar(255) DEFAULT NULL COMMENT '操作对象名称',
-  `action_param` text COMMENT '触发该操作的参数',
+  `operation_param` text COMMENT '触发该操作的参数',
   `operation` varchar(255) NOT NULL COMMENT '操作动作，通常展示，推荐支持多语言',
   `detail` varchar(4096) DEFAULT NULL COMMENT '操作详情。详细的描述用户的操作内容、json对象等',
   `detail_key` varchar(128) DEFAULT NULL COMMENT '操作详情对应的多语言key',
@@ -85,7 +85,7 @@ CREATE TABLE `log_operation` (
   `error_code` varchar(32) DEFAULT NULL COMMENT '错误码',
   `operation_time` timestamp NOT NULL COMMENT '操作触发时间，注意采集完成后替换为日志服务所在服务器时间',
   `end_time` timestamp NULL DEFAULT NULL COMMENT '操作结束时间',
-  `last_time` BIGINT DEFAULT NULL COMMENT '操作持续时间，冗余字段',
+  `duration` BIGINT DEFAULT NULL COMMENT '操作持续时间，冗余字段，单位 ms',
   `trace_id` varchar(64) DEFAULT NULL COMMENT '调用链id',
   `relation_id` varchar(64) DEFAULT NULL COMMENT '关联的调用链id/业务id',
   `tenant_code` varchar(20) DEFAULT '' COMMENT '租户编码',
@@ -99,7 +99,7 @@ CREATE TABLE `log_operation` (
   KEY `idx_trace_id` (`trace_id`),
   KEY `idx_operation_time` (`operation_time`),
   KEY `idx_user_id` (`user_id`),
-  KEY `idx_ip` (`ip`)
+  KEY `idx_terminal_address` (`terminal_address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='业务日志';
 
 /*Data for the table `log_operation` */
