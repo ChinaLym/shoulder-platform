@@ -32,6 +32,24 @@ version     1.0-SNAPSHOT
 
 ![添加 shoulder-platform 的 archetype](../../img/archetype/idea/add.png)
 
+### 方式一
+
+通过命令行快速创建
+
+```bash
+mvn archetype:generate\
+    -DarchetypeGroupId=cn.itlym.platform\
+    -DarchetypeArtifactId=shoulder-platform-archetype\
+    -DarchetypeVersion=1.0-SNAPSHOT\
+    -DgroupId=com.foo -DartifactId=demo -DappId=demo\
+    -Dauthor=shoulder -Dversion=1.0.0-SNAPSHOT\
+    -B
+```
+创建一个工程，groupId=com.foo artifactId=demo，其中 appId、author 可选。
+
+### 方式二
+
+通过 IDE 一步步创建
 
 ### 基于 shoulder 提供的模板创建 maven 工程
 
