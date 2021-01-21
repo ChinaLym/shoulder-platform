@@ -93,21 +93,94 @@ mvn archetype:generate\
 
 ## 工程目录结构介绍：
 
+### app 层
+
+* 基础通用层
+    * `common` : 错误码、常量、业务枚举、公共的工具类（一般直接使用jar的，一般不需要自己补充）
+    * `reference` : `调用边界层` 存放了调用其他应用接口的实现，其中可包含多个模块。
+        * 包路径 `xxx` : 
+            * `调用 xxx 系统接口边界层` 存放 xxx 应用提供接口的定义、DTO定义、能力激活。
+            * impl 实现类 合理利用 `AOP`/`防腐层`（可选）通过自己的一层包装，处理第三方数据与自身系统定义的模型转换、抽取、包路径、类名隔离、限流、熔断、降级策略。 
+            * param 参数
+            * result 响应
+            * enum/constant 枚举，常量，错误码
+            * cache 缓存
+    * `facade`/`provider` : `对外能力提供层`（可选）向外提供功能，如供其他服务调用的 restful api 接口，以及用到的常量、枚举（实体属性类，如状态、类型等）、异常、DTO、request/response类、校验相关
+    * `dal` DataAccessLayer 数据访问层 【注意DAO之间不能相互依赖，不能有业务逻辑】
+        * sequence 包含数据库依赖的，如序列表
+        * sharding 分库分表相关，规则工具
+        * tenant 租户相关
+        * rwseparation 读写分离
+        * auto 自动生成的，包含 DAO、DO、实现类（JPA/MyBatis 接口）
+            * aaa
+            * bbb
+            * ... 
+        * manual
+    
 * `infrastructure` : `基础设施层` 最下层模块，向上层工程提供坚实牢固的地基，隔离技术选型，将具体技术以插件形式织入系统代码，即使技术变更也不容易侵害业务代码。
     * 该层默认包含了缓存、存储的隔离设定、可以根据自身需求，考虑隔离消息队列、搜索引擎、定时任务等。
 
-* `reference` : `调用边界层` 存放了调用其他应用接口的实现，其中可包含多个模块。
-    * `reference-xxx` : `调用 xxx 系统接口边界层` （可选）存放 xxx 应用提供接口的定义、DTO定义、能力激活。
-    * `reference-adptor` : `调用边界防腐层`（可选）在该模块处理第三方数据与自身系统定义的模型转换、抽取、包路径、类名隔离、限流、熔断、降级策略。 
-
 * `core` : `核心模块` 是你的应用系统中公共、基础模块，如错误码、业务定义、常量、枚举、通用工具。
-* `modules` : `具体业务模块` （可选）一个系统中可能包含多类小业务，可以在这里按照业务划分，分为不同的业务，如 `NACOS` 包含 `naming` 和 `config` 两个子模块。
-
-* `provider` : `对外能力提供层`（可选）向外提供功能，如供其他服务调用的 restful api 接口
- 
+    * model 领域模型
+        * 除 base 抽象模型外（bizId、更新时间、修改时间、创建人、修改人、版本号、删除标记、拥有人等）
+        * 按照领域划分模型
+    * service 核心服务
+        * convert 负责 `facade.DTO` <----> `core-model.domainModel` <----> `common-dal.DO`
+            * base 定义一些通用的转换工具、接口
+            * 按业务划分包目录，存放具体的转换实现。（推荐转换逻辑放在代码中，其他方式如 MapStruct/reflect 以免属性名变更后造成转换失败）
+                * AbcDTO2Abc、Abc2AbcDTO、Abc2AbcDO、AbcDO2Abc，可以利用抽象写，也可单独维护
+        * repository 模型对应的存储接口，隔离 DAO 【注意 repository 之间可以相互依赖，含有业务逻辑】
+            * 这里最好定义方法名约束，如 query/find/select/get、queryList/queryAll
+            * 定义baseRepository，将常用的类注入，如转换器，DAO、其他 Repository
+            * 按业务分包存放具体各个领域对应的存储接口与impl实现类，负责领域对象的 CRUD
+            
+* `business-modules` : `具体业务模块` （可选）一个系统中可能包含多类小业务，可以在这里按照业务划分，分为不同的业务，如 `NACOS` 包含 `naming` 和 `config` 两个子模块。
+    * share 公共**业务**逻辑
+        * assembler 装配工，用于不同模块间创建 request，从而调用 queryService
+        * 共同的业务逻辑承载，如 managerComponent
+    * modules 实现 facade
+        * AbstractService 包含所有 core / biz-share 中的所有接口注入（`Query`/`Manager`CoreService、reference、biz-share中的）
+        * log 包含调用日志(只打印入口和正常出口日志，用于追踪，可降级)、操作日志（追溯操作）
+        * exception 全局异常处理
+        * 每个服务分为 queryService 和 managerService 其中接口都在 facade
+    
 * `web` : `web 模块`（可选）向前端提供接口，如：与浏览器交互。注意前后分离架构里通常不会有该模块，因为调用链改为：浏览器 - 前端服务 - 后端 api 接口。
+    * MVC 模式，后端控制页面跳转，模型渲染
+    
+* `start`/`bootstrap` : `启动模块`，可以在这里决定将哪些能力组合打包，配置文件等。
+
+* `test` 测试模块，主要负责对 core / biz / facade 的测试
+
+ ### conf 层
+ 程序用
+ application.yml
+ jvm_opts
+ logback.xml
  
-* `start` : `启动模块`，可以在这里决定将哪些能力组合打包，配置文件等。 
+ ### config 目录
+ 部署工具用
+ 
+ bin
+     * health
+     * hook
+     * nginx
+     * startup
+     * util
+软件版本 java maven utf8 timezone techstack centos
+
+ ### dalGen 数据访问层生成器
+
+template
+
+
+xxx
+ 
+ ### 最外层
+ 
+ - gitIgnore
+ - cicd 配置，如 gitlab-ci
+ - README 描述文件
+ - code-style-eclipse-format.xml
 
 ![目录结构](../../img/archetype/projectAndModule.png)
 
@@ -150,6 +223,45 @@ mvn archetype:generate\
 
 > 无论是 Shoulder-Framework 中还是 Platform 中，你会经常看到通过一些巧妙手法的将两种方案的优势结合在一起。
 
+#### Service 服务分层
+
+- `ManagerService`
+    - 最外层、管理层
+    - 业务的入口，做`参数校验`、`CoreService 的拼装`
+- `CoreService`
+    - 核心层，`核心业务逻辑`、`幂等`
+    - 一般只拼装 Repository，不调用 DAO
+- `Repository`
+    - 存储接口
+    - 从 `领域Entity` 到存储层 `DO/PO` 的转换
+    - 主键、创建时间、更新时间、创建人、修改人等填充，组装完整的数据对象
+    - 部分 `分库分表`/`读` 判决
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    逻辑
+- `DAO`
+    - 数据访问层，包含 `CRUD`
+    - 方法一般只包含 queryByXXX、updateByXXX、insert、insertBatchForXXX、deleteByXXX、
+- `基础设施 DAO`
+    - 基础设施，真正与数据存储中间件交互的层，如连接池、分库分表、读写分离、负载均衡等
+    
 ---
 
 ## 模板属性表

@@ -1,4 +1,4 @@
-/*
+/* todo 业务类型表？
 SQLyog Professional v12.09 (64 bit)
 MySQL - 8.0.17 : Database - shoulder_demo
 *********************************************************************
@@ -32,13 +32,13 @@ CREATE TABLE `batch_record` (
   `id` varchar(48) NOT NULL COMMENT '主键',
   `data_type` varchar(64) NOT NULL COMMENT '导入数据类型，建议可翻译。对应 导入数据库表名 / 领域对象名称，如用户、人员、订单',
   `operation` varchar(64) COMMENT '业务操作类型，如校验、同步、导入、更新，可空',
-  `total_num` INT NOT NULL COMMENT '导入总条数',
-  `success_num` INT NOT NULL COMMENT '成功条数',
-  `fail_num` INT NOT NULL COMMENT '失败条数',
-  `creator` BIGINT NOT NULL COMMENT '执行导入的用户',
-  `create_time` datetime NOT NULL COMMENT '导入时间',
+  `total_num` INT NOT NULL COMMENT '总数据数量',
+  `success_num` INT NOT NULL COMMENT '执行成功条数',
+  `fail_num` INT NOT NULL COMMENT '执行失败条数',
+  `creator` BIGINT NOT NULL COMMENT '执行该操作的用户',
+  `create_time` datetime NOT NULL COMMENT '结束时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='导入记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='批量任务执行记录';
 
 /*Data for the table `batch_record` */
 
@@ -46,14 +46,14 @@ CREATE TABLE `batch_record` (
 
 CREATE TABLE `batch_record_detail` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `record_id` varchar(48) NOT NULL COMMENT '导入记录表id',
-  `row_num` INT NOT NULL COMMENT '导入行号',
+  `record_id` varchar(48) NOT NULL COMMENT '批量任务执行表id',
+  `index` INT NOT NULL COMMENT '该任务中，本数据行对应的行号 / 下标值',
   `operation` varchar(64) NOT NULL COMMENT '业务操作类型，如校验、同步、导入、更新',
-  `status` INT NOT NULL COMMENT '结果 0 导入成功 1 校验失败、2 重复跳过、3 重复更新、4 导入失败',
+  `status` INT NOT NULL COMMENT '结果 0 执行成功 1 执行失败、2 跳过',
   `fail_reason` varchar(1024) DEFAULT NULL COMMENT '失败原因，推荐支持多语言',
   `source` text COMMENT '导入的原数据',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='导入记录详情';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='批量任务执行详情';
 
 /*Data for the table `batch_record_detail` */
 
