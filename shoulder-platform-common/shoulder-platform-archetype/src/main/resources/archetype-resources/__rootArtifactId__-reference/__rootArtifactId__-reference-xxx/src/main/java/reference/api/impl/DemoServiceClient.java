@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.api.impl;
 
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 import ${package}.api.DemoService;
 
 /**
@@ -18,7 +18,7 @@ public class DemoServiceClient implements DemoService {
      *
      * @return BaseResult
      */
-    public RestResult configItem(String key) {
+    public BaseResult configItem(String key) {
         System.out.print("假装调了一次接口");
     }
 

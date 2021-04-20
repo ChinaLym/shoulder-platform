@@ -2,7 +2,7 @@ package cn.itlym.shoulder.platform.gateway.config;
 
 import cn.itlym.shoulder.platform.gateway.ex.ShoulderGatewayException;
 import lombok.extern.shoulder.SLog;
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 import org.shoulder.core.exception.ErrorCode;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
@@ -70,7 +70,7 @@ public class JsonExceptionHandler extends DefaultErrorWebExceptionHandler {
      * @param response   如何响应
      * @return {"httpStatus": 500, "shoulderResponseBody": {"code":"xxx", "msg":"xxx", "data":xxx}}
      */
-    public static Map<String, Object> buildErrorAttributes(int httpStatus, RestResult response) {
+    public static Map<String, Object> buildErrorAttributes(int httpStatus, BaseResult response) {
         Map<String, Object> map = new HashMap<>(2);
         map.put(ATTRIBUTE_NAME_HTTP_STATUS, httpStatus);
         map.put(ATTRIBUTE_NAME_RESPONSE, response);
@@ -139,9 +139,9 @@ public class JsonExceptionHandler extends DefaultErrorWebExceptionHandler {
      * @param ex      异常
      * @return 异常信息
      */
-    protected RestResult buildResponse(ServerRequest request, Throwable ex) {
+    protected BaseResult buildResponse(ServerRequest request, Throwable ex) {
         ShoulderGatewayException exception = new ShoulderGatewayException(request, ex);
         log.error(exception);
-        return RestResult.error(exception);
+        return BaseResult.error(exception);
     }
 }

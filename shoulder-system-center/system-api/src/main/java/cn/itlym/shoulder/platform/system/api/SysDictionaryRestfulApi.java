@@ -1,6 +1,6 @@
 package cn.itlym.shoulder.platform.system.api;
 
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,6 +24,6 @@ public interface SysDictionaryRestfulApi {
      */
     @GET
     @Path("/item/{key}")
-    RestResult configItem(@PathParam("key") String key);
+    BaseResult configItem(@PathParam("key") String key);
 
 }

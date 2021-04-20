@@ -1,6 +1,6 @@
 package cn.itlym.platform.uaa.api;
 
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,6 +24,6 @@ public interface DemoRestfulApi {
      */
     @GET
     @Path("/hi/{key}")
-    RestResult configItem(@PathParam("key") String key);
+    BaseResult configItem(@PathParam("key") String key);
 
 }

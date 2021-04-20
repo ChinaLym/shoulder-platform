@@ -133,11 +133,13 @@ mvn archetype:generate\
             * 这里最好定义方法名约束，如 query/find/select/get、queryList/queryAll
             * 定义baseRepository，将常用的类注入，如转换器，DAO、其他 Repository
             * 按业务分包存放具体各个领域对应的存储接口与impl实现类，负责领域对象的 CRUD
-            
-* `business-modules` : `具体业务模块` （可选）一个系统中可能包含多类小业务，可以在这里按照业务划分，分为不同的业务，如 `NACOS` 包含 `naming` 和 `config` 两个子模块。
-    * share 公共**业务**逻辑
+        * coreService 核心服务在这里定义接口，供上层 business 模块使用
+            * 入参出参往往都是 model
+        
+* `business-modules` : `具体业务模块` （可选）
+    一个系统中可能包含多类小业务，可以在这里按照业务划分，分为不同的业务，如 `NACOS` 包含 `naming` 和 `config` 两个子模块。
+    * share 公共业务模块，按理说这块应该下沉至 core
         * assembler 装配工，用于不同模块间创建 request，从而调用 queryService
-        * 共同的业务逻辑承载，如 managerComponent
     * modules 实现 facade
         * AbstractService 包含所有 core / biz-share 中的所有接口注入（`Query`/`Manager`CoreService、reference、biz-share中的）
         * log 包含调用日志(只打印入口和正常出口日志，用于追踪，可降级)、操作日志（追溯操作）
@@ -235,27 +237,7 @@ xxx
     - 存储接口
     - 从 `领域Entity` 到存储层 `DO/PO` 的转换
     - 主键、创建时间、更新时间、创建人、修改人等填充，组装完整的数据对象
-    - 部分 `分库分表`/`读` 判决
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    逻辑
+    - 部分 `分库分表`/`读` 判决逻辑
 - `DAO`
     - 数据访问层，包含 `CRUD`
     - 方法一般只包含 queryByXXX、updateByXXX、insert、insertBatchForXXX、deleteByXXX、
@@ -274,6 +256,20 @@ xxx
 | StartClassName | 启动类名 | ShoulderApplication |
 | author | 作者名 | shoulder |
 
+## gitflow
+
+- base env
+    - linux
+    - sdkman
+    - graalvm
+    - install native-image
+    - install mvn
+    - run compile.sh
+- release docker image
+    - docker build the image with `Dockerfile.template` TODO 部署流程模板
+    - push image to registry
+    - release at self/pub dockerhub
+deploy
 
 ---
 

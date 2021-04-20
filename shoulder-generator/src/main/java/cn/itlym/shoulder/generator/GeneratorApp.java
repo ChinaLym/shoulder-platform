@@ -4,11 +4,11 @@ import cn.itlym.shoulder.generator.service.SysGeneratorService;
 import org.apache.commons.io.IOUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.shoulder.core.dto.response.ListResult;
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
+import org.shoulder.core.util.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,8 +49,8 @@ public class GeneratorApp {
      */
     @ResponseBody
     @RequestMapping("list")
-    public RestResult<ListResult> list(@RequestParam Map<String, Object> params) {
-        return RestResult.success(sysGeneratorService.queryList(params));
+    public BaseResult<ListResult> list(@RequestParam Map<String, Object> params) {
+        return BaseResult.success(sysGeneratorService.queryList(params));
     }
 
     /**

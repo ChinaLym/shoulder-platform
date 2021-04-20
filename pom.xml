@@ -21,6 +21,7 @@
         <module>shoulder-pay-center</module>
         <module>shoulder-storage-center</module>
         <module>shoulder-backstage</module>
+        <module>shoulder-universal</module>
     </modules>
 
 

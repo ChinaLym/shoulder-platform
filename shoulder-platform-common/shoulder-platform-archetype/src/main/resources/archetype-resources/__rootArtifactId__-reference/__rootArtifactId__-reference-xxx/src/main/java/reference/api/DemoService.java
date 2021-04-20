@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.api;
 
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,6 +23,6 @@ public interface DemoService {
      *
      * @return BaseResult
      */
-    RestResult configItem(String key);
+    BaseResult configItem(String key);
 
 }

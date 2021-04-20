@@ -1,6 +1,6 @@
 package cn.itlym.shoulder.platform.gateway;
 
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 import org.shoulder.core.exception.CommonErrorCodeEnum;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +21,7 @@ public class ShoulderApiGateway {
     }
 
     @RequestMapping("/fallback")
-    public Mono<RestResult> fallback() {
-        return Mono.just(RestResult.error(CommonErrorCodeEnum.REQUEST_TIMEOUT));
+    public Mono<BaseResult> fallback() {
+        return Mono.just(BaseResult.error(CommonErrorCodeEnum.REQUEST_TIMEOUT));
     }
 }

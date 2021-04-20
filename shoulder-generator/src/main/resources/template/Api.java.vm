@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 #end
 import org.shoulder.core.dto.response.PageResult;
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 
 import ${package}.${pkgName}.convert.${className}Converter;
 import ${package}.${pkgName}.dto.${className}DTO;
@@ -50,7 +50,7 @@ public interface ${className}Controller {
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:save')")
 #end
-    public RestResult save(@RequestBody ${className}DTO ${lowClassName}DTO);
+    public BaseResult save(@RequestBody ${className}DTO ${lowClassName}DTO);
 
     /**
      * 单个修改
@@ -62,7 +62,7 @@ public interface ${className}Controller {
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:update')")
 #end
-    public RestResult update(@RequestBody ${className}DTO ${lowClassName}DTO);
+    public BaseResult update(@RequestBody ${className}DTO ${lowClassName}DTO);
 
     /**
      * 根据 id 删除单个
@@ -74,7 +74,7 @@ public interface ${className}Controller {
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
 #end
-    public RestResult delete(@PathVariable Long ${pk.attributeName});
+    public BaseResult delete(@PathVariable Long ${pk.attributeName});
 
     /**
      * 根据 id 批量删除
@@ -86,7 +86,7 @@ public interface ${className}Controller {
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
 #end
-    public RestResult delete(List<Long> idList);
+    public BaseResult delete(List<Long> idList);
 
 
 #if(${asyncBatch})
@@ -104,7 +104,7 @@ public interface ${className}Controller {
             @ApiImplicitParam(paramType = "body", required = true, name = "addDtoList", dataType = "list",
                     value = "${comments}列表", example = "[{\"id\":\"12345\",\"name\":\"foo\"}]"),
     })
-    RestResult<String> validateAdd(@RequestBody List<${className}DTO> addDtoList);
+    BaseResult<String> validateAdd(@RequestBody List<${className}DTO> addDtoList);
 
     /**
      * 批量修改 ${comments} - 校验
@@ -119,7 +119,7 @@ public interface ${className}Controller {
                     value = "${comments}列表", example = "[{\"id\":\"12345\",\"name\":\"foo\"}]"),
 
     })
-    RestResult<String> validateUpdate(@RequestBody List<${className}DTO> updatedDtoList);
+    BaseResult<String> validateUpdate(@RequestBody List<${className}DTO> updatedDtoList);
 
 
     /**
@@ -132,7 +132,7 @@ public interface ${className}Controller {
     @PostMapping("validateProgress")
     @ApiImplicitParam(paramType = "query", required = true, name = "clientId", dataType = "String",
             value = "批量校验标识", example = "50c77859-a670-47a8-a666-fff12816d832")
-    RestResult<ImportProcessDTO> batchValidateProgress(@RequestBody ProgressParam progressParam);
+    BaseResult<ImportProcessDTO> batchValidateProgress(@RequestBody ProgressParam progressParam);
 
     /**
      * 批量添加
@@ -144,7 +144,7 @@ public interface ${className}Controller {
      **/
     @ApiOperation(value = "批量添加 ${comments}", notes = "根据 异步任务标识 从缓存中取出对应的校验通过数据执行批量添加")
     @PostMapping("addBatch")
-    RestResult<Object> addBatch(@RequestBody BatchAddOperationParam batchAddOperationParam) throws Exception;
+    BaseResult<Object> addBatch(@RequestBody BatchAddOperationParam batchAddOperationParam) throws Exception;
 
     /**
      * 批量更新
@@ -159,7 +159,7 @@ public interface ${className}Controller {
     @ApiImplicitParam(paramType = "body", required = true, name = "deviceBatchManageDto", dataType =
             "DeviceBatchManageDto", value = "批量修改DTO",
             example = "{\"taskId\":\"716acbae-f407-43ed-bbac-c36dd7df7094\"}")
-    RestResult<Object> updateBatch(@RequestBody BatchAddOperationParam batchAddOperationParam) throws Exception;
+    BaseResult<Object> updateBatch(@RequestBody BatchAddOperationParam batchAddOperationParam) throws Exception;
 
 
     /**
@@ -172,7 +172,7 @@ public interface ${className}Controller {
     @PostMapping("operationProgress")
     @ApiImplicitParam(paramType = "query", required = true, name = "clientId", dataType = "String",
             value = "批量操作标识", example = "649b545c-0edd-425b-b6b6-e1bc9ba6583f")
-    RestResult<ImportProcessResult> batchOperationProgress(@RequestBody ProgressParam progressParam)
+    BaseResult<ImportProcessResult> batchOperationProgress(@RequestBody ProgressParam progressParam)
             throws Exception;
 #end
 

@@ -1,0 +1,66 @@
+package ${package}.${pkgName}.controller;
+
+import java.util.Map;
+
+import io.swagger.annotations.Api;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+#if(${checkAuth})
+import org.springframework.security.access.prepost.PreAuthorize;
+#end
+import org.shoulder.core.dto.response.PageResult;
+import org.shoulder.core.dto.response.BaseResult;
+
+import ${package}.${pkgName}.convert.${className}Converter;
+import ${package}.${pkgName}.dto.${className}DTO;
+import ${package}.${pkgName}.model.${className};
+import ${package}.${pkgName}.service.${className}Service;
+
+/**
+ * ${comments} RestfulApi
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RequestMapping("rest/{${lowClassName}}/v1")
+public interface  ${className}RestApi {
+
+    /**
+     * 条件查询，分页
+     * @param condition 查询条件
+     * @return 分页结果，若客户端支持缓存，则在请求头中添加 if-Modify-Since，若未修改，则返回 304
+     */
+    @GetMapping("list")
+    PageResult<${className}> list(@RequestParam Map<String, Object> condition);
+
+
+    /**
+     * 保存单个，推荐使用幂等的 PUT 方法，体现接口幂等性。为了方便习惯，也开放了 POST
+     *
+     * @param ${lowClassName}DTO 新增数据
+     * @return 创建成功返回 201，修改成功返回 200
+     */
+    @RequestMapping(value = "save", method = {RequestMethod.PUT, RequestMethod.POST})
+    BaseResult save(@RequestBody ${className}DTO ${lowClassName}DTO);
+
+    /**
+     * 单个修改
+     *
+     * @param ${lowClassName}DTO 修改属性
+     * @return 修改成功 200
+     */
+    @PostMapping("update")
+    BaseResult update(@RequestBody ${className}DTO ${lowClassName}DTO);
+
+
+    /**
+     * 根据 id 批量删除
+     *
+     * @param idList ids
+     * @return 删除成功 200，异步删除 202
+     */
+    @RequestMapping(value = "delete", method = {RequestMethod.DELETE, RequestMethod.POST})
+    BaseResult deleteBatch(List<Long> idList);
+
+}

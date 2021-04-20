@@ -3,7 +3,7 @@ package cn.itlym.shoulder.platform.gateway.client.impl;
 import cn.itlym.shoulder.platform.gateway.client.ServiceTokenClient;
 import cn.itlym.shoulder.platform.gateway.client.dto.param.DeleteServiceTokenParam;
 import lombok.extern.slf4j.Slf4j;
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 import org.shoulder.core.exception.BaseRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,8 +55,8 @@ public class ServiceTokenClientImpl implements ServiceTokenClient {
                 .post().uri(String.format(GET_ST_BY_ACCESS_TOKEN_URI, accessToken, appId))
                 .accept(APPLICATION_JSON)
                 .retrieve()
-                .bodyToMono(RestResult.class)
-                .map(RestResult::getData)
+                .bodyToMono(BaseResult.class)
+                .map(BaseResult::getData)
                 .cast(Map.class)
                 .map(map -> map.get("st"))
                 .cast(String.class)

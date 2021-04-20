@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 #end
 import org.shoulder.core.dto.response.PageResult;
-import org.shoulder.core.dto.response.RestResult;
+import org.shoulder.core.dto.response.BaseResult;
 
 import ${package}.${pkgName}.convert.${className}Converter;
 import ${package}.${pkgName}.dto.${className}DTO;
@@ -25,7 +25,7 @@ import ${package}.${pkgName}.service.${className}Service;
  */
 @RestController
 @RequestMapping("${pathName}")
-@Api(tags = "${comments}")
+@Api(tags = {"${comments} Restful Http 接口"})
 public class ${className}Controller {
 
     @Autowired
@@ -36,7 +36,6 @@ public class ${className}Controller {
      * @param condition 查询条件
      * @return 分页结果
      */
-    @RequestMapping("list")
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('${tableName}:${pathName}:list')")
 #end
@@ -56,15 +55,14 @@ public class ${className}Controller {
      * @param ${lowClassName}DTO 新增数据
      * @return 保存成功
      */
-    @RequestMapping(value = "save", method = {RequestMethod.PUT, RequestMethod.POST})
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:save')")
 #end
-    public RestResult save(@RequestBody ${className}DTO ${lowClassName}DTO){
+    public BaseResult save(@RequestBody ${className}DTO ${lowClassName}DTO){
         ${className} ${lowClassName} = ${className}Converter.CONVERTER.fromDTO(${lowClassName}DTO);
 		${lowClassName}Service.save(${lowClassName});
 
-        return RestResult.success();
+        return BaseResult.success();
     }
 
     /**
@@ -73,15 +71,14 @@ public class ${className}Controller {
      * @param ${lowClassName}DTO 修改属性
      * @return 修改成功
      */
-    @PostMapping("update")
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:update')")
 #end
-    public RestResult update(@RequestBody ${className}DTO ${lowClassName}DTO){
+    public BaseResult update(@RequestBody ${className}DTO ${lowClassName}DTO){
         ${className} ${lowClassName} = ${className}Converter.CONVERTER.fromDTO(${lowClassName}DTO);
 			${lowClassName}Service.update(${lowClassName});
 
-        return RestResult.success();
+        return BaseResult.success();
     }
 
     /**
@@ -90,13 +87,12 @@ public class ${className}Controller {
      * @param ${pk.attributeName} id
      * @return 删除成功
      */
-    @RequestMapping(value = "delete/{id}", method = {RequestMethod.DELETE, RequestMethod.POST})
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
 #end
-    public RestResult delete(@PathVariable Long ${pk.attributeName}){
+    public BaseResult delete(@PathVariable Long ${pk.attributeName}){
         ${lowClassName}Service.deleteById(${pk.attributeName});
-        return RestResult.success();
+        return BaseResult.success();
     }
 
     /**
@@ -105,73 +101,15 @@ public class ${className}Controller {
      * @param idList ids
      * @return 删除成功
      */
-    @RequestMapping(value = "delete", method = {RequestMethod.DELETE, RequestMethod.POST})
 #if(${checkAuth})
     @PreAuthorize("hasAnyAuthority('resource:sysroleuser:delete')")
 #end
-    public RestResult delete(List<Long> idList){
+    public BaseResult delete(List<Long> idList){
         if(CollectionUtils.isEmpty(idList)){
-            return RestResult.success();
+            return BaseResult.success();
         }
         ${lowClassName}Service.deleteByIds(idList);
-        return RestResult.success();
+        return BaseResult.success();
     }
-
-
-
-
-    /**
-     * 批量新增 ${comments} - 校验
-     *
-     * @param deviceList
-     * @return ControllerResultDTO<java.lang.String>
-     **/
-    @ApiOperation(value = "校验批量新增设备", notes = "校验批量新增设备")
-    @PostMapping("service/rs/v1/deviceService/validateImpDeviceData")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "body", required = true, name = "deviceList", dataType = "list", value =
-                    "设备集合", example = "[{\"driver\":\"23123123\",\"name\":\"报警设备\"}]"),
-    })
-    ControllerResultDTO<String> validateImpDeviceData(@RequestBody List<Map<String, String>> deviceList);
-
-    /**
-     * 校验批量修改设备
-     *
-     * @param deviceList
-     * @return ControllerResultDTO<java.lang.String>
-     **/
-    @ApiOperation(value = "校验批量修改设备", notes = "校验批量修改设备")
-    @PostMapping("service/rs/v1/deviceService/validateUpdateDeviceData")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "body", required = true, name = "deviceList", dataType = "list", value =
-                    "设备集合", example = "[{\"driver\":\"23123123\",\"name\":\"报警设备\"}]"),
-
-    })
-    ControllerResultDTO<String> validateUpdateDeviceData(@RequestBody List<Map<String, String>> deviceList);
-
-    /**
-     * 设备批量添加
-     *
-     * @param deviceBatchManageDto
-     * @return ControllerResultDTO<java.lang.Object>
-     **/
-    @ApiOperation(value = "设备批量添加", notes = "批量添加同一资源类型的设备，异步获取该批设备的设备和通道信息。")
-    @PostMapping("service/rs/v1/deviceService/addBatch")
-    ControllerResultDTO<Object> addBatch(@RequestBody DeviceBatchManageDto deviceBatchManageDto);
-
-    /**
-     * 设备批量更新
-     *
-     * @param deviceBatchManageDto
-     * @return ControllerResultDTO<java.lang.Object>
-     **/
-    @ApiOperation(value = "设备批量更新", notes = "批量更新设备信息")
-    @PostMapping("service/rs/v1/deviceService/updateBatch")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "body", required = true, name = "deviceBatchManageDto", dataType =
-                    "DeviceBatchManageDto", value = "批量修改设备DTO", example = ""),
-    })
-    ControllerResultDTO<Object> updateBatch(@RequestBody DeviceBatchManageDto deviceBatchManageDto) throws Exception;
-
 
 }
