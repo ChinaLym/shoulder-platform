@@ -91,7 +91,7 @@ values ('公用数据字典', 'common.common_dds', '0', '', 'common', NULL, 1, 1
 
 /** 字典项 */
 insert  into `system_dictionary_item`
-(`name`,`data_key`,`data_value`,`type_code`,`component_id`,`tenant_id`,`dis_order`,`data_level`,`remark`,`expand`,`source_type`,`status`,`creator`,`create_time`,`modifier`,`modify_time`) values
+(`name`,`data_key`,`data_value`,`type_code`,`component_id`,`tenant_id`,`dis_order`,`data_level`,`remark`,`expand`,`source_type`,`status`,`creator`,`create_time`,`modifier`,`update_time`) values
 ('未知','0','unknown','common.human_ageGroup','common',NULL,99,1,'','',0,0,0,'2020-08-01 00:00:00',0,'2020-08-01 00:00:00'),
 ('少年','1','child','common.human_ageGroup','common',NULL,1,1,'','',0,0,0,'2020-08-01 00:00:00',0,'2020-08-01 00:00:00'),
 ('青年','2','young','common.human_ageGroup','common',NULL,2,1,'','',0,0,0,'2020-08-01 00:00:00',0,'2020-08-01 00:00:00'),

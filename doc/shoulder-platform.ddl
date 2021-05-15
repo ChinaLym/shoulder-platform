@@ -1,6 +1,6 @@
 /*
 SQLyog Professional v12.09 (64 bit)
-MySQL - 8.0.17 : Database - shoulder_demo
+MySQL - 8.0.17 : Database - shoulder_platform
 *********************************************************************
 */
 /**
@@ -8,11 +8,12 @@ MySQL - 8.0.17 : Database - shoulder_demo
 注意时区问题
 
 标准字段
+    `id`     VARCHAR(64)/BIGINT UNSIGNED NOT NULL COMMENT '主键',
+    `create_time` DATETIME             DEFAULT NOW() COMMENT '创建时间 GMT',
+    `update_time` DATETIME             DEFAULT NOW() COMMENT '最后修改时间 GMT',
     `creator`     VARCHAR(64) NOT NULL COMMENT '创建人编号',
-    `create_time` DATETIME             DEFAULT NOW() COMMENT '创建时间',
     `modifier`    VARCHAR(64) NOT NULL COMMENT '最近修改人编码',
-    `modify_time` DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
-
+时间为时间戳/0时区时间
  */
 
 /*!40101 SET nameS utf8mb4 */;
@@ -23,14 +24,14 @@ MySQL - 8.0.17 : Database - shoulder_demo
 /*!40101 SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES = @@SQL_NOTES, SQL_NOTES = 0 */;
 
-/*Table structure for table `crypt_info` 加密部件表，可以由每个应用自身维护，也可统一管理 */
+/*Table structure for table `crypto_info` 加密部件表，可以由每个应用自身维护，也可统一管理 */
 
-CREATE TABLE `crypt_info`
+CREATE TABLE `crypto_info`
 (
     `app_id`        VARCHAR(32) NOT NULL COMMENT '应用标识',
     `header`        VARCHAR(32) NOT NULL DEFAULT '' COMMENT '密文前缀/算法标识/版本标志',
     `data_key`      VARCHAR(64) NOT NULL COMMENT '数据密钥（密文）',
-    `root_key_part` VARCHAR(64)          DEFAULT NULL COMMENT '根密钥部件',
+    `root_key_part` VARCHAR(512)          DEFAULT NULL COMMENT '根密钥部件',
     `vector`        VARCHAR(64)          DEFAULT NULL COMMENT '初始偏移向量',
     `create_time`   DATETIME             DEFAULT NOW() COMMENT '创建时间',
     PRIMARY KEY (`app_id`, `header`)
@@ -38,7 +39,7 @@ CREATE TABLE `crypt_info`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci COMMENT ='加密元信息';
 
-/*Data for the table `crypt_info` */
+/*Data for the table `crypto_info` */
 
 /* 属于特定应用的配置管理，由应用自身后台管理 */
 create table shoulder_ext_config_data
@@ -53,7 +54,7 @@ create table shoulder_ext_config_data
     `creator`        VARCHAR(64)               NOT NULL COMMENT '创建人编号',
     `create_time`    DATETIME        DEFAULT NOW() COMMENT '创建时间',
     `modifier`       VARCHAR(64)               NOT NULL COMMENT '最近修改人编码',
-    `modify_time`    DATETIME        DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`    DATETIME        DEFAULT NOW() COMMENT '最后修改时间',
     `business_value` TEXT                      NOT NULL COMMENT '业务数据，json 类型',
 
     CONSTRAINT config_data_pk
@@ -207,7 +208,7 @@ CREATE TABLE `mail_provider`
     `creator`     VARCHAR(64) NOT NULL COMMENT '创建人编号',
     `create_time` DATETIME             DEFAULT NOW() COMMENT '创建时间',
     `modifier`    VARCHAR(64) NOT NULL COMMENT '最近修改人编码',
-    `modify_time` DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -228,7 +229,7 @@ CREATE TABLE `mail_send_record`
     `creator`     VARCHAR(64)  NOT NULL COMMENT '创建人编号',
     `create_time` DATETIME              DEFAULT NOW() COMMENT '创建时间',
     `modifier`    VARCHAR(64)  NOT NULL COMMENT '最近修改人编码',
-    `modify_time` DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -256,7 +257,7 @@ CREATE TABLE `mail_task`
     `creator`     VARCHAR(64) NOT NULL COMMENT '创建人编号',
     `create_time` DATETIME             DEFAULT NOW() COMMENT '创建时间',
     `modifier`    VARCHAR(64) NOT NULL COMMENT '最近修改人编码',
-    `modify_time` DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -322,7 +323,7 @@ CREATE TABLE `role`
     `creator`     VARCHAR(64)     NOT NULL COMMENT '创建人编号',
     `create_time` DATETIME                 DEFAULT NOW() COMMENT '创建时间',
     `modifier`    VARCHAR(64)     NOT NULL COMMENT '最近修改人编码',
-    `modify_time` DATETIME                 DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME                 DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -427,7 +428,7 @@ CREATE TABLE `sms_send_record`
     `creator`      VARCHAR(64) NOT NULL COMMENT '创建人编号',
     `create_time`  DATETIME             DEFAULT NOW() COMMENT '创建时间',
     `modifier`     VARCHAR(64) NOT NULL COMMENT '最近修改人编码',
-    `modify_time`  DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`  DATETIME             DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -454,7 +455,7 @@ CREATE TABLE `sms_task`
     `creator`         VARCHAR(64) NOT NULL COMMENT '创建人编号',
     `create_time`     DATETIME     DEFAULT NOW() COMMENT '创建时间',
     `modifier`        VARCHAR(64) NOT NULL COMMENT '最近修改人编码',
-    `modify_time`     DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`     DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -483,7 +484,7 @@ CREATE TABLE `sms_template`
     `creator`           VARCHAR(64)  NOT NULL COMMENT '创建人编号',
     `create_time`       DATETIME              DEFAULT NOW() COMMENT '创建时间',
     `modifier`          VARCHAR(64)  NOT NULL COMMENT '最近修改人编码',
-    `modify_time`       DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`       DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE KEY `UN_CODE` (`custom_code`, `tenant_code`) USING BTREE
 ) ENGINE = InnoDB
@@ -512,7 +513,7 @@ CREATE TABLE `system_config_item`
     `enable`        INT          NOT NULL COMMENT '启用状态，0:禁用；1：启用',
     `remark`        VARCHAR(512)  DEFAULT NULL COMMENT '辅助说明',
     `create_time`   DATETIME      DEFAULT NOW() COMMENT '创建时间',
-    `modify_time`   DATETIME      DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`   DATETIME      DEFAULT NOW() COMMENT '最后修改时间',
     `isolate_flag`  INT           DEFAULT NULL COMMENT '租户隔离标记，用于判断配置项是否做租户隔离，0:隔离，1:不隔离，默认为0',
     `domain_id`     VARCHAR(64)   DEFAULT NULL COMMENT '域id，用于租户隔离判断不同租户',
     PRIMARY KEY (`id`),
@@ -543,7 +544,7 @@ CREATE TABLE `system_dictionary_item`
     `creator`      VARCHAR(64)  NOT NULL COMMENT '创建人编号',
     `create_time`  DATETIME              DEFAULT NOW() COMMENT '创建时间',
     `modifier`     VARCHAR(64)  NOT NULL COMMENT '最近修改人编码',
-    `modify_time`  DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`  DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_system_dictionary_item_code_key` (`type_code`, `data_key`),
     KEY `idx_system_dictionary_item_dis_order` (`dis_order`),
@@ -572,7 +573,7 @@ CREATE TABLE `system_dictionary_type`
     `creator`       VARCHAR(64)  NOT NULL COMMENT '创建人编号',
     `modifier`      VARCHAR(64)  NOT NULL COMMENT '最近修改人编码',
     `create_time`   DATETIME     DEFAULT NOW() COMMENT '创建时间',
-    `modify_time`   DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`   DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_system_dictionary_type_code` (`code`)
 ) ENGINE = InnoDB
@@ -592,7 +593,7 @@ CREATE TABLE `system_faq`
     `username`    VARCHAR(64)  DEFAULT NULL COMMENT '用户昵称',
     `file_name`   VARCHAR(255) DEFAULT NULL COMMENT '文件名',
     `create_time` DATETIME     DEFAULT NOW() COMMENT '创建时间',
-    `modify_time` DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
     `whole_text`  TEXT COMMENT '从HTML中解析出来的具体文本内容，供搜索使用',
     `language_id` VARCHAR(20)  DEFAULT NULL COMMENT '语言标识，用于区分内不同语言置文档，查询时该字段为 null 或特定语言标识',
     PRIMARY KEY (`id`)
@@ -611,7 +612,7 @@ CREATE TABLE `system_faq_reply`
     `context`     TEXT            NOT NULL COMMENT '补充内容',
     `username`    VARCHAR(255)    NOT NULL COMMENT '用户名',
     `create_time` DATETIME DEFAULT NOW() COMMENT '创建时间',
-    `modify_time` DATETIME DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -627,7 +628,7 @@ CREATE TABLE `system_i18n`
     `i18n_key`     VARCHAR(255) NOT NULL COMMENT '多语言key',
     `locale`       VARCHAR(64)  NOT NULL COMMENT '语言标识',
     `value`        VARCHAR(255) DEFAULT NULL COMMENT '翻译值，可能有占位符',
-    `modify_time`  DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`  DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`app_id`, `i18n_key`, `locale`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -669,7 +670,7 @@ CREATE TABLE `system_menu`
     `remark`          VARCHAR(255)          DEFAULT NULL COMMENT '备注',
     `state`           INT                   DEFAULT NULL COMMENT '状态,0：正常；-1 删除；1：隐藏；3：已过期；定时拿出即将过期的',
     `expire_date`     VARCHAR(255)          DEFAULT NULL COMMENT '过期时间',
-    `modify_time`     DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`     DATETIME              DEFAULT NOW() COMMENT '最后修改时间',
     `tree_path`       VARCHAR(2048)         DEFAULT NULL,
     `tree_level`      INT                   DEFAULT NULL,
     `onclick`         INT          NOT NULL DEFAULT '0' COMMENT '打开模式；1: 内嵌式（embed）, 1:弹出式（pop）',
@@ -688,7 +689,7 @@ CREATE TABLE `system_version`
     `app_id`          VARCHAR(32) NOT NULL COMMENT '应用标识',
     `install_flag`    INT         DEFAULT '0' COMMENT '版本类型 0:安装，1:升级，2:卸载',
     `current_version` VARCHAR(64) DEFAULT NULL COMMENT '当前版本',
-    `modify_time`     DATETIME    DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`     DATETIME    DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`app_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -727,7 +728,7 @@ CREATE TABLE `tenant`
     `creator`     VARCHAR(64)    NOT NULL COMMENT '创建人编号',
     `create_time` DATETIME     DEFAULT NOW() COMMENT '创建时间',
     `modifier`    VARCHAR(64)    NOT NULL COMMENT '最近修改人编码',
-    `modify_time` DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
     `province`    VARCHAR(32)  DEFAULT NULL COMMENT '一级行政单位,如广东省,上海市等',
     `city`        VARCHAR(32)  DEFAULT NULL COMMENT '城市, 如广州市,佛山市等',
     `district`    VARCHAR(32)  DEFAULT NULL COMMENT '行政区,如番禺区,天河区等',
@@ -762,7 +763,7 @@ CREATE TABLE `schedule_template`
     `creator`       VARCHAR(64) NOT NULL COMMENT '创建人编号',
     `create_time`   DATETIME     DEFAULT NOW() COMMENT '创建时间',
     `modifier`      VARCHAR(64) NOT NULL COMMENT '最近修改人编码',
-    `modify_time`   DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time`   DATETIME     DEFAULT NOW() COMMENT '最后修改时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -777,7 +778,7 @@ CREATE TABLE `schedule_template_plan`
     `xx_code`     INT         NOT NULL COMMENT '资源索引',
     `template_id` BIGINT      NOT NULL COMMENT '关联的计划模板',
     `create_time` DATETIME DEFAULT NOW() COMMENT '创建时间',
-    `modify_time` DATETIME DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME DEFAULT NOW() COMMENT '最后修改时间',
     `state`       INT      DEFAULT '0' COMMENT '计划状态',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_schedule_template_plan` (`resource_id`, `xx_code`)
@@ -833,7 +834,7 @@ CREATE TABLE `user_info`
     `group_path`  VARCHAR(255)             DEFAULT NULL COMMENT '用户所属组路径',
     `creator`     VARCHAR(64)     NOT NULL COMMENT '创建人编号',
     `create_time` DATETIME                 DEFAULT NOW() COMMENT '创建时间',
-    `modify_time` DATETIME                 DEFAULT NOW() COMMENT '最后修改时间',
+    `update_time` DATETIME                 DEFAULT NOW() COMMENT '最后修改时间',
     `description` VARCHAR(255)             DEFAULT NULL COMMENT '用户描述',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
