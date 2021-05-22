@@ -6,7 +6,7 @@ ${AnsiColor.CYAN}|____/|_| |_|\___/ \__,_|_|\__,_|\___|_|   ${AnsiColor.BRIGHT_Y
 ${AnsiColor.CYAN}====================================================================================================/_/==/_/===/_/
 
 ${AnsiColor.BLUE} :: Spring Boot           ::     ${AnsiColor.CYAN}${spring-boot.formatted-version}
-${AnsiColor.BLUE} :: Shoulder-Framework    ::      ${AnsiColor.CYAN}(v@shoulder.version@)
+${AnsiColor.BLUE} :: Shoulder Framework    ::      ${AnsiColor.CYAN}(v@shoulder.version@)
 ${AnsiColor.BRIGHT_GREEN} :: @project.artifactId@ ::      ${AnsiColor.GREEN}(v@project.version@)${AnsiColor.CYAN} @project.description@
 ${AnsiColor.DEFAULT}
 

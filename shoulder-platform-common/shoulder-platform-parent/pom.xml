@@ -14,7 +14,7 @@
     <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
     <packaging>pom</packaging>
 
-    <url>https://github.com/ChinaLym/Shoulder-Platform</url>
+    <url>https://github.com/ChinaLym/shoulder-platform</url>
     <properties>
         <!-- =============== Shoulder 版本 =============== -->
 

@@ -1,8 +1,8 @@
-# [shoulder-platform-archetype](https://github.com/ChinaLym/Shoulder-Platform/tree/main/shoulder-platform-common/shoulder-platform-archetype)
+# [shoulder-platform-archetype](https://github.com/ChinaLym/shoulder-platform/tree/main/shoulder-platform-common/shoulder-platform-archetype)
 
 基于 `shoulder-platform` 的多模块的 `maven` 骨架工程，适合基于 spring cloud 的微服务模式的微服务工程。
 
-单模块教程：[shoulder-archetype-simple](https://github.com/ChinaLym/Shoulder-Framework/tree/master/shoulder-archetype-simple)
+单模块教程：[shoulder-archetype-simple](https://github.com/ChinaLym/shoulder-framework/tree/master/shoulder-archetype-simple)
 
 ## 诞生背景
 
@@ -214,7 +214,7 @@ xxx
 * 适合领域/业务已经比较明确，长时间维护的大型系统。
 
 
-### Shoulder-Platform 中的设计
+### shoulder-platform 中的设计
 
 不是所有东西都是非A即B的，也不是用了优点就必然存在缺点的，Shoulder 结合了两种设计，通过模块拆的更细，将两者的优缺点结合在一起。既可以重复利用，减少无意义的重复，又可以隔离基础层、边界层的易变更项。
 
@@ -223,7 +223,7 @@ xxx
 通过上面的比较，发现无论定义在哪一次，都有利弊，为了充分汲取两者的优势，将这部分抽象定义在单独的模块，保证了切换底层实现，接口定义不变，从而保证领域层的稳定性，即实现了`领域层不依赖特定的技术实现`，同时一个大的系统内部可以共同复用这部分定义，也简化了使用新技术的替换成本（直接继承这个模块，以插件形式开发，而无需继承整个领域层），且开发出来的新的实现项又是可以复用的。
 
 
-> 无论是 Shoulder-Framework 中还是 Platform 中，你会经常看到通过一些巧妙手法的将两种方案的优势结合在一起。
+> 无论是 shoulder-framework 中还是 Platform 中，你会经常看到通过一些巧妙手法的将两种方案的优势结合在一起。
 
 #### Service 服务分层
 
