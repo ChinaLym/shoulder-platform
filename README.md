@@ -157,6 +157,10 @@
 
 ![prometheus + grafana 监控 docker](img/docker.png)
 
+![监控 nginx1](img/nginx1.png)
+
+![监控 nginx2](img/nginx2.png)
+
 ![监控redis](img/redis.png)
 
 ![nacos1](img/nacos1.png)

@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * demo restful api
  *
- * @author shoulder
+ * @author lym
  */
 @Path("/rest/demo/v1")
 @Produces(MediaType.APPLICATION_JSON)

@@ -30,7 +30,7 @@
     </modules>
 
     <properties>
-        <shoulder.version>0.6</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>0.7-SNAPSHOT</shoulder.version><!-- shoulder-version -->
         <shoulder-platform.version>1.0-SNAPSHOT</shoulder-platform.version>
     </properties>
 
