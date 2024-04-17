@@ -15,7 +15,7 @@
     <description>Shoulder平台-短信推送服务</description>
 
     <properties>
-        <javax.mail.version>1.6.2</javax.mail.version>
+        <jakarta.mail.version>2.0.3</jakarta.mail.version>
     </properties>
 
     <dependencies>
@@ -50,9 +50,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>${javax.mail.version}</version>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>${jakarta.mail.version}</version>
         </dependency>
 
         <!-- freemarker 模版 -->

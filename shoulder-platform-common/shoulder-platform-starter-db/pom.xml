@@ -27,7 +27,7 @@
         <!-- 默认使用 mybatis -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -37,8 +37,8 @@
 
         <!-- 默认使用 mysql -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
         </dependency>
 
         <!-- 数据库 连接池 默认使用高性能的 beecp （性能是 spring-boot 默认 hikairCP 两倍，功能较少）-->

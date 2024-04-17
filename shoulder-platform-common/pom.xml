@@ -3,8 +3,8 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>shoulder-platform</artifactId>
         <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform</artifactId>
         <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -30,7 +30,7 @@
     </modules>
 
     <properties>
-        <shoulder.version>0.7-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>0.8-SNAPSHOT</shoulder.version><!-- shoulder-version -->
         <shoulder-platform.version>1.0-SNAPSHOT</shoulder-platform.version>
     </properties>
 
@@ -39,7 +39,7 @@
             <dependency>
                 <groupId>cn.itlym</groupId>
                 <artifactId>shoulder-dependencies</artifactId>
-                <version>${shoulder.version}</version>
+                <version>0.8-SNAPSHOT</version><!-- shoulder-version -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

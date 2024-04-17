@@ -3,9 +3,10 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>cn.itlym</groupId>
-        <artifactId>shoulder-parent</artifactId>
-        <version>0.7-SNAPSHOT</version><!-- shoulder-version -->
+        <groupId>cn.itlym.platform</groupId>
+        <artifactId>shoulder-platform-parent</artifactId>
+        <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../shoulder-platform-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

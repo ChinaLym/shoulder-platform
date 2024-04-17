@@ -12,7 +12,6 @@
         <relativePath>../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
     </parent>
 
-    <groupId>cn.itlym.platform</groupId>
     <artifactId>shoulder-auth-center</artifactId>
     <packaging>pom</packaging>
 

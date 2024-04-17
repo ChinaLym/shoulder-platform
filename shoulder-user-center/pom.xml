@@ -4,6 +4,7 @@
         <groupId>cn.itlym.platform</groupId>
         <artifactId>shoulder-platform-parent</artifactId>
         <version>1.0-SNAPSHOT</version><!-- shoulder-platform-version -->
+        <relativePath>../shoulder-platform-common/shoulder-platform-parent/pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -12,7 +13,6 @@
     <artifactId>shoulder-user-center</artifactId>
     <description>用户认证授权中心</description>
 
-    <groupId>cn.itlym.platform</groupId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version><!-- uaa.version -->
 

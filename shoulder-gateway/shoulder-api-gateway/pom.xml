@@ -15,10 +15,10 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <shoulder.version>0.7-SNAPSHOT</shoulder.version><!-- shoulder-version -->
-        <spring-boot.version>2.3.6.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
+        <shoulder.version>0.8-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+        <spring-boot.version>3.0.2</spring-boot.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
     </properties>
 
     <dependencies>
