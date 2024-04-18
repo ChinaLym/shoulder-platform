@@ -32,12 +32,12 @@
         <!-- =============== 第三方依赖版本 =============== -->
         <!-- alibaba 2.2.3 -> cloud hoxton.SR8 -> boot 2.3.3.RELEASE -->
 
-        <!--spring-cloud-alibaba-dependencies 太久没更新，与最新版nacos存在版本不兼容 bug（无线循环同步，且不能指定 nacos 版本使用如 1.3 等，这里统一手动管理 -->
-        <!--其中 1.3.1 支持了优雅下线方式-->
+        <!--spring-cloud-alibaba-dependencies -->
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
+<!--        todo 2.3.2-->
         <nacos.client.version>1.3.2</nacos.client.version>
 
-        <!--spring-cloud-alibaba引入了 fastJson，而低版本的 fastJson 太多安全漏洞，故这里统一设置为高版本-->
+        <!--spring-cloud-alibaba引入了 fastJson，而低版本的 fastJson 太多安全漏洞，故这里统一设置为高版本 todo 2.0.49 fastjson2 -->
         <fastjson.version>1.2.73</fastjson.version>
 
         <minio.version>7.0.2</minio.version>
@@ -177,6 +177,13 @@
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
 
             <!--<dependency>
                 <groupId>com.google.guava</groupId>
