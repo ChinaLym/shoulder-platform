@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shoulder-generator</artifactId>
-    <name>代码生成器</name>
+    <name>shoulder-generator：代码生成器</name>
     <description>代码生成器</description>
 
     <dependencyManagement>
@@ -47,9 +47,12 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.3</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>

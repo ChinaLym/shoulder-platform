@@ -22,6 +22,6 @@ public class ShoulderApiGateway {
 
     @RequestMapping("/fallback")
     public Mono<BaseResult> fallback() {
-        return Mono.just(BaseResult.error(CommonErrorCodeEnum.REQUEST_TIMEOUT));
+        return Mono.just(BaseResult.error(CommonErrorCodeEnum.SERVICE_RESPONSE_TIMEOUT));
     }
 }

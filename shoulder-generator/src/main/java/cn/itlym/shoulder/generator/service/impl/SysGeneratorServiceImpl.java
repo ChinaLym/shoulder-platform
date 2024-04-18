@@ -5,11 +5,12 @@ import cn.itlym.shoulder.generator.service.SysGeneratorService;
 import cn.itlym.shoulder.generator.utils.GenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import lombok.extern.shoulder.SLog;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.IOUtils;
 import org.shoulder.core.dto.response.PageResult;
+import org.shoulder.core.log.AppLoggers;
+import org.shoulder.core.log.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,10 @@ import java.util.zip.ZipOutputStream;
 /**
  * @author lym
  */
-@SLog
 @Service
 public class SysGeneratorServiceImpl implements SysGeneratorService {
+
+    private final Logger log = AppLoggers.APP_SERVICE;
 
     @Autowired
     private SysGeneratorMapper sysGeneratorMapper;

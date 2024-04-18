@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!--<module>system-config</module>--> <!--系统配置使用 nacos 管理-->
+<!--      TODO  系统配置后续使用专门的配置中心管理，如 nacos、apollo -->
+        <module>system-config</module>
         <module>system-dictionary</module>
         <module>system-error-code</module>
     </modules>
