@@ -1,6 +1,6 @@
 package cn.itlym.shoulder.platform.gateway.client.dto.param;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
  * @author lym

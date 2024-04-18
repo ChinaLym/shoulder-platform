@@ -8,7 +8,7 @@ import org.springframework.data.Page;
 import org.springframework.data.domain;
 
 import ${package}.${pkgName}.entity.${className}Entity;
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Map;

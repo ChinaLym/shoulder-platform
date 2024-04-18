@@ -3,9 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.start.controller;
 
-import lombok.extern.shoulder.SLog;
+import org.shoulder.core.log.AppLoggers;
 import org.shoulder.core.log.Logger;
-import org.shoulder.core.log.LoggerFactory;
 import org.shoulder.web.annotation.SkipResponseWrap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     /**
-     * 定义 shoulder 的 logger， 使用注解 {@link SLog} 时则可不写这行代码
+     * 接口 logger
      */
-    private static final Logger log = LoggerFactory.getLogger(DemoController.class);
+    private static final Logger log = AppLoggers.APP_SERVICE;
 
 
     /**

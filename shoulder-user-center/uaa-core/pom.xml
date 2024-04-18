@@ -18,6 +18,11 @@
             <artifactId>shoulder-platform-starter-micro</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.itlym</groupId>
+            <artifactId>shoulder-starter-beanmap</artifactId>
+        </dependency>
+
         <!-- 持久层接口 -->
         <dependency>
             <groupId>cn.itlym.platform</groupId>

@@ -1,10 +1,11 @@
 package cn.itlym.shoulder.generator;
 
 import cn.itlym.shoulder.generator.service.SysGeneratorService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.mybatis.spring.annotation.MapperScan;
-import org.shoulder.core.dto.response.ListResult;
 import org.shoulder.core.dto.response.BaseResult;
+import org.shoulder.core.dto.response.ListResult;
 import org.shoulder.core.util.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 

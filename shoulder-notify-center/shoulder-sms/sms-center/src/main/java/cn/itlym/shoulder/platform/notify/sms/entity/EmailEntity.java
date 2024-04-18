@@ -1,12 +1,15 @@
 package cn.itlym.shoulder.platform.notify.sms.entity;
 
 import cn.itlym.shoulder.platform.notify.sms.dto.EmailDTO;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Date;
 
 //@Entity
 @Table(name = "tb_email")
@@ -62,7 +65,7 @@ public class EmailEntity implements Serializable {
         this.subject = mail.getSubject();
         this.content = mail.getContent();
         this.template = mail.getTemplate();
-        this.sendTime = new Timestamp(new Date().getTime());
+        this.sendTime = new Timestamp(System.currentTimeMillis());
     }
 
     public Long getId() {

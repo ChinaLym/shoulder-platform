@@ -23,8 +23,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
+            <groupId>cn.itlym</groupId>
+            <artifactId>shoulder-starter-beanmap</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
