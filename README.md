@@ -1,155 +1,55 @@
-# shoulder-platform
+<h1 align="center"><img src="img/logo.png" height="40" width="40" /><a href="https://github.com/ChinaLym/shoulder-platform" target="_blank">Shoulder Platform</a></h1>
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/ChinaLym/shoulder-platform)
 [![](https://img.shields.io/badge/Author-lym-blue.svg)](https://github.com/ChinaLym)
-[![](https://img.shields.io/badge/version-1.0-brightgreen.svg)](https://github.com/ChinaLym/shoulder-platform)
-[![GitHub stars](https://img.shields.io/github/stars/ChinaLym/shoulder-framework.svg?style=social&label=Stars)](https://github.com/ChinaLym/shoulder-platform/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/ChinaLym/shoulder-framework.svg?style=social&label=Fork)](https://github.com/ChinaLym/shoulder-framework/network/members)
+[![](https://img.shields.io/badge/version-1.0_SNPASHOT-brightgreen.svg)](https://github.com/ChinaLym/shoulder-platform)
 
 
-## 简介：
+# 📖介绍
 
 `shoulder-platform` 是一个符合[OpenSergo 服务治理标准](https://opensergo.io/)的 `SaaS` 平台（仅实现基础能力，不包含具体业务），代码简洁，架构清晰，非常适合学习使用。要说 `shoulder-platform` 和 `shoulder` 的关系，可以简单理解为 `spring cloud` 和 `spring boot` 的关系。
 
-## 架构图
-
-技术架构：
+# 🛠️ 架构图
 
 ![系统技术架构图.png](img/architecture.png)
 
-去掉技术细节，从全局角度看整个系统架构：
+# 👀 在线预览
 
-![系统整体能力.png](img/shoulder-platform.png)
-
-
-在线工具：[https://app.diagrams.net/](https://app.diagrams.net/) [https://processon.com/](https://processon.com/)
-
-## 在线预览
-
-- [Grafana + Prometheus 监控系统](https://grafana.itlym.cn)（访客账号密码：`shoulder` / `shoulder123`，仅包含仪表盘查看权限）
-- [EFK 日志系统](https://kibana.itlym.cn)（访客账号密码：`shoulder` / `shoulder123`，仅包含日志检索查看权限）
-- 平台地址( 开发中 )
-- [注册中心 / 配置中心地址](https://nacos.itlym.cn)
-- [限流配置中心地址](https://sentinel.itlym.cn)
+- [Grafana + Prometheus 监控系统](https://grafana.itlym.cn)（账号：`shoulder` 密码： `shoulder123`）
+- ~~[EFK 日志系统](https://kibana.itlym.cn)（账号：`shoulder` 密码： `shoulder123`）（暂时下线）~~
+- ~~[注册中心 / 配置中心地址](https://nacos.itlym.cn)（暂时下线）~~
+- ~~[限流配置中心地址](https://sentinel.itlym.cn)（暂时下线）~~
 - ~~[zipkin 链路追踪系统](https://zipkin.itlym.cn)（暂时下线）~~
 
 - [开发规范地址](https://spec.itlym.cn)
 - [私有代码版本控制地址](https://git.itlym.cn)
 - [持续集成服务器地址](https://drone.itlym.cn)
 
-
-
-# 能力介绍
-
-- 能力概览
-	- 单点登录
-    - 用户管理
-	- 资源权限管理
-    - 通知推送中心（短信、邮件）
-    - 错误码中心（查询错误码，大概产生原因，解决措施、热门错误码统计）
-    - 知识库(记录常见问题排查方式等）
-    - 在线 api 文档中心
-    
-- 核心框架
-    - `SpringBoot` 
-    - `SpringCloud`
-    - `Shoulder Framework`
-    - 服务认证: Spring Security（Oauth、JWT）
-
-- 微服务治理方案选型
-    - 服务注册、服务发现: nacos
-    - 服务调用: feign + 负载均衡: Ribbon / Dubbo
-    - 限流 & 断路器: Sentinel
-    - 配置中心:nacos
-    - 消息通知
-        - rabbitMQ、KafKa
-    - 文件存储
-        - ceph、OSS..
-    - 分布式任务调度
-        - Power Job
-    - 分布式事务
-        - Seata
-    - 数据同步
-        - canal
-    - 监控
-        - 集群监控：spring-boot-actuator + spring-boot-admin
-        - 服务监控：sentinel
-        - 链路追踪：zipkin/Skywalking（根据部署机器性能选择）
-        - 指标监控：metrics + exporter + prometheus + grafana
-        - 主机监控、容器监控：cAdvisor
-        - 告警：alertManager
-        - 日志监控 EFK（Elastic Search + Fluentd + Kibana）
-    - 持续集成、持续部署（不限制）
-        - 版本控制：Git
-        - 接口文档：openApi3
-        - 代码审查：Sonar
-        - 自动测试：AutoTest
-        - 持续集成：Maven、Jenkins、Drone
-        - 部署：Docker、K8s
-        - 发布方式：金丝雀发布、蓝绿发布、灰度发布（Ribbon）
-    - 数据智能
-        - ETL：
-        - 数据处理：Flink、Google Data Flow、Beam
-   
+# 🧩组件列表 
 
 - 认证中心
-    - 单点登录
-    - 会话管理
-    - 授权管理
-    
 - 用户中心
-    - 用户、组织、人事管理
-    - 租户管理
-    
 - 权限中心
-    - 菜单权限
-    - 角色权限
-    - 岗位管理
-    - 资源管理
-    - 应用管理
-    
 - 消息推送
-    - 短信
-    - 邮件
-    - 钉钉
-    - 企业微信
-    - App（第三方）
-
 - 存储中心
-    - 本地文件
-        - 结合数据库、本地文件路径
-    - 自建存储系统
-        - **minio**、FastDFS、Hadoop、GDFS等
-    - 第三方OOS存储
-        - **七牛云、阿里云、亚马逊云**、腾讯云、华为云
-    
-- 平台
-    - 用户平台
-    - 监控门户
-    - 运维平台
-    - 运营平台（后台管理）
-    
+- 用户平台
+- 监控门户 
+- 运维平台
+- 运营平台（后台管理）
 - 网关
-    - Web 浏览器
-    - H5 小程序
-    - App
-    - OpenApi
-    - 静态资源
     
-## 启动与使用
+## 🚀 启动与使用
 
-- IDEA
-- jar
-- docker
-    
-## 如果觉得对您有帮助，请点右上角 "Star" 支持一下吧，谢谢！
+- IDEA 直接运行：
+- jar 方式运行：
+- docker 方式运行：
 
-## 文档
+# 📄 文档
+...
 
+# 🔥 展示
 
-## 展示
-
-#### 监控
+## 📈 监控
 
 [监控系统预览地址](https://grafana.itlym.cn)（访客账号密码：`shoulder` / `shoulder123`，演示账号仅包含仪表盘查看权限，不能编辑）
 
@@ -174,7 +74,7 @@
 ![mysql3](img/mysql3.png)
 
 
-#### 日志收集
+## 🔍︎ 日志采集与搜索
 
 ELK展示nginx日志演示
 
@@ -187,7 +87,17 @@ ELK展示nginx日志演示
 ![ELK展示nginx日志，演示过滤访问 grafana.itlym.cn 的记录](img/elk-nginx.png)
 
 
-## 项目代码地址
+# ✈ 规划 & 发展路线
+
+`Shoulder` 希望做一个整套的可复用的平台（`PaaS`），使用者只需要做做自己的业务即可。整体格局如下
+
+- `Shoulder iPaaS` 基础中间件环境 Shoulder 提供依赖中间件的`Docker`镜像或部署教程（如 数据库、消息队列、服务注册中心、任务调度中心、搜索引擎、报警与监控系统等）。
+- `Shoulder Specific` 软件系开发设计注意事项、[落地方案和规范](https://spec.itlym.cn)
+- **Shoulder Framework**  即本开源项目，提供共性能力封装，减少代码冗余，降低系统开发维护成本。
+- `Shoulder Platform` 共性业务平台，提供 `用户平台`、`支付平台`、`通知中心`、`业务网关`、`数据字典`、`全局ID生产器` 等基础、通用业务能力平台
+- `Shoulder Platform SDK` 以 sdk 形式方便业务层对接使用。
+
+## 相关项目代码地址
 
 | 项目 | 开源地址 | 说明 |
 |---|---|---|
@@ -201,7 +111,6 @@ ELK展示nginx日志演示
 
 ## 层次设计
 
-
 | 层次 | 定位 | 方案 | Shoulder 支持 |
 |---|---|---|---|
 | 业务应用服务 `SaaS` | 面向用户设计，更应该考虑如何方便用户 | 使用者根据实际业务把握 | `shoulder-framework` 提供了一些常用的能力，以及规约的对接；`shoulder-platform-common` 提供了快速开发一个与 `shoulder-platform` 设计、技术、风格统一的应用服务 |
@@ -211,3 +120,25 @@ ELK展示nginx日志演示
 | 软件开发设计理论指导 `理论` | 软件开发设计理论指导，主要为了系统的易维护、易扩展、易观测、安全性 | 总结业界开发设计实践经验如 `阿里巴巴Java开发规范` 结合而成，详见[优雅软件设计规范](https://spec.itlym.cn) | shoulder给予了一定的理论指导，但这是**可选的**，不强制使用者必须遵循 |
 | 软件平台基础层 `iPaaS` | 无业务含义的基础中间件，数据库、消息队列、监控中间件、告警中间件等 | MySql、RabbitMQ、Nacos、Zipkin、ElasticSearch、Docker、K8s 等，以 `Docker` 镜像方式提供 | 提供大部分场景的最佳技术方案选型，安装、部署、参数调优方案，**可直接用于任何项目** |
 | 硬件基础层 `IaaS` | 硬件支撑，如CPU、内存、网络、存储等 | 依赖云主机厂商，如阿里云、腾讯云、亚马逊云等 | 无，shoulder不干涉该层 |
+
+
+# 📒 版本变更记录
+
+当前暂未发布至maven仓库。
+
+# 💗 贡献代码
+
+欢迎各类型代码提交，不限于`优化代码格式`、`优化注释/JavaDoc`、`修复 BUG`、`新增功能`
+，更多请参考 [如何贡献代码](CONTRIBUTING.MD)
+
+# 📩 反馈 or 联系我
+
+感谢小伙伴们的 **[Star](https://gitee.com/ChinaLym/shoulder-framework/star)** 、 **Fork** 、 **PR**，欢迎使用 `issue` 或 [cn_lym@foxmai.com](mailto:cn_lym@foxmai.com) 交流，如 留下你的建议、期待的新功能等~
+
+`Shoulder` 不求使用最广，而是致力于成为使用体验最好的开发框架，您任何的使用需求、建议、想法都可以留下来与我们沟通，`Shoulder`
+将与您一起思考攻克疑难，助天下的开发者更好更安心得使用技术助力业务腾飞！
+
+### 👨‍💼 关于作者
+
+多次参与 Alibaba 核心系统重构与设计，主导过多次 D11 级别大促保障，欢迎技术交流与简历投递～
+- 该项目为作者在业余时间独立开发和维护的个人项目，非阿里巴巴官方产品。

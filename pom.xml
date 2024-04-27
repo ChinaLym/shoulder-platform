@@ -14,7 +14,7 @@
         <module>shoulder-generator</module>
 
         <module>shoulder-user-center</module>
-        <module>shoulder-system-center</module>
+<!--        <module>shoulder-system-center</module>-->
         <module>shoulder-notify-center</module>
         <module>shoulder-gateway</module>
         <module>shoulder-auth-center</module>
