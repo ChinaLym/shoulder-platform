@@ -18,7 +18,6 @@
         <shoulder.version>0.8-SNAPSHOT</shoulder.version><!-- shoulder-version -->
         <spring-boot.version>3.0.2</spring-boot.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
-        <spring-cloud-alibaba.version>2023.0.0.0-RC1</spring-cloud-alibaba.version>
     </properties>
 
     <dependencies>
@@ -41,7 +40,6 @@
         <dependency>
             <groupId>cn.itlym.platform</groupId>
             <artifactId>shoulder-platform-starter-discovery-client</artifactId>
-            <version>${shoulder-platform.version}</version>
         </dependency>
 
         <!-- 配置动态刷新 -->

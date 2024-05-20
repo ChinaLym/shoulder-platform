@@ -3,7 +3,7 @@ server:
 
 test:
   sms:
-    phoneNumber: 15858193327
+    phoneNumber: 13928845527
     template-code: SMS_184220232
   email:
-    receiver-address: 1730398492@qq.com
+    receiver-address: changeme@changeme.com
