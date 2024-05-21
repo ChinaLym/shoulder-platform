@@ -32,10 +32,11 @@ public class MinioAutoConfiguration {
      * @throws InvalidPortException     port 错误
      */
     @Bean
-    public MinioClient minioClient() throws InvalidPortException, InvalidEndpointException {
-        return new MinioClient(minioProperties.getEndpoint(), minioProperties.getPort(),
-                minioProperties.getAccessKey(), minioProperties.getSecretKey(),
-                minioProperties.getRegion(), minioProperties.isSecure()
-        );
+    public MinioClient minioClient() {
+        return MinioClient.builder()
+                .region(minioProperties.getRegion())
+                .endpoint(minioProperties.getEndpoint())
+                .credentials(minioProperties.getAccessKey(), minioProperties.getSecretKey())
+                .build();
     }
 }

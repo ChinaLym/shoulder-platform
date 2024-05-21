@@ -12,6 +12,8 @@
 
     <artifactId>shoulder-platform-parent</artifactId>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>shoulder platform 的通用父类，管理了平台的技术选型和通用配置</description>
 
     <url>https://github.com/ChinaLym/shoulder-platform</url>
     <properties>
@@ -55,28 +57,27 @@
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
         <docker.image.prefix>shoulder</docker.image.prefix>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.6.0</maven-javadoc-plugin.version>
-        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
-        <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+        <maven-jar-plugin.version>3.4.1</maven-jar-plugin.version>
+        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
 
-        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
+<!--        更新于2015-->
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
-        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
-        <license-maven-plugin.version>2.2.0</license-maven-plugin.version>
+        <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
+        <license-maven-plugin.version>4.5.0</license-maven-plugin.version>
         <git-commit-id-plugin.version>6.0.0</git-commit-id-plugin.version>
         <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
 
-        <shoulder-maven-plugin.version>1.1</shoulder-maven-plugin.version>
+        <shoulder-maven-plugin.version>1.2.1</shoulder-maven-plugin.version>
         <shoulder-framework.errcode-prefix>0x0000</shoulder-framework.errcode-prefix>
 
-        <springdoc-openapi-maven-plugin.version>0.3</springdoc-openapi-maven-plugin.version>
+<!--        <springdoc-openapi-maven-plugin.version>0.3</springdoc-openapi-maven-plugin.version>-->
 
     </properties>
 
-    <name>${project.artifactId}</name>
-    <description>shoulder platform 的通用父类，管理了平台的技术选型和通用配置</description>
     <developers>
         <developer>
             <name>lym</name>

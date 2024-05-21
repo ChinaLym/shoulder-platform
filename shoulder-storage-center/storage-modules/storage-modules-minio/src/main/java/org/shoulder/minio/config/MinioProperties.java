@@ -15,13 +15,9 @@ public class MinioProperties {
      */
     private Boolean enable = Boolean.TRUE;
     /**
-     * minio Server 主机名或IP地址
+     * minio Server http 地址，注意 minio8 后 endpoint 是 url 而非 host
      */
-    private String endpoint = "127.0.0.1";
-    /**
-     * 端口号
-     */
-    private int port = 9000;
+    private String endpoint = "http://127.0.0.1:9000";
     /**
      * ak 类似于用户ID，用于唯一标识你的账户
      */
@@ -34,10 +30,6 @@ public class MinioProperties {
      * 设置该值将覆盖自动发现存储桶region。（可选）
      */
     private String region;
-    /**
-     * 使用 ssl
-     */
-    private boolean secure = false;
 
     public Boolean getEnable() {
         return enable;
@@ -53,14 +45,6 @@ public class MinioProperties {
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
     }
 
     public String getAccessKey() {
@@ -85,13 +69,5 @@ public class MinioProperties {
 
     public void setRegion(String region) {
         this.region = region;
-    }
-
-    public boolean isSecure() {
-        return secure;
-    }
-
-    public void setSecure(boolean secure) {
-        this.secure = secure;
     }
 }
