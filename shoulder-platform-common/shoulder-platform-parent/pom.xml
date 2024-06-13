@@ -26,7 +26,7 @@
 
         <!-- =============== Shoulder 版本 =============== -->
 
-        <shoulder.version>0.8-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>0.8.1</shoulder.version><!-- shoulder-version -->
         <shoulder-platform.version>1.0-SNAPSHOT</shoulder-platform.version><!-- shoulder-platform-version -->
 
         <shoulder-sms-aliyun.version>1.0-SNAPSHOT</shoulder-sms-aliyun.version><!-- shoulder-sms-aliyun.version -->

@@ -15,7 +15,7 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <shoulder.version>0.8-SNAPSHOT</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>0.8.1</shoulder.version><!-- shoulder-version -->
         <spring-boot.version>3.0.2</spring-boot.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
     </properties>

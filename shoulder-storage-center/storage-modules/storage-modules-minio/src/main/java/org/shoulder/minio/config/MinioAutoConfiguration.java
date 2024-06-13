@@ -1,8 +1,6 @@
 package org.shoulder.minio.config;
 
 import io.minio.MinioClient;
-import io.minio.errors.InvalidEndpointException;
-import io.minio.errors.InvalidPortException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +26,6 @@ public class MinioAutoConfiguration {
      * MinioClient Bean
      *
      * @return MinioClient
-     * @throws InvalidEndpointException endpoint 错误
-     * @throws InvalidPortException     port 错误
      */
     @Bean
     public MinioClient minioClient() {

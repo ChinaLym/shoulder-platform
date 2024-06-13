@@ -18,7 +18,7 @@
             <dependency>
                 <groupId>cn.itlym</groupId>
                 <artifactId>shoulder-parent</artifactId>
-                <version>0.8-SNAPSHOT</version><!-- shoulder-version -->
+                <version>0.8.1</version><!-- shoulder-version -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
