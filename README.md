@@ -61,6 +61,8 @@
 
 ![监控 nginx2](img/nginx2.png)
 
+![监控 nginx3](img/nginx3.png)
+
 ![监控redis](img/redis.png)
 
 ![nacos1](img/nacos1.png)
