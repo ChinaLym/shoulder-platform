@@ -1,4 +1,4 @@
-<h1 align="center"><img src="img/logo.png" height="40" width="40" /><a href="https://github.com/ChinaLym/shoulder-platform" target="_blank">Shoulder Platform</a></h1>
+<h1 align="center"><img src="img/shoulder_platform_svg_logo.svg" height="40" width="40" /><a href="https://github.com/ChinaLym/shoulder-platform" target="_blank">Shoulder Platform</a></h1>
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/ChinaLym/shoulder-platform)
 [![](https://img.shields.io/badge/Author-lym-blue.svg)](https://github.com/ChinaLym)
