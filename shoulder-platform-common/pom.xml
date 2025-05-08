@@ -30,7 +30,7 @@
     </modules>
 
     <properties>
-        <shoulder.version>0.8.1</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>1.0.0</shoulder.version><!-- shoulder-version -->
         <shoulder-platform.version>1.0-SNAPSHOT</shoulder-platform.version>
     </properties>
 
@@ -39,7 +39,7 @@
             <dependency>
                 <groupId>cn.itlym</groupId>
                 <artifactId>shoulder-dependencies</artifactId>
-                <version>0.8.1</version><!-- shoulder-version -->
+                <version>1.0.0</version><!-- shoulder-version -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

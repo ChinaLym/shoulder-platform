@@ -16,12 +16,13 @@
 # 👀 在线预览
 
 - [Grafana + Prometheus 监控系统](https://grafana.itlym.cn)（账号：`shoulder` 密码： `shoulder123`）
-- ~~[EFK 日志系统](https://kibana.itlym.cn)（账号：`shoulder` 密码： `shoulder123`）（暂时下线）~~
+- ~~[EFK 日志系统](https://kibana.itlym.cn)（账号：`shoulder` 密码： `shoulder123`）~~（暂时下线，当前使用 Loki + Fluentd + Grafana）
 - ~~[注册中心 / 配置中心地址](https://nacos.itlym.cn)（暂时下线）~~
 - ~~[限流配置中心地址](https://sentinel.itlym.cn)（暂时下线）~~
 - ~~[zipkin 链路追踪系统](https://zipkin.itlym.cn)（暂时下线）~~
 
 - [开发规范地址](https://doc.itlym.cn)
+- [start 页面](https://start.itlym.cn)
 - [私有代码版本控制地址](https://git.itlym.cn)
 - [持续集成服务器地址](https://drone.itlym.cn)
 

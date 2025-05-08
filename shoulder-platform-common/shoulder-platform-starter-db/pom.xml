@@ -18,6 +18,10 @@
             <groupId>cn.itlym</groupId>
             <artifactId>shoulder-data-db</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.chris2018998</groupId>
+            <artifactId>beecp</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>cn.itlym</groupId>
@@ -41,17 +45,8 @@
                 <artifactId>mysql-connector-j</artifactId>
         </dependency>
 
-        <!-- 数据库 连接池 默认使用高性能的 beecp （性能是 spring-boot 默认 hikairCP 两倍，功能较少）-->
-        <dependency>
-            <groupId>com.github.chris2018998</groupId>
-            <artifactId>beecp</artifactId>
-        </dependency>
-        <!-- beecp 的 starter 官方提供的有 bug 因为其 provide 属性会导致编译失败 -->
-        <!--<dependency>
-            <groupId>com.github.chris2018998</groupId>
-            <artifactId>spring-boot-starter-beecp</artifactId>
-            <version>1.3.5.RELEASE</version>
-        </dependency>-->
+        <!-- 数据库 连接池 默认使用高性能的 beecp （性能是 spring-boot 默认 hikairCP 两倍，功能较少，仅支持 springboot2，暂时下线）-->
+<!--        https://github.com/Chris2018998/beecp-starter/issues/27-->
 
         <!-- 弥补 beecp 的功能缺失（打印SQL日志、监控） -->
         <dependency>

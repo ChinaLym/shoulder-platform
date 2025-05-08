@@ -20,7 +20,7 @@
 
 
     <properties>
-        <shoulder.version>0.8.1</shoulder.version><!-- shoulder-version -->
+        <shoulder.version>1.0.0</shoulder.version><!-- shoulder-version -->
         <spring-boot.version>3.0.2</spring-boot.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
