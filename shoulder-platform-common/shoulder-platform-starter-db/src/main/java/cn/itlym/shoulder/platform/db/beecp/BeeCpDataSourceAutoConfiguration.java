@@ -14,14 +14,14 @@ import javax.sql.DataSource;
  *
  * @author lym
  */
-@Configuration(proxyBeanMethods = false)
-@ConditionalOnClass(cn.beecp.BeeDataSource.class)
-@ConditionalOnProperty(name = "spring.datasource.type", havingValue = "cn.beecp.BeeDataSource", matchIfMissing = true)
-public class BeeCpDataSourceAutoConfiguration {
-
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource beeDataSource() throws BeansException {
-        return new cn.beecp.BeeDataSource();
-    }
-}
+//@Configuration(proxyBeanMethods = false)
+//@ConditionalOnClass(cn.beecp.BeeDataSource.class)
+//@ConditionalOnProperty(name = "spring.datasource.type", havingValue = "cn.beecp.BeeDataSource", matchIfMissing = true)
+//public class BeeCpDataSourceAutoConfiguration {
+//
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    public DataSource beeDataSource() throws BeansException {
+//        return new cn.beecp.BeeDataSource();
+//    }
+//}
